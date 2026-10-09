@@ -1,0 +1,4 @@
+{
+  "ltex.language": "de-DE",
+  "latex-workshop.latex.outDir": "%DIR%/build"
+}
