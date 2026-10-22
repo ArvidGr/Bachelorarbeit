@@ -1,19 +1,19 @@
 %allgemeine Formatangaben
 \documentclass[
  a4paper, 										% Papierformat
- 12pt,												% Schriftgröße
- ngerman, 										% für Umlaute, Silbentrennung etc.
+ 12pt,												% SchriftgrÃ¶ÃŸe
+ ngerman, 										% fÃ¼r Umlaute, Silbentrennung etc.
  titlepage,										% es wird eine Titelseite verwendet
- bibliography=totoc,					% Literaturverzeichnis im Inhaltsverzeichnis aufführen
- listof=totoc,								% Verzeichnisse im Inhaltsverzeichnis aufführen
+ bibliography=totoc,					% Literaturverzeichnis im Inhaltsverzeichnis auffÃ¼hren
+ listof=totoc,								% Verzeichnisse im Inhaltsverzeichnis auffÃ¼hren
  oneside, 										% einseitiges Dokument
  captions=nooneline,					% einzeilige Gleitobjekttitel ohne Sonderbehandlung wie mehrzeilige Gleitobjekttitel behandeln
- numbers=noenddot,						% Überschriften-??Nummerierung ohne Punkt am Ende
- parskip=half									% zwischen Absätzen wird eine halbe Zeile eingefügt
+ numbers=noenddot,						% Ãœberschriften-??Nummerierung ohne Punkt am Ende
+ parskip=half									% zwischen AbsÃ¤tzen wird eine halbe Zeile eingefÃ¼gt
  ]{scrbook}
 
 
-\input{Header/Metadaten} 			% einbinden von persönlichen Daten
+\input{Header/Metadaten} 			% einbinden von persÃ¶nlichen Daten
 
 \input{Header/Pakete}					% einbinden der verwendeten Latex-Pakete
 
@@ -23,7 +23,7 @@
 \definecolor{InterneLinkfarbe}{rgb}{0.1,0.1,0.3} 	% Farbliche Absetzung von externen Links
 \definecolor{ExterneLinkfarbe}{rgb}{0.1,0.1,0.7}	% Farbliche Absetzung von internen Links
 
-% Einstellungen für Fußnoten:
+% Einstellungen fÃ¼r FuÃŸnoten:
 \captionsetup{font=footnotesize,labelfont=sc,singlelinecheck=true,margin={5mm,5mm}}
 
 % Stil der Quellenangabe
@@ -34,7 +34,7 @@
 %Ausschluss von Hurenkindern
 \widowpenalty = 10000
 
-% Befehle, die Umlaute ausgeben, führen zu Fehlern, wenn sie hyperref als Optionen übergeben werden
+% Befehle, die Umlaute ausgeben, fÃ¼hren zu Fehlern, wenn sie hyperref als Optionen Ã¼bergeben werden
 \hypersetup{
 %    pdftitle={\titel \untertitel},
 %    pdfauthor={\autor},
@@ -43,7 +43,7 @@
 %    pdfkeywords={\titel \untertitel},
 }
 
-% Beispiel für eine Listings-Codeumbebungen
+% Beispiel fÃ¼r eine Listings-Codeumbebungen
 % Bei mehreren Definitionen empfielt sich das auslagern in eine externe Datei
 \lstloadlanguages{Java,HTML}
 \lstset{

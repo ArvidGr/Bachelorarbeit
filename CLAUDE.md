@@ -10,7 +10,7 @@ Stand dieser Zusammenfassung: 09.10.2026.
 | Pfad | Inhalt |
 | --- | --- |
 | `WissenschArbeiten.pdf` | Folien „Wissenschaftliches Arbeiten – Hinweise zum Anfertigen von Bachelor- und Graduierungsarbeiten“, Prof. Dr.-Ing. Thomas Kudraß (HTWK, Fakultät IMN). Verbindliche Formvorgaben, siehe unten. |
-| `LatexVorlage/LatexVorlage/` | HTWK-LaTeX-Vorlage. Einstieg `Arbeit.tex`; Metadaten in `Header/Metadaten.tex` (noch Platzhalter „Max Muster“, „Masterarbeit“ → anpassen!); Text in `Inhalt/Haupttext.tex`; Literatur `Literatur/Literatur.bib`. **Dateien sind ISO-8859-1 (latin1, CRLF)** – `\usepackage[latin1]{inputenc}`. Beim Bearbeiten Kodierung beibehalten oder bewusst komplett auf UTF-8 umstellen. |
+| `LatexVorlage/LatexVorlage/` | HTWK-LaTeX-Vorlage. Einstieg `Arbeit.tex`; Metadaten in `Header/Metadaten.tex` (noch Platzhalter „Max Muster“, „Masterarbeit“ → anpassen!); Text in `Inhalt/Haupttext.tex`; Literatur `Literatur/Literatur.bib`. Alle Dateien **UTF-8** (am 09.10.2026 von latin1 umgestellt, `\usepackage[utf8]{inputenc}`). Kapiteldateien in `Inhalt/` beginnen mit `% !TEX root = ../Arbeit.tex`. Kompiliert wird in VS Code mit LaTeX Workshop (Einstellungen in `/.vscode/settings.json`, automatischer Build beim Speichern, Ausgabe `build/Arbeit.pdf`). |
 | `Produktionsnachweis/` | Eigenes Git-Repo (GitHub `ArvidGr/Produktionsnachweis`) der Software. Wird im Root-Repo per `.gitignore` ignoriert. |
 | `Gliederung.md` | Vorgeschlagene Gliederung der Arbeit (mit Begründung). |
 | `TODO` | Offene Aufgaben des Nutzers. |

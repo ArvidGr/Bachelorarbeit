@@ -1,4 +1,5 @@
-% Gliederung der Arbeit -- die kursiven Stichpunkte unter jeder Überschrift
+% !TEX root = ../Arbeit.tex
+% Gliederung der Arbeit -- die kursiven Stichpunkte unter jeder Ãœberschrift
 % beschreiben den geplanten Inhalt und werden beim Schreiben ersetzt.
 \newcommand{\geplant}[1]{\textit{Geplanter Inhalt: #1}}
 
@@ -7,35 +8,35 @@
 
 \section{Ausgangssituation in der Platinenfertigung}
 \label{sec:Ausgangssituation}
-\geplant{Bisherige Dokumentation der Fertigung über Papier-Laufkarten und Excel-Listen, drei Standorte, Probleme bei Nachvollziehbarkeit und Auswertung.}
+\geplant{Bisherige Dokumentation der Fertigung Ã¼ber Papier-Laufkarten und Excel-Listen, drei Standorte, Probleme bei Nachvollziehbarkeit und Auswertung.}
 
 \section{Zielsetzung und Fragestellungen}
 \label{sec:Zielsetzung}
-\geplant{Ziel: datenbankgestütztes Webtool für Erfassung, Fortschrittsauswertung und Rückverfolgbarkeit; zu beantwortende Fragestellungen.}
+\geplant{Ziel: datenbankgestÃ¼tztes Webtool fÃ¼r Erfassung, Fortschrittsauswertung und RÃ¼ckverfolgbarkeit; zu beantwortende Fragestellungen.}
 
 \section{Abgrenzung}
 \label{sec:Abgrenzung}
-\geplant{Kein vollständiges MES/ERP, keine direkte Maschinenanbindung, Beschränkung auf die definierten Produktionsschritte.}
+\geplant{Kein vollstÃ¤ndiges MES/ERP, keine direkte Maschinenanbindung, BeschrÃ¤nkung auf die definierten Produktionsschritte.}
 
 \section{Aufbau der Arbeit}
 \label{sec:Aufbau}
-\geplant{Kommentierender Überblick über die folgenden Kapitel (zuletzt formulieren).}
+\geplant{Kommentierender Ãœberblick Ã¼ber die folgenden Kapitel (zuletzt formulieren).}
 
 
 \chapter{Grundlagen}
 \label{sec:Grundlagen}
 
-\section{Rückverfolgbarkeit in der Elektronikfertigung}
+\section{RÃ¼ckverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
-\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Bedeutung für Qualitätssicherung und Kundenanforderungen.}
+\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Bedeutung fÃ¼r QualitÃ¤tssicherung und Kundenanforderungen.}
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}
-\geplant{SMD- und THT-Bestückung, Prüfung und optische Kontrolle, Lackierung, Endkontrolle, Reparatur.}
+\geplant{SMD- und THT-BestÃ¼ckung, PrÃ¼fung und optische Kontrolle, Lackierung, Endkontrolle, Reparatur.}
 
-\section{Relationale Datenbanken und Integritätssicherung}
+\section{Relationale Datenbanken und IntegritÃ¤tssicherung}
 \label{sec:RelationaleDatenbanken}
-\geplant{Relationenmodell, Schlüssel und Constraints, Trigger, Transaktionen, Historisierung von Daten.}
+\geplant{Relationenmodell, SchlÃ¼ssel und Constraints, Trigger, Transaktionen, Historisierung von Daten.}
 
 \section{Webanwendungen mit SvelteKit}
 \label{sec:SvelteKit}
@@ -51,15 +52,15 @@
 
 \section{Analyse des bisherigen Nachweisprozesses}
 \label{sec:IstAnalyse}
-\geplant{Ist-Ablauf mit Laufkarten und Excel, Medienbrüche, Schwachstellen.}
+\geplant{Ist-Ablauf mit Laufkarten und Excel, MedienbrÃ¼che, Schwachstellen.}
 
 \section{Akteure und Rollen}
 \label{sec:Akteure}
-\geplant{Gast, Mitarbeiter, Administrator; Anwendungsfälle je Rolle.}
+\geplant{Gast, Mitarbeiter, Administrator; AnwendungsfÃ¤lle je Rolle.}
 
 \section{Funktionale Anforderungen}
 \label{sec:FunktionaleAnforderungen}
-\geplant{Erfassung von Produktionsschritten, Auswertung des Fortschritts, Rückverfolgung je Platine, Korrektur, Lager und Standorte.}
+\geplant{Erfassung von Produktionsschritten, Auswertung des Fortschritts, RÃ¼ckverfolgung je Platine, Korrektur, Lager und Standorte.}
 
 \section{Nichtfunktionale Anforderungen}
 \label{sec:NichtfunktionaleAnforderungen}
@@ -71,19 +72,19 @@
 
 \section{Systemarchitektur}
 \label{sec:Systemarchitektur}
-\geplant{Komponentenübersicht: Browser, SvelteKit-Server, PostgreSQL, Fileserver für Prüfprotokolle.}
+\geplant{KomponentenÃ¼bersicht: Browser, SvelteKit-Server, PostgreSQL, Fileserver fÃ¼r PrÃ¼fprotokolle.}
 
 \section{Datenmodell}
 \label{sec:Datenmodell}
-\geplant{ER-Modell: Platinentypen, Laufkarten mit Seriennummernbereichen, Platinen, Produktionsnachweise mit Versuchen, Änderungsprotokoll, Standorte.}
+\geplant{ER-Modell: Platinentypen, Laufkarten mit Seriennummernbereichen, Platinen, Produktionsnachweise mit Versuchen, Ã„nderungsprotokoll, Standorte.}
 
 \section{Zustandsmodell einer Platine}
 \label{sec:Zustandsmodell}
 \geplant{Hauptkette der Produktionsschritte, Sonderschritte Reparatur und Gesperrt, zweiter Durchlauf nach Reparatur.}
 
-\section{Gestaltung der Benutzeroberfläche}
+\section{Gestaltung der BenutzeroberflÃ¤che}
 \label{sec:Oberflaeche}
-\geplant{UI-Entwürfe der Seiten Erfassung, Suche, Korrektur und Laufkartenverwaltung (Herkunft der Entwürfe kennzeichnen).}
+\geplant{UI-EntwÃ¼rfe der Seiten Erfassung, Suche, Korrektur und Laufkartenverwaltung (Herkunft der EntwÃ¼rfe kennzeichnen).}
 
 \section{Anmelde- und Berechtigungskonzept}
 \label{sec:Berechtigungskonzept}
@@ -93,43 +94,43 @@
 \chapter{Implementierung}
 \label{sec:Implementierung}
 
-\section{Entwicklungsvorgehen und Werkzeuge}
+\section{Entwicklungsvorgehen und Werkzeuge} 
 \label{sec:Entwicklungsvorgehen}
 \geplant{Iteratives Vorgehen, Versionsverwaltung mit Git, Feature-Branches und Pull Requests, Docker.}
 
 \section{Erfassung von Produktionsschritten}
 \label{sec:Erfassung}
-\geplant{Erfassung je Seriennummernbereich, Prüfung der Vorgängerschritte, Scan-Modus für alte und neue Aufkleber.}
+\geplant{Erfassung je Seriennummernbereich, PrÃ¼fung der VorgÃ¤ngerschritte, Scan-Modus fÃ¼r alte und neue Aufkleber.}
 
-\section{Geschäftsregeln in der Datenbank}
+\section{GeschÃ¤ftsregeln in der Datenbank}
 \label{sec:Geschaeftsregeln}
-\geplant{Trigger für gültige Seriennummernbereiche und Schutz vor Bereichsverkleinerung, eindeutige aktuelle Nachweise.}
+\geplant{Trigger fÃ¼r gÃ¼ltige Seriennummernbereiche und Schutz vor Bereichsverkleinerung, eindeutige aktuelle Nachweise.}
 
 \section{Auswertung des Produktionsfortschritts}
 \label{sec:Auswertung}
-\geplant{Statusermittlung je Platine, Bereich und Laufkarte, Überwachung von Lieferterminen, Benachrichtigungen, Excel-Export.}
+\geplant{Statusermittlung je Platine, Bereich und Laufkarte, Ãœberwachung von Lieferterminen, Benachrichtigungen, Excel-Export.}
 
-\section{Rückverfolgbarkeit einzelner Platinen}
+\section{RÃ¼ckverfolgbarkeit einzelner Platinen}
 \label{sec:RueckverfolgbarkeitUmsetzung}
-\geplant{Detailansicht mit vollständiger Historie, revisionssichere Korrektur mit Änderungsprotokoll, Korrekturanfrage, Anbindung der Prüfprotokolle, Standortverlauf.}
+\geplant{Detailansicht mit vollstÃ¤ndiger Historie, revisionssichere Korrektur mit Ã„nderungsprotokoll, Korrekturanfrage, Anbindung der PrÃ¼fprotokolle, Standortverlauf.}
 
 \section{Lagerverwaltung und Standortwechsel}
 \label{sec:Lagerverwaltung}
 \geplant{Kisten und Paletten mit QR-Etikett, Versand und Wareneingang zwischen Standorten, Teillieferungen, Lagerbestand (ggf. Erweiterungen aus weiteren Entwicklungszweigen).}
 
 
-\chapter{Datenübernahme und Inbetriebnahme}
+\chapter{DatenÃ¼bernahme und Inbetriebnahme}
 \label{sec:Inbetriebnahme}
 
 \section{Migration der Excel-Bestandsdaten}
 \label{sec:Migration}
-\geplant{Import-Skripte, Bereinigung und Zuordnung der Altdaten, Problemfälle.}
+\geplant{Import-Skripte, Bereinigung und Zuordnung der Altdaten, ProblemfÃ¤lle.}
 
 \section{Bereitstellung im Unternehmensnetz}
 \label{sec:Bereitstellung}
 \geplant{Node-Server unter Ubuntu, PostgreSQL im Container, Einbindung des Fileservers, Datensicherung.}
 
-\section{Einführung im Betrieb}
+\section{EinfÃ¼hrung im Betrieb}
 \label{sec:Einfuehrung}
 \geplant{Anlage der Nutzer, Arbeitsanweisung, Schulung der Mitarbeiter.}
 
@@ -139,7 +140,7 @@
 
 \section{Test der Anwendung}
 \label{sec:Test}
-\geplant{Automatisierte Tests (Scan, Seriennummern, Prüfprotokollpfade) und manuelle Testfälle.}
+\geplant{Automatisierte Tests (Scan, Seriennummern, PrÃ¼fprotokollpfade) und manuelle TestfÃ¤lle.}
 
 \section{Leistungsoptimierung}
 \label{sec:Leistung}
@@ -147,15 +148,15 @@
 
 \section{Befragung der Anwender}
 \label{sec:Befragung}
-\geplant{Aufbau des Fragebogens, Durchführung in der Fertigung, Auswertung der Ergebnisse.}
+\geplant{Aufbau des Fragebogens, DurchfÃ¼hrung in der Fertigung, Auswertung der Ergebnisse.}
 
-\section{Erfüllung der Anforderungen}
+\section{ErfÃ¼llung der Anforderungen}
 \label{sec:Anforderungserfuellung}
 \geplant{Abgleich der umgesetzten Funktionen mit den Anforderungen aus Kapitel \ref{sec:Anforderungsanalyse}.}
 
 \section{Anpassungen aus dem Praxiseinsatz}
 \label{sec:Anpassungen}
-\geplant{Änderungen nach Rückmeldungen aus dem Betrieb: Reparaturregel, Aufkleberformate, Etikettengröße, Umbau zur Lagerverwaltung.}
+\geplant{Ã„nderungen nach RÃ¼ckmeldungen aus dem Betrieb: Reparaturregel, Aufkleberformate, EtikettengrÃ¶ÃŸe, Umbau zur Lagerverwaltung.}
 
 
 \chapter{Zusammenfassung und Ausblick}
@@ -167,8 +168,8 @@
 
 \section{Kritische Bewertung}
 \label{sec:KritischeBewertung}
-\geplant{Grenzen der Lösung, u.\,a. clientseitige Zugriffskontrolle und fehlende automatisierte Oberflächentests.}
+\geplant{Grenzen der LÃ¶sung, u.\,a. clientseitige Zugriffskontrolle und fehlende automatisierte OberflÃ¤chentests.}
 
 \section{Ausblick}
 \label{sec:Ausblick}
-\geplant{Serverseitige Sitzungen, weitere Module und Standorte, Anbindung von Prüfständen und Maschinen.}
+\geplant{Serverseitige Sitzungen, weitere Module und Standorte, Anbindung von PrÃ¼fstÃ¤nden und Maschinen.}
