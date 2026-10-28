@@ -8,7 +8,64 @@
 
 \section{Ausgangssituation in der Platinenfertigung}
 \label{sec:Ausgangssituation}
-\geplant{Bisherige Dokumentation der Fertigung über Papier-Laufkarten und Excel-Listen, drei Standorte, Probleme bei Nachvollziehbarkeit und Auswertung.}
+Das Unternehmen ZOPF Energieanlagen GmbH (im Folgenden als ZOPF) fertigt Leiterplattenbaugruppen, also mit elektronischen
+Bauelementen bestückte Leiterplatten, die im Folgenden kurz als \emph{Platinen}
+bezeichnet werden. An dem Hauptstandort Leipzig werden die Platinen
+gefertigt, geprüft und sowohl in Leipzig als auch in dem Zweitstandort Wickede gelagert 
+und zum Teil zu größeren Baugruppen, den \emph{Modulen}, verbaut. 
+Die Lackierung der Platinen übernimmt ein externer Dienstleister. 
+Jede Platine durchläuft eine feste Folge von Arbeitsschritten: 
+die Bestückung mit oberflächenmontierten Bauelementen
+(Surface-Mounted Device, kurz SMD), die Bestückung mit bedrahteten Bauelementen
+(Through-Hole Technology, kurz THT), die Prüfung mit optischer Kontrolle, die
+Lackierung, die Endkontrolle und schließlich die Einlagerung. Diese Schritte
+werden in Abschnitt~\ref{sec:Fertigungsprozess} näher beschrieben. Zur
+Kennzeichnung trägt jede Platine einen Aufkleber mit dem Zopf-internen Namen der Platine, der Artikelnummer 
+und einer \emph{Seriennummer}, welche innerhalb des Platinentyps eindeutig ist.
+Auf dem Aufkleber ist zudem ein maschinenlesbarer QR-Code aufgebracht, der diese Daten codiert.
+
+Gesteuert wird die Fertigung über \emph{Laufkarten}. Eine Laufkarte beschreibt
+einen Fertigungsauftrag über eine bestimmte Stückzahl eines Platinentyps und
+legt fest, welcher Bereich von Seriennummern für diesen Auftrag vergeben wird.
+Bisher wurden die Laufkarten auf Papier geführt und begleiteten die Platinen
+durch die Fertigung. Nach Abschluss eines Arbeitsschritts notierten die
+Mitarbeiter von Hand, für welchen Seriennummernbereich der Schritt erledigt
+war, und gaben diese Angaben an die Produktionsleitung weiter. Dort wurden sie
+in Excel-Listen übertragen, je Platinentyp eine Arbeitsmappe mit einem
+Tabellenblatt je Arbeitsschritt, und per E-Mail verteilt. Auch der Fortschritt
+einer Laufkarte wurde auf Papier fortgeschrieben. Für die Module galt ein
+ähnliches Verfahren: Zu jedem Modul wurde ein Montageprotokoll ausgedruckt, auf
+dem die Seriennummern der eingebauten Platinen handschriftlich eingetragen
+wurden. Eine digitale Erfassung dieser Zuordnung gab es nicht.
+
+Dieses Vorgehen weist mehrere Schwächen auf. Jede Angabe wurde mindestens
+einmal von Hand geschrieben und einmal übertragen; Verschreiben, Zahlendreher
+und unleserliche Handschrift führten zu fehlerhaften Einträgen. Einzelne
+Meldungen wurden vergessen, Zettel gingen verloren, sodass die Dokumentation
+lückenhaft blieb. Die Excel-Listen ließen sich zudem jederzeit nachträglich
+ändern, ohne dass der ursprüngliche Stand oder die Änderung selbst festgehalten
+wurde. Eine \emph{revisionssichere} Dokumentation, bei der jede Änderung
+nachvollziehbar bleibt und frühere Stände erhalten sind, war damit nicht
+gegeben. Die Uneinheitlichkeit der Altdaten zeigte sich deutlich bei ihrer
+Übernahme in das neue System (Abschnitt~\ref{sec:Migration}).
+
+Darunter litten vor allem zwei Aufgaben. Zum einen war der Fortschritt einer
+Laufkarte, also die Frage, wie viele Platinen welchen Arbeitsschritt bereits
+abgeschlossen haben, nur durch Zusammentragen mehrerer Listen und Zettel zu
+ermitteln. Zum anderen ließ sich für eine einzelne Platine kaum beantworten,
+wann sie welchen Schritt durchlaufen hat, wer sie bearbeitet hat, wo sie sich
+gerade befindet und in welches Modul sie eingebaut wurde. Gerade diese
+\emph{Rückverfolgbarkeit} ist für die Qualitätssicherung wesentlich: Tritt ein
+Fehler auf, müssen die betroffenen Platinen und Module eingegrenzt werden
+können (Abschnitt~\ref{sec:Rueckverfolgbarkeit}). Die Verteilung der Platinen
+auf zwei Standorte und einen externen Dienstleister erschwerte die Übersicht
+zusätzlich, weil Platinen zwischen diesen Orten wechseln und die Angaben dazu
+an verschiedenen Stellen vorlagen.
+
+Vor diesem Hintergrund entstand im Rahmen einer Werkstudententätigkeit bei ZOPF
+die Aufgabe, die papier- und tabellenbasierte Dokumentation durch eine
+datenbankgestützte Anwendung abzulösen. Die daraus abgeleiteten Ziele und
+Fragestellungen dieser Arbeit beschreibt der folgende Abschnitt.
 
 \section{Zielsetzung und Fragestellungen}
 \label{sec:Zielsetzung}
