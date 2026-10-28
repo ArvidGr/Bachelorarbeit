@@ -3,7 +3,16 @@
 Arbeitssprache: **Deutsch**. Ziel des Repos: die schriftliche Bachelorarbeit (LaTeX)
 über die selbst entwickelte Web-App **Produktionsnachweis**.
 
-Stand dieser Zusammenfassung: 09.10.2026.
+Stand dieser Zusammenfassung: 28.10.2026.
+
+## Maßgeblicher Software-Stand
+
+Die Arbeit beschreibt **Commit `c9e14cb`** („Merge pull request #29 from ArvidGr/module-sk“, 20.10.2026),
+lokal ausgecheckt als Branch `Bachelorarbeit` in `Produktionsnachweis/` (nicht auf GitHub).
+Code, Schema und Doku immer auf diesem Stand lesen (`git show c9e14cb:<pfad>`), **nicht** auf `main`.
+Spätere Commits auf `origin/main` (ab 21.10.: Modul-SN bearbeitbar, Platinentausch in Modulen,
+Modul-Prüfprotokolle erweitert, Standort „PCB-Produktion“, Umbuchung zwischen Kisten u. a.) sind
+nicht Gegenstand der Arbeit, höchstens im Ausblick.
 
 ## Ordner
 
@@ -28,25 +37,37 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   Seriennummernbereich (+ Zusatzbereiche). *Platine* = eine Seriennummer.
   *Produktionsnachweis* = erfasster Schritt je Platine (mit `versuch`, `ist_aktuell`, Historie bleibt).
 - **Hauptkette:** SMD → THT → Prüfung/optische Kontrolle → Lackierung → Endkontrolle → Im Lager.
-  Sonderschritte **Reparatur** und **Gesperrt** außerhalb der Kette; nach Reparatur zweiter Durchlauf möglich.
+  Sonderschritte **Reparatur** und **Gesperrt** außerhalb der Kette; nach Reparatur zweiter Durchlauf möglich,
+  dabei nach der Endkontrolle direkt einlagerbar.
 - **Funktionen:** Erfassung per SN-Bereich oder **Scan-Modus** (Barcode, alte + neue Aufkleber);
-  Laufkartenverwaltung (Admin); öffentliche Suche (Platine / Bereich / Laufkarte);
+  Laufkartenverwaltung (Admin); öffentliche Suche (Platine / Bereich / Modul, Laufkarten über Tabelle);
   revisionssichere **Korrektur** mit Änderungsprotokoll `PK-JAHR-NNNNNN`; Korrekturanfrage;
   Benachrichtigungen (neue Laufkarte, Liefertermin ≤ 7 Tage, Fehler);
-  Prüfprotokoll-PDFs (EC300KW) vom Fileserver; Excel-Export;
+  Prüfprotokoll-PDFs (EC300KW) vom Fileserver; Excel-Bericht je Laufkarte (Fortschritt, Sonderstatus, Lager je Standort);
   **Lager**: Kisten/Paletten mit QR-Etikett (62×90 mm, Brother QL-500), Versand/Wareneingang
   zwischen Standorten, Teillieferungen, Lagerbestandsübersicht.
+- **Module** (zunächst Enercon EC300KW): Platinen werden in Module eingebaut. Tabellen `modultypen`,
+  `modultyp_bestueckung` (Soll-Bestückung, Erfassung lässt nur genau diese zu), `module`
+  (SN `[L|W|ES][JJ][sn_code][Zähler 4-stellig]`, z. B. `ES26440001`), `modul_platinen` (Platine in höchstens
+  einem Modul, UNIQUE). Erfassung über Umschalter „Module“ auf `/erfassung`, Detailseite `/suche/modul/[sn]`,
+  Etikett im Format Code 128, Upload des Modul-Prüfprotokolls. Die Montage ist **kein** Produktionsschritt.
+- **SK-tronic** (Fremdfertiger): Alte SK-Aufkleber (Typ 1, SN 1–4000, ohne „SK“ im QR-Code) kollidieren
+  mit Leipziger SN. In der DB liegen sie als SN + 10 000 000 (`SK_OFFSET`). Ein mehrdeutiger Scan wird über den
+  Standort aufgelöst, sonst kommt eine Rückfrage (`sk.ts`, `SkRueckfrage.svelte`).
 - **DB-Geschäftsregeln als Trigger:** `trg_platinen_seriennummer_bereich`, `trg_laufkarten_bereich_schutz`.
 - **Nutzerverwaltung:** keine Selbstregistrierung; Anlage per Terminal mit einmaligem Startcode (argon2, 7 Tage).
 - **Bekannte Schwäche (für kritische Bewertung relevant):** Zugriffskontrolle nur clientseitig
   (Login-Status im `localStorage`, kein Server-Session-Cookie).
 - **Doku im Repo:** `README.md` (ausführlich, Abschnitt „Transport“ teils veraltet – seit 08.10. heißt das Modul **Lager**, Routen `/lager/...`),
   `kurzErklärung.txt` (Datei-für-Datei-Erklärung), `docs/DIAGRAMME.md` (Mermaid: Komponenten, ER,
-  9 Sequenzdiagramme, Zustandsdiagramm), `DBMS/ER-Diagramm.png`, `UI_Planung/` (UI-Entwürfe Alt/Neu/Transport),
+  9 Sequenzdiagramme, Zustandsdiagramm), `DBMS/ER-Diagramm.png`, `UI_Planung/` (UI-Entwürfe Alt/Neu/Transport/Module),
   `app/src/lib/server/schema.sql`.
-- **Tests:** `npm run test` (node:test; `scan`, `seriennummer`, `testprotokolle-pfade`).
+  `docs/DIAGRAMME.md` am 28.10.2026 auf c9e14cb aktualisiert (14 Diagramme: Komponenten, ER, 11 Sequenzdiagramme
+  inkl. SK-Auflösung, Prüfstand, Modulmontage, Zustandsdiagramm; uncommittet im Branch `Bachelorarbeit`).
+  **Veraltet** bleibt `DBMS/ER-Diagramm.png` (Stand 08.07.) – für die Arbeit nicht verwenden.
+- **Tests:** `npm run test` (node:test; `scan`, `seriennummer`, `testprotokolle-pfade`, `modul`, `sk`).
 
-## Git-Historie Produktionsnachweis (181 Commits, 29.06.–08.10.2026, 28 PRs, Feature-Branches)
+## Git-Historie Produktionsnachweis (bis c9e14cb: 197 Commits, davon 158 ohne Merges, 29.06.–20.10.2026, 29 PRs, Feature-Branches)
 
 1. **Prototyp der Oberfläche** (29.06.–07.07.): UI-Entwürfe von *Anna* (fremde Leistung – kennzeichnen!),
    Login, Erfassungs-, Such-, Korrektur-, Laufkartenseite; nur Demo-Daten/localStorage.
@@ -59,8 +80,10 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
    (z. B. Korrekturseite 1442 → 380 Zeilen).
 7. **Erweiterungen aus dem Betrieb** (Sep.): Reparatur jederzeit, neue Aufkleber, Prüfprotokolle, Transport
    (Kisten, Paletten, Etiketten, Versand/Wareneingang), Scan-Tests, Excel-Export.
-8. **Umbau zur Lagerverwaltung** (Okt.): Transport → Lager, Lagerübersicht. Nicht in `main`: Branches
-   `sk-tronic` / `module-sk` („SK doppelte hinzufügen“, „Modulseite“).
+8. **Lagerverwaltung und Module** (01.–20.10.): Transport → Lager, Lagerübersicht; Branches `module-sk`
+   (Modulmontage) und `sk-tronic` (SK-Platinen-Erkennung) gemergt (PR #29); Excel-Bericht je Laufkarte,
+   direkte Einlagerung nach zweitem Durchlauf, Laufkarten ab SN-Start wieder bearbeitbar, EC300KW Typ 4,
+   „Alle Benachrichtigungen löschen“.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
 
@@ -99,7 +122,8 @@ Integritätsregeln/Trigger und Revisionssicherheit verdienen in der Arbeit Gewic
   (steht in `Header/Metadaten.tex`).
 - **Kollegen** (Anna, Jan u. a.) werden in der Arbeit **nicht namentlich** erwähnt. Ihre Beiträge
   (UI-Entwürfe, erstes DB-Schema) neutral kennzeichnen, z. B. „Entwurf aus dem Unternehmen“.
-- Branches `sk-tronic` / `module-sk` kommen **eventuell** noch in die Arbeit (Abschnitt 5.6).
+- Module und SK-tronic gehören **zur Arbeit** (28.10.2026): Module in Abschnitt 5.7 „Zuordnung von Platinen
+  zu Modulen“, SK-tronic in 5.2/4.2/7.5/8.2.
 - Eine **Anwenderbefragung** ist geplant (Abschnitt 7.3, Fragebogen in Anhang E).
 - Gliederung ist in LaTeX umgesetzt (`Inhalt/Haupttext.tex`, `Inhalt/Anhang.tex`), kursive
   `\geplant{...}`-Stichpunkte sind Platzhalter. `Gliederung.md` synchron halten.

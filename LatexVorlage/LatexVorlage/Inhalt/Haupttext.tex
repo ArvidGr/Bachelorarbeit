@@ -16,7 +16,7 @@
 
 \section{Abgrenzung}
 \label{sec:Abgrenzung}
-\geplant{Kein vollständiges MES/ERP, keine direkte Maschinenanbindung, Beschränkung auf die definierten Produktionsschritte.}
+\geplant{Kein vollständiges MES/ERP, keine direkte Maschinenanbindung, Beschränkung auf die definierten Produktionsschritte; betrachteter Entwicklungsstand bis 20.10.2026, spätere Erweiterungen nicht Gegenstand der Arbeit.}
 
 \section{Aufbau der Arbeit}
 \label{sec:Aufbau}
@@ -28,7 +28,7 @@
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
-\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Bedeutung für Qualitätssicherung und Kundenanforderungen.}
+\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Rückverfolgbarkeit über Baugruppenebenen (Platine – Modul); Bedeutung für Qualitätssicherung und Kundenanforderungen.}
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}
@@ -44,7 +44,7 @@
 
 \section{Maschinenlesbare Kennzeichnung}
 \label{sec:Kennzeichnung}
-\geplant{Barcode und QR-Code, Barcode-Scanner als Tastatureingabe, Etikettendruck.}
+\geplant{Barcode (Code 128) und QR-Code, Barcode-Scanner als Tastatureingabe, Etikettendruck.}
 
 
 \chapter{Anforderungsanalyse}
@@ -60,7 +60,7 @@
 
 \section{Funktionale Anforderungen}
 \label{sec:FunktionaleAnforderungen}
-\geplant{Erfassung von Produktionsschritten, Auswertung des Fortschritts, Rückverfolgung je Platine, Korrektur, Lager und Standorte.}
+\geplant{Erfassung von Produktionsschritten, Auswertung des Fortschritts, Rückverfolgung je Platine, Korrektur, Lager und Standorte, Modulmontage.}
 
 \section{Nichtfunktionale Anforderungen}
 \label{sec:NichtfunktionaleAnforderungen}
@@ -76,11 +76,11 @@
 
 \section{Datenmodell}
 \label{sec:Datenmodell}
-\geplant{ER-Modell: Platinentypen, Laufkarten mit Seriennummernbereichen, Platinen, Produktionsnachweise mit Versuchen, Änderungsprotokoll, Standorte.}
+\geplant{ER-Modell: Platinentypen, Laufkarten mit Seriennummernbereichen, Platinen, Produktionsnachweise mit Versuchen, Änderungsprotokoll, Standorte, Module mit Soll-Bestückung und Platinenzuordnung; Seriennummernkonzept einschließlich Nummernversatz für Fremdfertiger-Platinen.}
 
 \section{Zustandsmodell einer Platine}
 \label{sec:Zustandsmodell}
-\geplant{Hauptkette der Produktionsschritte, Sonderschritte Reparatur und Gesperrt, zweiter Durchlauf nach Reparatur.}
+\geplant{Hauptkette der Produktionsschritte, Sonderschritte Reparatur und Gesperrt, zweiter Durchlauf nach Reparatur mit direkter Einlagerung nach der Endkontrolle.}
 
 \section{Gestaltung der Benutzeroberfläche}
 \label{sec:Oberflaeche}
@@ -100,7 +100,7 @@
 
 \section{Erfassung von Produktionsschritten}
 \label{sec:Erfassung}
-\geplant{Erfassung je Seriennummernbereich, Prüfung der Vorgängerschritte, Scan-Modus für alte und neue Aufkleber.}
+\geplant{Erfassung je Seriennummernbereich, Prüfung der Vorgängerschritte, Scan-Modus für alte und neue Aufkleber, Auflösung mehrdeutiger Seriennummern eines Fremdfertigers über den Standort.}
 
 \section{Geschäftsregeln in der Datenbank}
 \label{sec:Geschaeftsregeln}
@@ -108,7 +108,7 @@
 
 \section{Auswertung des Produktionsfortschritts}
 \label{sec:Auswertung}
-\geplant{Statusermittlung je Platine, Bereich und Laufkarte, Überwachung von Lieferterminen, Benachrichtigungen, Excel-Export.}
+\geplant{Statusermittlung je Platine, Bereich und Laufkarte, Überwachung von Lieferterminen, Benachrichtigungen, Excel-Bericht je Laufkarte.}
 
 \section{Rückverfolgbarkeit einzelner Platinen}
 \label{sec:RueckverfolgbarkeitUmsetzung}
@@ -116,7 +116,11 @@
 
 \section{Lagerverwaltung und Standortwechsel}
 \label{sec:Lagerverwaltung}
-\geplant{Kisten und Paletten mit QR-Etikett, Versand und Wareneingang zwischen Standorten, Teillieferungen, Lagerbestand (ggf. Erweiterungen aus weiteren Entwicklungszweigen).}
+\geplant{Kisten und Paletten mit QR-Etikett, Versand und Wareneingang zwischen Standorten, Teillieferungen, Lagerbestandsübersicht.}
+
+\section{Zuordnung von Platinen zu Modulen}
+\label{sec:Module}
+\geplant{Modultypen mit Soll-Bestückung, Seriennummernschema der Module, Montageerfassung per Scan mit Prüfung der Platinen, Modulsuche und Modul-Etikett, Ablage der Modul-Prüfprotokolle; Modulmontage bewusst kein Produktionsschritt.}
 
 
 \chapter{Datenübernahme und Inbetriebnahme}
@@ -140,7 +144,7 @@
 
 \section{Test der Anwendung}
 \label{sec:Test}
-\geplant{Automatisierte Tests (Scan, Seriennummern, Prüfprotokollpfade) und manuelle Testfälle.}
+\geplant{Automatisierte Tests (Scan, Seriennummern, Prüfprotokollpfade, Module, SK-tronic-Zuordnung) und manuelle Testfälle.}
 
 \section{Leistungsoptimierung}
 \label{sec:Leistung}
@@ -156,7 +160,7 @@
 
 \section{Anpassungen aus dem Praxiseinsatz}
 \label{sec:Anpassungen}
-\geplant{Änderungen nach Rückmeldungen aus dem Betrieb: Reparaturregel, Aufkleberformate, Etikettengröße, Umbau zur Lagerverwaltung.}
+\geplant{Änderungen nach Rückmeldungen aus dem Betrieb: Reparaturregel, Aufkleberformate, Aufkleber des Fremdfertigers SK-tronic, Etikettengröße, Umbau zur Lagerverwaltung.}
 
 
 \chapter{Zusammenfassung und Ausblick}
@@ -168,8 +172,8 @@
 
 \section{Kritische Bewertung}
 \label{sec:KritischeBewertung}
-\geplant{Grenzen der Lösung, u.\,a. clientseitige Zugriffskontrolle und fehlende automatisierte Oberflächentests.}
+\geplant{Grenzen der Lösung, u.\,a. clientseitige Zugriffskontrolle, fehlende automatisierte Oberflächentests, Kennzeichnung von Fremdfertiger-Platinen über einen Seriennummernversatz.}
 
 \section{Ausblick}
 \label{sec:Ausblick}
-\geplant{Serverseitige Sitzungen, weitere Module und Standorte, Anbindung von Prüfständen und Maschinen.}
+\geplant{Serverseitige Sitzungen, Module weiterer Kunden, Austausch von Platinen in Modulen, weitere Standorte, Anbindung von Prüfständen und Maschinen.}
