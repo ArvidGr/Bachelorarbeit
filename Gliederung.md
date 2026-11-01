@@ -7,7 +7,8 @@ Sicherstellung der Rückverfolgbarkeit einzelner Platinen*
 Die drei Teile des Titels (Erfassung, Auswertung, Rückverfolgbarkeit) haben in Kapitel 5
 jeweils einen eigenen Abschnitt (5.2, 5.4, 5.5); 5.7 erweitert die Rückverfolgbarkeit auf Module.
 
-**Betrachteter Software-Stand:** Commit `c9e14cb` (Branch `Bachelorarbeit`, 20.10.2026).
+**Betrachteter Software-Stand:** 30.10.2026 (Branch `bachelorarbeit`, letzter Code-Commit `0d62eb1` vom 29.10.).
+**Ausformuliert:** Kapitel 1 (1.1–1.4, Entwurf; 1.4 am Ende noch einmal prüfen).
 **Umgesetzt in LaTeX:** `LatexVorlage/LatexVorlage/Inhalt/Haupttext.tex` + `Inhalt/Anhang.tex`,
 kompiliert als `Gliederung.pdf`. Bei Änderungen beide Stellen synchron halten.
 
@@ -24,9 +25,9 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 **Unnummeriert vorne:** Titelblatt · Inhaltsverzeichnis · Abkürzungsverzeichnis · Abstract
 
 ## 1 Einleitung
-1.1 Ausgangssituation in der Platinenfertigung *(Papier-Laufkarten, Excel-Listen, drei Standorte)*
-1.2 Zielsetzung und Fragestellungen
-1.3 Abgrenzung *(z. B. kein vollständiges MES/ERP, keine Maschinenanbindung; Entwicklungsstand bis 20.10.2026)*
+1.1 Ausgangssituation in der Platinenfertigung *(Papier-Laufkarten, Excel-Listen, zwei Standorte + externe Lackierung)*
+1.2 Zielsetzung und Fragestellungen *(drei Teilziele, vier Fragestellungen)*
+1.3 Abgrenzung *(kein MES, keine ERP-Anbindung, keine Maschinenanbindung, keine Bauteilrückverfolgung; Stand 30.10.2026; Eigen-/Fremdleistung)*
 1.4 Aufbau der Arbeit
 
 ## 2 Grundlagen
@@ -44,7 +45,7 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 
 ## 4 Konzeption
 4.1 Systemarchitektur *(Komponentendiagramm)*
-4.2 Datenmodell *(ER-Diagramm: Laufkarten, SN-Bereiche, Platinen, Nachweise mit Versuchen, Änderungsprotokoll, Standorte, Module mit Soll-Bestückung; Seriennummernkonzept inkl. SK-Versatz)*
+4.2 Datenmodell *(ER-Diagramm: Laufkarten, SN-Bereiche, Platinen, Nachweise mit Versuchen, Änderungsprotokoll, Standorte, Module mit Soll-Bestückung, Protokolltabellen für Kisten-/Modulzuordnung, Modulprüfungen; Seriennummernkonzept inkl. SK-Versatz)*
 4.3 Zustandsmodell einer Platine *(Hauptkette, Reparatur, Sperrung, zweiter Durchlauf mit direkter Einlagerung)*
 4.4 Gestaltung der Benutzeroberfläche *(UI-Entwürfe, Quelle kennzeichnen)*
 4.5 Anmelde- und Berechtigungskonzept *(Rollen, Startcode-Erstanmeldung, argon2)*
@@ -54,9 +55,9 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 5.2 Erfassung von Produktionsschritten *(Bereichserfassung, Prüfung der Vorgängerschritte, Scan-Modus, mehrdeutige SK-tronic-Seriennummern)*
 5.3 Geschäftsregeln in der Datenbank *(Trigger für SN-Bereiche und Bereichsschutz)*
 5.4 Auswertung des Produktionsfortschritts *(Status je Platine/Bereich/Laufkarte, Liefertermine, Benachrichtigungen, Excel-Bericht je Laufkarte)*
-5.5 Rückverfolgbarkeit einzelner Platinen *(Historie, revisionssichere Korrektur, Korrekturanfrage, Prüfprotokolle, Standortverlauf)*
+5.5 Rückverfolgbarkeit einzelner Platinen *(Historie, revisionssichere Korrektur, Korrekturanfrage, Prüfprotokolle, Standortverlauf, Kistenhistorie)*
 5.6 Lagerverwaltung und Standortwechsel *(Kisten, Paletten, Etiketten, Versand/Wareneingang, Teillieferungen, Lagerübersicht)*
-5.7 Zuordnung von Platinen zu Modulen *(Modultypen und Soll-Bestückung, Modul-Seriennummer, Montage per Scan, Modulsuche, Etikett Code 128, Modul-Prüfprotokoll)*
+5.7 Zuordnung von Platinen zu Modulen *(Modultypen und Soll-Bestückung, Modul-Seriennummer, Montage per Scan, Modulsuche, Etikett Code 128, Platinentausch mit Protokoll, automatisch eingelesene Modul-Prüfprotokolle, Modul-Prüfstand-Schnittstelle)*
 
 ## 6 Datenübernahme und Inbetriebnahme
 6.1 Migration der Excel-Bestandsdaten *(Import-Skripte, Datenbereinigung, Problemfälle)*
@@ -73,7 +74,7 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 ## 8 Zusammenfassung und Ausblick
 8.1 Zusammenfassung der Ergebnisse
 8.2 Kritische Bewertung *(u. a. nur clientseitige Zugriffskontrolle, fehlende automatisierte Oberflächentests, SK-Kennzeichnung per Seriennummernversatz)*
-8.3 Ausblick *(Server-Sessions, Module weiterer Kunden, Platinentausch in Modulen, weitere Standorte, Maschinenanbindung)*
+8.3 Ausblick *(Server-Sessions, Module weiterer Kunden, weitere Standorte, ERP-Anbindung, Maschinenanbindung)*
 
 ---
 

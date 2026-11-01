@@ -83,17 +83,20 @@ umfasst das Ziel drei Teile:
 \begin{itemize}
 	\item \textbf{Erfassung:} Die Mitarbeiter erfassen abgeschlossene
 	Arbeitsschritte direkt in der Fertigung, entweder für einen ganzen
-	Seriennummernbereich oder platinenweise durch Scannen der Aufkleber. Die
-	Anwendung prüft die Eingaben bereits bei der Erfassung, etwa ob der
-	vorherige Arbeitsschritt abgeschlossen ist.
+	Seriennummernbereich oder platinenweise durch Scannen der Aufkleber.
+	Ergebnisse von Prüfständen gelangen über Schnittstellen automatisch in die
+	Anwendung. Die Anwendung prüft die Eingaben bereits bei der Erfassung, etwa
+	ob der vorherige Arbeitsschritt abgeschlossen ist.
 	\item \textbf{Auswertung der Progressionsinformationen:} Aus den einzelnen
 	Erfassungen ermittelt die Anwendung jederzeit den aktuellen Fortschritt je
 	Laufkarte, je Seriennummernbereich und je Platine und weist auf nahende
 	Liefertermine hin.
 	\item \textbf{Rückverfolgbarkeit:} Für jede Platine ist lückenlos
 	nachvollziehbar, wann, durch wen und an welchem Standort sie welchen Schritt
-	durchlaufen hat und in welches Modul sie eingebaut wurde. Korrekturen
-	überschreiben keine Daten, sondern werden revisionssicher protokolliert.
+	durchlaufen hat, in welcher Kiste sie lag und in welches Modul sie
+	eingebaut oder aus welchem sie wieder ausgebaut wurde. Die zugehörigen
+	Prüfprotokolle sind direkt abrufbar. Korrekturen überschreiben keine Daten,
+	sondern werden revisionssicher protokolliert.
 \end{itemize}
 
 Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
@@ -105,7 +108,8 @@ Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
 	Laufkarten automatisch und aktuell auswerten?
 	\item Wie kann das Datenmodell sicherstellen, dass die Historie jeder
 	Platine vollständig und revisionssicher bleibt, auch bei Korrekturen,
-	Reparaturen, Standortwechseln und dem Einbau in Module? Dabei ist zu klären,
+	Reparaturen, Standortwechseln, dem Einbau in Module und einem späteren
+	Austausch? Dabei ist zu klären,
 	welche Regeln die Datenbank selbst durchsetzt und welche der Anwendung
 	überlassen bleiben.
 	\item Inwieweit erfüllt die Anwendung im praktischen Einsatz die
@@ -124,11 +128,65 @@ der Anwender.
 
 \section{Abgrenzung}
 \label{sec:Abgrenzung}
-\geplant{Kein vollständiges MES/ERP, keine direkte Maschinenanbindung, Beschränkung auf die definierten Produktionsschritte; betrachteter Entwicklungsstand bis 20.10.2026, spätere Erweiterungen nicht Gegenstand der Arbeit.}
+Die Produktionsverwaltung dokumentiert die Platinenfertigung und Modulmontage, sie plant und
+steuert sie nicht. Sie ist daher kein vollständiges Produktionsleitsystem
+(Manufacturing Execution System, kurz MES), das Fertigungsaufträge einplant,
+Maschinen ansteuert und Kapazitäten verwaltet. Ebenso wenig übernimmt sie
+Aufgaben des bei ZOPF vorhandenen ERP-Systems (Enterprise Resource Planning),
+etwa die Auftragsabwicklung oder die Materialwirtschaft. Eine Anbindung an
+dieses System ist nicht Gegenstand der Arbeit; Laufkarten werden in der
+Produktionsverwaltung selbst angelegt.
+
+Fertigungsmaschinen wie Bestückungsautomaten sind nicht angebunden, die
+Arbeitsschritte erfassen die Mitarbeiter. Automatisch gelangen nur
+Ergebnisse von Prüfständen in die Anwendung: Der Prüfstand für Platinen meldet
+das Ergebnis jeder Prüfung, der Prüfstand für Module meldet getestete Module
+samt der eingebauten Platinen, und die Prüfprotokolle beider liest die Anwendung
+aus der jeweiligen Ablage. Erfasst wird jeweils, dass und wann ein Schritt
+abgeschlossen wurde, nicht seine Prozess- oder Messwerte. Die
+Rückverfolgbarkeit reicht bis zur einzelnen Platine und zum Modul; welche
+Bauteile oder Bauteilchargen auf einer Platine verbaut sind, erfasst die
+Anwendung nicht.
+
+Die Produktionsverwaltung wird im Betrieb fortlaufend weiterentwickelt. Diese
+Arbeit beschreibt den Entwicklungsstand vom 30. Oktober 2026; spätere
+Änderungen sind nicht Gegenstand der Arbeit.
+
+Gegenstand der Arbeit ist die vom Verfasser entwickelte Webanwendung samt
+Datenbank. Die Software des Platinen-Prüfstandes entstand in Zusammenarbeit mit
+Mitarbeitern von ZOPF; behandelt wird nur ihre Schnittstelle zur
+Produktionsverwaltung. Das Programm des Modul-Prüfstandes hat der Verfasser
+zwar selbst entwickelt, es ist jedoch eine eigenständige Anwendung und wird
+ebenfalls nur hinsichtlich seiner Anbindung betrachtet. Erste Entwürfe der
+Benutzeroberfläche und des Datenbankschemas stammen aus dem Unternehmen; sie
+sind an den betreffenden Stellen (Abschnitte~\ref{sec:Datenmodell}
+und~\ref{sec:Oberflaeche}) als solche gekennzeichnet.
 
 \section{Aufbau der Arbeit}
 \label{sec:Aufbau}
-\geplant{Kommentierender Überblick über die folgenden Kapitel (zuletzt formulieren).}
+Kapitel~\ref{sec:Grundlagen} legt die fachlichen und technischen Grundlagen:
+die Rückverfolgbarkeit in der Elektronikfertigung, den Fertigungsprozess von
+Platinen, relationale Datenbanken und die Sicherung ihrer Integrität, das
+Webframework Svelte 5 und SvelteKit sowie die maschinenlesbare Kennzeichnung mit Barcodes
+und QR-Codes. Darauf aufbauend analysiert Kapitel~\ref{sec:Anforderungsanalyse}
+den bisherigen Nachweisprozess und leitet die Akteure sowie die funktionalen
+und nichtfunktionalen Anforderungen an die Anwendung ab.
+
+Den Entwurf der Lösung mit Systemarchitektur, Datenmodell, Zustandsmodell
+einer Platine, Benutzeroberfläche und Berechtigungskonzept enthält
+Kapitel~\ref{sec:Konzeption}. Wie dieser Entwurf umgesetzt wurde, beschreibt
+Kapitel~\ref{sec:Implementierung} entlang der drei Teilziele Erfassung,
+Auswertung und Rückverfolgbarkeit, ergänzt um die in der Datenbank verankerten
+Geschäftsregeln sowie die Erweiterungen um Lagerverwaltung und Module. Die
+Übernahme der Excel-Altdaten und die Inbetriebnahme im Unternehmensnetz folgen
+in Kapitel~\ref{sec:Inbetriebnahme}.
+
+Kapitel~\ref{sec:Evaluation} bewertet das Ergebnis anhand von Tests, der
+Leistungsoptimierung, einer Befragung der Anwender und eines Abgleichs mit den
+Anforderungen; zudem zeigt es, welche Anpassungen der Praxiseinsatz nach sich
+zog. Kapitel~\ref{sec:Schluss} fasst die Ergebnisse zusammen, beantwortet die
+Fragestellungen aus Abschnitt~\ref{sec:Zielsetzung}, bewertet die Lösung
+kritisch und gibt einen Ausblick auf mögliche Weiterentwicklungen.
 
 
 \chapter{Grundlagen}
@@ -136,7 +194,7 @@ der Anwender.
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
-\geplant{Begriffe Traceability, Produktionsverwaltung, Laufkarte, Seriennummer; Rückverfolgbarkeit über Baugruppenebenen (Platine – Modul); Bedeutung für Qualitätssicherung und Kundenanforderungen.}
+\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Rückverfolgbarkeit über Baugruppenebenen (Platine – Modul); Bedeutung für Qualitätssicherung und Kundenanforderungen.}
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}
@@ -184,7 +242,7 @@ der Anwender.
 
 \section{Datenmodell}
 \label{sec:Datenmodell}
-\geplant{ER-Modell: Platinentypen, Laufkarten mit Seriennummernbereichen, Platinen, Produktionsnachweise mit Versuchen, Änderungsprotokoll, Standorte, Module mit Soll-Bestückung und Platinenzuordnung; Seriennummernkonzept einschließlich Nummernversatz für Fremdfertiger-Platinen.}
+\geplant{ER-Modell: Platinentypen, Laufkarten mit Seriennummernbereichen, Platinen, Produktionsnachweise mit Versuchen, Änderungsprotokoll, Standorte, Module mit Soll-Bestückung und Platinenzuordnung; nur anhängende Protokolltabellen für Kisten- und Modulzuordnungen, eingelesene Modulprüfungen; Seriennummernkonzept einschließlich Nummernversatz für Fremdfertiger-Platinen.}
 
 \section{Zustandsmodell einer Platine}
 \label{sec:Zustandsmodell}
@@ -220,7 +278,7 @@ der Anwender.
 
 \section{Rückverfolgbarkeit einzelner Platinen}
 \label{sec:RueckverfolgbarkeitUmsetzung}
-\geplant{Detailansicht mit vollständiger Historie, revisionssichere Korrektur mit Änderungsprotokoll, Korrekturanfrage, Anbindung der Prüfprotokolle, Standortverlauf.}
+\geplant{Detailansicht mit vollständiger Historie, revisionssichere Korrektur mit Änderungsprotokoll, Korrekturanfrage, Anbindung der Prüfprotokolle, Standortverlauf, Kistenhistorie.}
 
 \section{Lagerverwaltung und Standortwechsel}
 \label{sec:Lagerverwaltung}
@@ -228,7 +286,7 @@ der Anwender.
 
 \section{Zuordnung von Platinen zu Modulen}
 \label{sec:Module}
-\geplant{Modultypen mit Soll-Bestückung, Seriennummernschema der Module, Montageerfassung per Scan mit Prüfung der Platinen, Modulsuche und Modul-Etikett, Ablage der Modul-Prüfprotokolle; Modulmontage bewusst kein Produktionsschritt.}
+\geplant{Modultypen mit Soll-Bestückung, Seriennummernschema der Module, Montageerfassung per Scan mit Prüfung der Platinen, Modulsuche und Modul-Etikett, Austausch von Platinen mit Ein- und Ausbauprotokoll, automatisches Einlesen der Modul-Prüfprotokolle, Schnittstelle zum Modul-Prüfstand; Modulmontage bewusst kein Produktionsschritt.}
 
 
 \chapter{Datenübernahme und Inbetriebnahme}
@@ -284,4 +342,4 @@ der Anwender.
 
 \section{Ausblick}
 \label{sec:Ausblick}
-\geplant{Serverseitige Sitzungen, Module weiterer Kunden, Austausch von Platinen in Modulen, weitere Standorte, Anbindung von Prüfständen und Maschinen.}
+\geplant{Serverseitige Sitzungen, Module weiterer Kunden, weitere Standorte, Anbindung an das ERP-System, Anbindung von Fertigungsmaschinen.}

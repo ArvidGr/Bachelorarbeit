@@ -3,16 +3,14 @@
 Arbeitssprache: **Deutsch**. Ziel des Repos: die schriftliche Bachelorarbeit (LaTeX)
 über die selbst entwickelte Web-App **Produktionsnachweis**.
 
-Stand dieser Zusammenfassung: 28.10.2026.
+Stand dieser Zusammenfassung: 01.11.2026.
 
 ## Maßgeblicher Software-Stand
 
-Die Arbeit beschreibt **Commit `c9e14cb`** („Merge pull request #29 from ArvidGr/module-sk“, 20.10.2026),
-lokal ausgecheckt als Branch `Bachelorarbeit` in `Produktionsnachweis/` (nicht auf GitHub).
-Code, Schema und Doku immer auf diesem Stand lesen (`git show c9e14cb:<pfad>`), **nicht** auf `main`.
-Spätere Commits auf `origin/main` (ab 21.10.: Modul-SN bearbeitbar, Platinentausch in Modulen,
-Modul-Prüfprotokolle erweitert, Standort „PCB-Produktion“, Umbuchung zwischen Kisten u. a.) sind
-nicht Gegenstand der Arbeit, höchstens im Ausblick.
+**Stichtag 30.10.2026.** Branch `bachelorarbeit` in `Produktionsnachweis/` (HEAD `81ccf8a` vom 01.11. =
+Merge von `main` + Diagramm-Commit; letzter Code-Commit `0d62eb1` vom 29.10.). Code, Schema und Doku auf
+diesem Branch lesen. Was danach auf `main` landet, ist nicht Gegenstand der Arbeit (höchstens Ausblick).
+(Früherer Stichtag c9e14cb/20.10. ist überholt.)
 
 ## Ordner
 
@@ -54,7 +52,16 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   `modultyp_bestueckung` (Soll-Bestückung, Erfassung lässt nur genau diese zu), `module`
   (SN `[L|W|ES][JJ][sn_code][Zähler 4-stellig]`, z. B. `ES26440001`), `modul_platinen` (Platine in höchstens
   einem Modul, UNIQUE). Erfassung über Umschalter „Module“ auf `/erfassung`, Detailseite `/suche/modul/[sn]`,
-  Etikett im Format Code 128, Upload des Modul-Prüfprotokolls. Die Montage ist **kein** Produktionsschritt.
+  Etikett im Format Code 128. Die Montage ist **kein** Produktionsschritt. Platinen in Modulen tauschbar,
+  protokolliert in `modul_platinen_protokoll` (nur anhängend, Ausbau mit Grund). Modul-Prüfprotokolle werden
+  automatisch von den Netzlaufwerken Leipzig/Wickede in `modul_pruefungen` eingelesen (`lib/server/modultests*.ts`,
+  stündlich + gezielt beim Aufruf der Modulseite; der frühere Upload von Hand ist entfallen).
+  Das Programm **„Modultest ZOPF“** (eigene Leistung des Nutzers, aber eigenständige Anwendung → in der Arbeit nur
+  die Anbindung) legt getestete Module über `/api/modul/teststand` an (Bearer-Token wie `/api/pruefung`).
+- **Kistenhistorie:** `kisten_protokoll` (eingepackt/umgebucht/entnommen/einzeln versandt, nur anhängend);
+  aktueller Stand weiter in `platinen.kiste_id`. Muster „aktueller Stand + Append-only-Protokoll“ ist ein
+  Kernargument für Revisionssicherheit. Standort „PCB-Produktion“ (Unterort Leipzig, `standorte.fertigung_id`).
+- **Abgrenzung:** ZOPF hat ein ERP-System, an das die App bewusst **nicht** angebunden ist.
 - **SK-tronic** (Fremdfertiger): Alte SK-Aufkleber (Typ 1, SN 1–4000, ohne „SK“ im QR-Code) kollidieren
   mit Leipziger SN. In der DB liegen sie als SN + 10 000 000 (`SK_OFFSET`). Ein mehrdeutiger Scan wird über den
   Standort aufgelöst, sonst kommt eine Rückfrage (`sk.ts`, `SkRueckfrage.svelte`).
@@ -66,12 +73,13 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   `kurzErklärung.txt` (Datei-für-Datei-Erklärung), `docs/DIAGRAMME.md` (Mermaid: Komponenten, ER,
   9 Sequenzdiagramme, Zustandsdiagramm), `DBMS/ER-Diagramm.png`, `UI_Planung/` (UI-Entwürfe Alt/Neu/Transport/Module),
   `app/src/lib/server/schema.sql`.
-  `docs/DIAGRAMME.md` am 28.10.2026 auf c9e14cb aktualisiert (14 Diagramme: Komponenten, ER, 11 Sequenzdiagramme
-  inkl. SK-Auflösung, Prüfstand, Modulmontage, Zustandsdiagramm; uncommittet im Branch `Bachelorarbeit`).
-  **Veraltet** bleibt `DBMS/ER-Diagramm.png` (Stand 08.07.) – für die Arbeit nicht verwenden.
+  `docs/DIAGRAMME.md` am 01.11.2026 auf den Stand 30.10. gebracht (16 Diagramme: Komponenten, ER inkl.
+  Protokolltabellen/`modul_pruefungen`, 13 Sequenzdiagramme inkl. Platinentausch und Modul-Prüfstand,
+  Zustandsdiagramm; ohne Kunden- und Magdala-Namen, also für den Anhang der Arbeit geeignet; uncommittet im Branch
+  `bachelorarbeit`). **Veraltet** bleibt `DBMS/ER-Diagramm.png` (Stand 08.07.) – für die Arbeit nicht verwenden.
 - **Tests:** `npm run test` (node:test; `scan`, `seriennummer`, `testprotokolle-pfade`, `modul`, `sk`).
 
-## Git-Historie Produktionsnachweis (bis c9e14cb: 197 Commits, davon 158 ohne Merges, 29.06.–20.10.2026, 29 PRs, Feature-Branches)
+## Git-Historie Produktionsnachweis (bis Stichtag: 209 Commits, davon 169 ohne Merges, 29.06.–29.10.2026, 29 PRs, Feature-Branches)
 
 1. **Prototyp der Oberfläche** (29.06.–07.07.): UI-Entwürfe von *Anna* (fremde Leistung – kennzeichnen!),
    Login, Erfassungs-, Such-, Korrektur-, Laufkartenseite; nur Demo-Daten/localStorage.
@@ -87,7 +95,13 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
 8. **Lagerverwaltung und Module** (01.–20.10.): Transport → Lager, Lagerübersicht; Branches `module-sk`
    (Modulmontage) und `sk-tronic` (SK-Platinen-Erkennung) gemergt (PR #29); Excel-Bericht je Laufkarte,
    direkte Einlagerung nach zweitem Durchlauf, Laufkarten ab SN-Start wieder bearbeitbar, EC300KW Typ 4,
-   „Alle Benachrichtigungen löschen“.
+   „Alle Benachrichtigungen löschen“. 20.–29.10.: Modul-SN bearbeitbar, Kistenprotokoll/Umbuchung, PCB-Produktion,
+   Platinentausch + Modulprotokoll, automatische Modul-Prüfprotokolle, Teststand-Schnittstelle.
+
+## Stand der Ausformulierung
+
+- Kapitel 1 (1.1–1.4) als Entwurf geschrieben (01.11.2026); 1.4 am Ende der Arbeit noch einmal prüfen (Kudraß).
+  Verwendet „der Verfasser“ statt Ich-Form. Übrige Kapitel: nur `\geplant{...}`.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
 
@@ -126,6 +140,9 @@ Integritätsregeln/Trigger und Revisionssicherheit verdienen in der Arbeit Gewic
   (steht in `Header/Metadaten.tex`).
 - **Kollegen** (Anna, Jan u. a.) werden in der Arbeit **nicht namentlich** erwähnt. Ihre Beiträge
   (UI-Entwürfe, erstes DB-Schema) neutral kennzeichnen, z. B. „Entwurf aus dem Unternehmen“.
+- In der Arbeit **nicht nennen:** Kunde Enercon (→ „Kunde aus der Windenergiebranche“), Standort Magdala
+  (→ „externer Dienstleister“ für die Lackierung), Kollegen. Firma: „ZOPF Energieanlagen GmbH (im Folgenden ZOPF)“;
+  Autor ist Werkstudent.
 - Module und SK-tronic gehören **zur Arbeit** (28.10.2026): Module in Abschnitt 5.7 „Zuordnung von Platinen
   zu Modulen“, SK-tronic in 5.2/4.2/7.5/8.2.
 - Eine **Anwenderbefragung** ist geplant (Abschnitt 7.3, Fragebogen in Anhang E).
