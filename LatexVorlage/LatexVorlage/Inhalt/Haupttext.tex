@@ -8,7 +8,12 @@
 
 \section{Ausgangssituation in der Platinenfertigung}
 \label{sec:Ausgangssituation}
-Das Unternehmen ZOPF Energieanlagen GmbH (im Folgenden als ZOPF) fertigt Leiterplattenbaugruppen, also mit elektronischen
+Die ZOPF Energieanlagen GmbH (im Folgenden ZOPF) ist ein Hersteller und
+Instandhalter von Leistungselektronik für die Industrie mit Schwerpunkt auf
+erneuerbaren Energien und Windkraft. Neben der Entwicklung, der Fertigung und dem
+Service von Phasenmodulen, Power Stacks und laminierten Stromschienen ist ZOPF
+auch in der Planung, dem Bau und der Instandhaltung von Windkraftanlagen tätig.
+Zur eigenen Fertigung gehören Leiterplattenbaugruppen, also mit elektronischen
 Bauelementen bestückte Leiterplatten, die im Folgenden kurz als \emph{Platinen}
 bezeichnet werden. An dem Hauptstandort Leipzig werden die Platinen
 gefertigt, geprüft und sowohl in Leipzig als auch in dem Zweitstandort Wickede gelagert 
@@ -69,7 +74,53 @@ Fragestellungen dieser Arbeit beschreibt der folgende Abschnitt.
 
 \section{Zielsetzung und Fragestellungen}
 \label{sec:Zielsetzung}
-\geplant{Ziel: datenbankgestütztes Webtool für Erfassung, Fortschrittsauswertung und Rückverfolgbarkeit; zu beantwortende Fragestellungen.}
+Ziel dieser Arbeit ist die Entwicklung einer datenbankgestützten
+Webanwendung, die Papier-Laufkarten, handschriftliche Meldungen und Excel-Listen
+in der Platinenfertigung von ZOPF ablöst. Die Anwendung trägt den Namen
+\emph{Produktionsverwaltung}, da sie die gesamte Platinenproduktion verwalten soll. Entsprechend dem Titel der Arbeit
+umfasst das Ziel drei Teile:
+
+\begin{itemize}
+	\item \textbf{Erfassung:} Die Mitarbeiter erfassen abgeschlossene
+	Arbeitsschritte direkt in der Fertigung, entweder für einen ganzen
+	Seriennummernbereich oder platinenweise durch Scannen der Aufkleber. Die
+	Anwendung prüft die Eingaben bereits bei der Erfassung, etwa ob der
+	vorherige Arbeitsschritt abgeschlossen ist.
+	\item \textbf{Auswertung der Progressionsinformationen:} Aus den einzelnen
+	Erfassungen ermittelt die Anwendung jederzeit den aktuellen Fortschritt je
+	Laufkarte, je Seriennummernbereich und je Platine und weist auf nahende
+	Liefertermine hin.
+	\item \textbf{Rückverfolgbarkeit:} Für jede Platine ist lückenlos
+	nachvollziehbar, wann, durch wen und an welchem Standort sie welchen Schritt
+	durchlaufen hat und in welches Modul sie eingebaut wurde. Korrekturen
+	überschreiben keine Daten, sondern werden revisionssicher protokolliert.
+\end{itemize}
+
+Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
+
+\begin{enumerate}
+	\item Wie muss die Erfassung gestaltet sein, damit sie im Fertigungsalltag
+	schnell und mit möglichst wenigen Fehlern gelingt?
+	\item Wie lässt sich aus den erfassten Einzelschritten der Fortschritt von
+	Laufkarten automatisch und aktuell auswerten?
+	\item Wie kann das Datenmodell sicherstellen, dass die Historie jeder
+	Platine vollständig und revisionssicher bleibt, auch bei Korrekturen,
+	Reparaturen, Standortwechseln und dem Einbau in Module? Dabei ist zu klären,
+	welche Regeln die Datenbank selbst durchsetzt und welche der Anwendung
+	überlassen bleiben.
+	\item Inwieweit erfüllt die Anwendung im praktischen Einsatz die
+	Anforderungen der Fertigung und ihrer Mitarbeiter?
+\end{enumerate}
+
+Die Anwendung wurde iterativ und im laufenden Betrieb entwickelt. Bereits
+frühe Versionen kamen in der Fertigung zum Einsatz, und Rückmeldungen der
+Mitarbeiter flossen fortlaufend in die Weiterentwicklung ein. Die erste und
+zweite Fragestellung werden in den Kapiteln~\ref{sec:Konzeption}
+und~\ref{sec:Implementierung} beantwortet, die dritte zusätzlich mit Blick auf
+das Datenmodell in Abschnitt~\ref{sec:Datenmodell} und die Geschäftsregeln in
+Abschnitt~\ref{sec:Geschaeftsregeln}. Die vierte Fragestellung beantwortet die
+Evaluation in Kapitel~\ref{sec:Evaluation}, unter anderem mit einer Befragung
+der Anwender.
 
 \section{Abgrenzung}
 \label{sec:Abgrenzung}
@@ -85,7 +136,7 @@ Fragestellungen dieser Arbeit beschreibt der folgende Abschnitt.
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
-\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Rückverfolgbarkeit über Baugruppenebenen (Platine – Modul); Bedeutung für Qualitätssicherung und Kundenanforderungen.}
+\geplant{Begriffe Traceability, Produktionsverwaltung, Laufkarte, Seriennummer; Rückverfolgbarkeit über Baugruppenebenen (Platine – Modul); Bedeutung für Qualitätssicherung und Kundenanforderungen.}
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}

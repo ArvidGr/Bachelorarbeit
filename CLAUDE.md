@@ -26,7 +26,11 @@ nicht Gegenstand der Arbeit, höchstens im Ausblick.
 
 ## Das Projekt Produktionsnachweis (Kurzfassung)
 
-Web-App für die **Platinen-Fertigung** der Firma **ZOPF** (Standorte Leipzig, Magdala,
+In der Oberfläche und in der Arbeit heißt die App **Produktionsverwaltung** (seit 20.08.2026); „Produktionsnachweis“
+ist nur der Repo-Name und der Fachbegriff für einen erfassten Schritt. Prüfstand-TestApp (Python) entstand in
+Zusammenarbeit mit zwei Kollegen → in der Arbeit nur die Schnittstelle `/api/pruefung` als eigene Leistung.
+
+Web-App für die **Platinen-Fertigung** der Firma **ZOPF Energieanlagen GmbH** (Standorte Leipzig, Magdala,
 Wickede). Ersetzt papier-/Excel-basierte Laufkarten und Produktionsnachweise durch eine
 Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
 
