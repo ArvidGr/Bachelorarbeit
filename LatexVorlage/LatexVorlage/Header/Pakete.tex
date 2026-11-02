@@ -19,6 +19,7 @@
 
 % Einbinden von JPG-Grafiken
 \usepackage{graphicx}
+\graphicspath{{Abbildungen/}}
 
 % zum Umfließen von Bildern
 % Verwendung unter http://de.wikibooks.org/wiki/LaTeX-Kompendium:_Baukastensystem#textumflossene_Bilder
@@ -26,7 +27,12 @@
 
 % Verwendung von vordefinierten Farbnamen zur Colorierung
 % Palette und Verwendung unter http://kitt.cl.uzh.ch/kitt/CLinZ.CH/src/Kurse/archiv/LaTeX-Kurs-Farben.pdf
-\usepackage[usenames,dvipsnames]{color} 
+\usepackage[usenames,dvipsnames]{color}
+
+% eigene Diagramme direkt in LaTeX (pstricks funktioniert mit pdfLaTeX nicht);
+% muss nach color stehen, sonst Optionskonflikt
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta,shapes,fit,calc,shadows}
 
 % Tabellen
 \usepackage{array}
@@ -55,6 +61,7 @@ toc          %Einträge im Inhaltsverzeichnis
 \usepackage[pdftex,
 colorlinks=true,
 linkcolor=InterneLinkfarbe,
+citecolor=InterneLinkfarbe, % Zitate wie interne Verweise statt grün
 urlcolor=ExterneLinkfarbe]{hyperref}
 \usepackage[all]{hypcap}
 

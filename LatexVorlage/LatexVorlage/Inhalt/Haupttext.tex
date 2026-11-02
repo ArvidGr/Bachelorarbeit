@@ -191,10 +191,184 @@ kritisch und gibt einen Ausblick auf mögliche Weiterentwicklungen.
 
 \chapter{Grundlagen}
 \label{sec:Grundlagen}
+Dieses Kapitel legt die Grundlagen, auf denen die Anforderungen, der Entwurf und
+die Umsetzung der Produktionsverwaltung aufbauen. Es beginnt mit den fachlichen
+Grundlagen, der Rückverfolgbarkeit und dem Fertigungsprozess von Platinen, und
+behandelt anschließend die eingesetzten Techniken: relationale Datenbanken, das
+Webframework SvelteKit und die maschinenlesbare Kennzeichnung.
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
-\geplant{Begriffe Traceability, Produktionsnachweis, Laufkarte, Seriennummer; Rückverfolgbarkeit über Baugruppenebenen (Platine – Modul); Bedeutung für Qualitätssicherung und Kundenanforderungen.}
+Die Norm DIN EN ISO 9000, die die Grundbegriffe des Qualitätsmanagements
+festlegt, definiert Rückverfolgbarkeit als die \enquote{Möglichkeit, den
+Werdegang, die Verwendung oder den Ort eines Objekts zu verfolgen}
+\cite[S.~19]{DINENISO9000_2026}. Bei einem Produkt kann sich die
+Rückverfolgbarkeit laut einer Anmerkung zu dieser Definition auf drei Aspekte
+beziehen: die Herkunft von Werkstoffen und Teilen, den Ablauf der Verarbeitung
+sowie die Verteilung und den Standort des Produkts nach der Auslieferung (vgl.
+\cite[S.~19]{DINENISO9000_2026}). Im Englischen ist der Begriff
+\emph{Traceability} gebräuchlich. Moe stützt sich auf die gleichlautende
+Definition der Vorgängernorm ISO~8402 und hebt hervor, dass Rückverfolgbarkeit
+auf aufgezeichneten Identifikationen beruht. Er unterscheidet zwei Reichweiten:
+die Rückverfolgbarkeit entlang der gesamten Lieferkette vom Rohstoff bis zum
+Verbraucher und die \emph{interne} Rückverfolgbarkeit innerhalb eines Glieds
+dieser Kette, etwa der Produktion (vgl. \cite[S.~211]{moePerspectivesTraceabilityFood1998}).
+Obwohl sein Beitrag der Lebensmittelherstellung gilt, betrachtet Moe die
+Grundlagen der Rückverfolgbarkeit als unabhängig vom Produkt und von der Art
+der Fertigung und verweist darauf, dass Hersteller von Fahrzeugen, Flugzeugen
+und Raumfahrzeugen seit Langem weit entwickelte Systeme dafür einsetzen (vgl.
+\cite[S.~211]{moePerspectivesTraceabilityFood1998}). Die Produktionsverwaltung
+dient in diesem Sinne der internen Rückverfolgbarkeit: Sie bildet den Ablauf der
+Verarbeitung ab und hält zusätzlich fest, an welchem Standort des Unternehmens
+sich eine Platine befindet. Die Herkunft der Bauteile ist nach
+Abschnitt~\ref{sec:Abgrenzung} nicht Gegenstand der Arbeit.
+
+Moe bezeichnet Rückverfolgbarkeit als \enquote{an essential subsystem of
+quality management} \cite[S.~211]{moePerspectivesTraceabilityFood1998}. Die
+Anforderungen an ein Qualitätsmanagementsystem legt die Norm DIN EN ISO 9001
+fest, während DIN EN ISO 9000 die zugehörigen Grundlagen und Begriffe enthält
+(vgl. \cite[S.~9\,f.]{koubekDINISO90012018}). Die ISO 9001 erschien erstmals
+1987, ursprünglich um die Anforderungen an Lieferanten zu vereinheitlichen, und
+wird von produzierenden Unternehmen als Lieferbedingung verwendet (vgl.
+\cite[S.~8]{koubekDINISO90012018}). Seit 2026 gilt eine neue Fassung, welche
+die Ausgabe von 2015 ablöst (vgl. \cite[S.~3]{DINENISO9001_2026}). Ihr
+Abschnitt~8.5.2 \enquote{Kennzeichnung und Rückverfolgbarkeit} stellt an eine
+Organisation vier Anforderungen (vgl. \cite[S.~34]{DINENISO9001_2026}):
+
+\begin{itemize}
+	\item die Ergebnisse ihrer Prozesse zu kennzeichnen, wenn dies für die
+	Konformität der Produkte notwendig ist,
+	\item den Status dieser Ergebnisse während der gesamten Produktion in Bezug
+	auf die Überwachungs- und Messanforderungen zu kennzeichnen,
+	\item ihre eindeutige Kennzeichnung zu steuern, wenn Rückverfolgbarkeit
+	gefordert ist,
+	\item die dafür notwendige dokumentierte Information als Nachweis verfügbar
+	zu halten.
+\end{itemize}
+
+\noindent Der informative
+Anhang der Norm erläutert den Zusammenhang: \enquote{Kennzeichnung und
+Rückverfolgbarkeit sind eng miteinander verbunden, denn die Rückverfolgbarkeit
+erfordert eine eindeutige Kennzeichnung der Outputs, wenn es notwendig ist,
+frühere Verarbeitungsstufen oder den Status nach der Auslieferung zu bestimmen}
+\cite[S.~50]{DINENISO9001_2026}. Gefordert sein kann Rückverfolgbarkeit von der
+Organisation selbst, von Kunden oder durch gesetzliche und behördliche Vorgaben
+(vgl. \cite[S.~50]{DINENISO9001_2026}). Besondere Bedeutung hat sie etwa bei
+Medizinprodukten, Lebensmitteln und in der Automobilindustrie (vgl.
+\cite[S.~100]{koubekDINISO90012018}).
+
+Grundlage jeder Rückverfolgbarkeit von Produkten ist nach Moe, sie eindeutig
+identifizieren zu können, entweder durch eine Kennzeichnung am Produkt oder an
+seiner Verpackung oder durch Aufzeichnungen. Ein Rückverfolgungssystem
+beschreibt er durch zwei Elemente: die \emph{Route}, also den Weg, auf dem ein
+Produkt durch Fertigung und Vertrieb identifizierbar bleibt, und den
+\emph{Umfang}, also die Auswahl der erfassten Angaben. Zu verfolgen sind sowohl
+die Produkte als auch die Aktivitäten, die an ihnen ausgeführt werden, etwa
+Verarbeitung, Lagerung und Transport. Die kleinste Einheit, die ein solches
+System unterscheidet, heißt \emph{Traceable Resource Unit} (TRU). Was als TRU
+gilt, legt der Entwickler des Systems fest; werden mehrere TRUs zusammengeführt,
+entsteht eine neue TRU, die eine eigene Identifikation erhalten muss (vgl.
+\cite[S.~212]{moePerspectivesTraceabilityFood1998}). Yilmaz et al. fassen zwei
+weitere Sichtweisen zusammen: Nach Aung und Chang muss ein wirksames System die
+Informationen mit dem physischen Fluss der Produkte verbinden, etwa über
+Verpackungen und Beschriftungen, und Regattieri et al. nennen als seine vier
+Bestandteile die Identifikation des Produkts, die Verfolgung der Daten, den
+Materialfluss und ein Werkzeug zur Rückverfolgung (vgl.
+\cite[S.~13]{yilmazTransparenzUndRueckverfolgbarkeit2022}).
+
+Übertragen auf die Platinenfertigung ergibt sich das Bild in
+Abbildung~\ref{fig:Rueckverfolgbarkeit}. Jede Platine ist durch ihre
+Seriennummer eine eigene TRU; die Rückverfolgbarkeit reicht damit bis zum
+einzelnen Stück und nicht nur bis zum Fertigungsauftrag. Die Aktivitäten sind
+die Arbeitsschritte der Fertigung. Die Aufzeichnung über einen abgeschlossenen
+Arbeitsschritt an einer Platine wird in dieser Arbeit als
+\emph{Produktionsnachweis} bezeichnet; sie hält fest, wann, durch wen und an
+welchem Standort der Schritt erledigt wurde. Werden mehrere Platinen in ein
+Modul eingebaut, entsteht im Sinne Moes eine neue Einheit mit eigener
+Seriennummer, über die die eingebauten Platinen weiterhin auffindbar bleiben
+müssen.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[
+		font=\footnotesize,
+		objekt/.style={draw, rounded corners=2pt, fill=black!5, align=center,
+			text width=27mm, minimum height=9mm},
+		schritt/.style={draw, fill=white, align=center, minimum width=13mm,
+			minimum height=8mm, inner sep=2pt},
+		pfeil/.style={-{Stealth[length=2mm]}},
+		]
+		\node[objekt, dashed, fill=none, text=black!60] (bauteile) at (0,0.6)
+			{Bauteile und\\Bauteilchargen};
+		\node[right=4mm of bauteile, text=black!60, align=left]
+			{nicht Gegenstand der Rückverfolgung\\(Abschnitt~\ref{sec:Abgrenzung})};
+		\node[objekt, double copy shadow={shadow xshift=2pt, shadow yshift=-2pt}]
+			(platine) at (0,-2) {Platinen\\(je eine\\Seriennummer)};
+		\node[objekt] (modul) at (0,-4.9) {Modul\\(eigene\\Seriennummer)};
+		\draw[pfeil, dashed, black!60] (bauteile) -- (platine);
+		\draw[pfeil] (platine) -- node[right=1mm] {Einbau} (modul);
+
+		\node[schritt, right=8mm of platine] (s1) {SMD};
+		\node[schritt, right=3mm of s1] (s2) {THT};
+		\node[schritt, right=3mm of s2] (s3) {Prüfung};
+		\node[schritt, right=3mm of s3] (s4) {Lackierung};
+		\node[schritt, right=3mm of s4] (s5) {End-\\kontrolle};
+		\node[schritt, right=3mm of s5] (s6) {Lager};
+		\draw (platine) -- (s1);
+		\foreach \a/\b in {s1/s2, s2/s3, s3/s4, s4/s5, s5/s6}
+			\draw[pfeil] (\a) -- (\b);
+		\node[above=1mm of s3.north east] (titel)
+			{Produktionsnachweise je Arbeitsschritt};
+		\node[below=1mm of s3.south east, align=center] (merkmale)
+			{jeweils mit Zeitpunkt, Mitarbeiter und Standort};
+
+		\node[draw, dashed, rounded corners=4pt, inner sep=3mm,
+			fit=(platine)(modul)(s6)(titel)(merkmale),
+			label={[anchor=south east, font=\footnotesize\itshape]south east:Umfang der Produktionsverwaltung}] {};
+	\end{tikzpicture}
+	\caption{Objekte und Aufzeichnungen der Rückverfolgbarkeit in der Platinenfertigung}
+	\quelle{Eigene Darstellung in Anlehnung an \cite[S.~212]{moePerspectivesTraceabilityFood1998}}
+	\label{fig:Rueckverfolgbarkeit}
+\end{figure}
+
+Damit eine solche Rückverfolgung im Bedarfsfall gelingt, müssen die
+Aufzeichnungen bestimmten Anforderungen genügen. Ein Produktionsnachweis ist im
+Sinne der DIN EN ISO 9000 eine \emph{Aufzeichnung}, also ein \enquote{Dokument,
+das erreichte Ergebnisse angibt oder einen Nachweis ausgeführter Tätigkeiten
+bereitstellt} \cite[S.~26]{DINENISO9000_2026}. Als einen Zweck solcher
+Aufzeichnungen nennt die Norm ausdrücklich die Darlegung von
+Rückverfolgbarkeit. Aufzeichnungen sind Teil der \emph{dokumentierten
+Information}, die in jedem Format und auf jedem Medium vorliegen kann (vgl.
+\cite[S.~26]{DINENISO9000_2026}), auf Papier ebenso wie in einer Datenbank.
+DIN EN ISO 9001 verlangt, dass dokumentierte Information verfügbar ist, wo und
+wann sie benötigt wird, dass sie vor dem Verlust ihrer Integrität geschützt
+wird und dass Änderungen an ihr überwacht werden, etwa durch eine
+Versionskontrolle (vgl. \cite[S.~27]{DINENISO9001_2026}). Für Nachweise gilt
+darüber hinaus: \enquote{Dokumentierte Information, die als Nachweis der
+Konformität verfügbar ist, muss vor unbeabsichtigten Änderungen geschützt
+werden} \cite[S.~28]{DINENISO9001_2026}. Der informative Anhang nennt zusätzlich
+den Schutz vor unbefugten Änderungen und vor dem Löschen (vgl.
+\cite[S.~48]{DINENISO9001_2026}).
+
+Moe betont, dass Rückverfolgbarkeit rückwärts arbeitet: Die Aufzeichnungen
+werden erst im Nachhinein abgefragt, etwa wenn ein Fehler aufgetreten ist, und
+müssen deshalb von vornherein für diese Abfrage ausgelegt sein. Unverzichtbar
+ist dafür ein stabiles und zugängliches System zur Aufzeichnung (vgl.
+\cite[S.~212]{moePerspectivesTraceabilityFood1998}). Rückverfolgungssysteme
+können auch auf Papier funktionieren; mit Rechnerunterstützung lassen sich
+jedoch deutlich mehr Daten verarbeiten und die Geschichte eines Produkts und
+seiner Verarbeitung sehr detailliert festhalten. Als Nutzen einer internen
+Rückverfolgbarkeit nennt Moe unter anderem eine bessere Prozesssteuerung,
+Hinweise auf Ursachen, wenn ein Produkt nicht den Vorgaben entspricht, und
+eine einfachere Informationsbeschaffung bei Audits des Qualitätsmanagements
+(vgl. \cite[S.~213]{moePerspectivesTraceabilityFood1998}).
+
+Aus diesen Grundlagen ergeben sich drei Voraussetzungen für die
+Produktionsverwaltung: eine eindeutige, maschinenlesbare Kennzeichnung jeder
+Platine (Abschnitt~\ref{sec:Kennzeichnung}), eine lückenlose Aufzeichnung der
+Arbeitsschritte, deren Ablauf Abschnitt~\ref{sec:Fertigungsprozess} beschreibt,
+und eine Datenhaltung, die diese Aufzeichnungen vor unbemerkter Änderung und
+Verlust schützt (Abschnitt~\ref{sec:RelationaleDatenbanken}).
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}

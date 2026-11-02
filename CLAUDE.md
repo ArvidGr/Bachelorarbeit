@@ -101,7 +101,10 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
 ## Stand der Ausformulierung
 
 - Kapitel 1 (1.1–1.4) als Entwurf geschrieben (01.11.2026); 1.4 am Ende der Arbeit noch einmal prüfen (Kudraß).
-  Verwendet „der Verfasser“ statt Ich-Form. Übrige Kapitel: nur `\geplant{...}`.
+  Verwendet „der Verfasser“ statt Ich-Form.
+- Kapitel 2: Kapiteleinleitung und 2.1 Rückverfolgbarkeit geschrieben (02.11.2026), mit Abb. 2.1 (TikZ) und Zitaten
+  aus ISO 9000/9001:2026, Moe 1998, Koubek 2017, Yilmaz et al. 2022. Definiert den Begriff *Produktionsnachweis*
+  (= Aufzeichnung im Sinne der ISO 9000). Übrige Abschnitte: nur `\geplant{...}`.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
 
@@ -148,9 +151,28 @@ Integritätsregeln/Trigger und Revisionssicherheit verdienen in der Arbeit Gewic
 - Eine **Anwenderbefragung** ist geplant (Abschnitt 7.3, Fragebogen in Anhang E).
 - Gliederung ist in LaTeX umgesetzt (`Inhalt/Haupttext.tex`, `Inhalt/Anhang.tex`), kursive
   `\geplant{...}`-Stichpunkte sind Platzhalter. `Gliederung.md` synchron halten.
-- Kompilieren: in `LatexVorlage/LatexVorlage` → `latexmk -pdf -outdir=build -f Arbeit.tex`
-  (BibTeX-Fehler, solange es keine `\cite` gibt, sind normal). Kopie des PDFs liegt als `Gliederung.pdf` im Root.
+- Kompilieren: in `LatexVorlage/LatexVorlage` → `latexmk -pdf -outdir=build -f Arbeit.tex`.
+  Die `.latexmkrc` dort ergänzt `bibtex -include-directory=..`, weil BibTeX im Ordner `build/` läuft und sonst
+  `Literatur/Literatur.bib` nicht findet. Prüfen: `build/Arbeit.log` (undefined citations/references),
+  `build/Arbeit.blg` (BibTeX-Warnungen). Kopie des PDFs liegt als `Gliederung.pdf` im Root.
 - `Arbeit.tex`: Anhang steht vor dem Literaturverzeichnis, kein Wechsel auf römische Seitenzahlen (beides nach Kudraß).
+
+## Literatur und Abbildungen (ab Kapitel 2, 01.11.2026)
+
+- **Zotero** + Zotero Connector (Chrome) + Plugin **Better BibTeX**. Die Sammlung „Bachelorarbeit“ wird automatisch
+  („Aktuell halten“, Format Better BibTeX) nach `Literatur/Literatur.bib` exportiert, also **nicht von Hand bearbeiten**.
+  Zitierschlüssel aus der `.bib` übernehmen.
+- Stil `alphadin` (BibTeX) erzeugt Kürzel wie [Kud15]. Das Abrufdatum heißt dort `lastchecked`, nicht `urldate`.
+  Better BibTeX liefert es über ein Postscript, nur für Webseiten und als TT.MM.JJJJ.
+  Beim Export weggelassen werden `month,urldate,doi,file,langid`, weil alphadin daraus kaputte Umlaute bzw. doppelte URLs macht.
+  Kapitel aus Sammelbänden (z. B. Kudraß' Taschenbuch Datenbanken) werden als Buchteil (`@incollection`) mit Kapitelautor angelegt.
+- **`Literatur/Quellenuebersicht.md`**: Übersicht aller Quellen mit Bewertung und Seitenangaben (Buchseite + PDF-Seite).
+  Vor dem Schreiben eines Abschnitts zuerst dort nachsehen und neue Quellen dort eintragen.
+- E-Book-PDFs liegen in `Literatur/Quellen/` (git-ignoriert). Claude zitiert nur Stellen, die er dort oder online selbst gelesen hat,
+  immer mit Seitenzahl: `(vgl. \cite[S.~12]{key})`, direkte Zitate sparsam mit `\enquote{}`.
+- Abbildungen: eigene TikZ-Grafiken (TikZ ist in `Pakete.tex` geladen, nach `color`). Fotos und Bilder liegen in `Abbildungen/`.
+  Unter jeder Abbildung steht `\quelle{Eigene Darstellung}` (Befehl in `Header.tex`). Fremde Bilder nur mit freier Lizenz
+  (z. B. Wikimedia Commons, Urheber und Lizenz in der Quellenzeile). Fotos von ZOPF erst nach Freigabe und ohne Kundenbezug.
 
 ## Offene Punkte
 
