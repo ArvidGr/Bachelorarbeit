@@ -27,7 +27,7 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 ## 1 Einleitung
 1.1 Ausgangssituation in der Platinenfertigung *(Papier-Laufkarten, Excel-Listen, zwei Standorte + externe Lackierung)*
 1.2 Zielsetzung und Fragestellungen *(drei Teilziele, vier Fragestellungen)*
-1.3 Abgrenzung *(kein MES, keine ERP-Anbindung, keine Maschinenanbindung, keine Bauteilrückverfolgung; Stand 30.10.2026; Eigen-/Fremdleistung)*
+1.3 Abgrenzung *(kein MES, keine ERP-Anbindung, keine Maschinenanbindung, keine Bauteilrückverfolgung, kein Verkauf der Module und kein Entfernen verkaufter Module; Stand 30.10.2026; Eigen-/Fremdleistung)*
 1.4 Aufbau der Arbeit
 
 ## 2 Grundlagen
@@ -57,7 +57,7 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 5.4 Auswertung des Produktionsfortschritts *(Status je Platine/Bereich/Laufkarte, Liefertermine, Benachrichtigungen, Excel-Bericht je Laufkarte)*
 5.5 Rückverfolgbarkeit einzelner Platinen *(Historie, revisionssichere Korrektur, Korrekturanfrage, Prüfprotokolle, Standortverlauf, Kistenhistorie)*
 5.6 Lagerverwaltung und Standortwechsel *(Kisten, Paletten, Etiketten, Versand/Wareneingang, Teillieferungen, Lagerübersicht)*
-5.7 Zuordnung von Platinen zu Modulen *(Modultypen und Soll-Bestückung, Modul-Seriennummer, Montage per Scan, Modulsuche, Etikett Code 128, Platinentausch mit Protokoll, automatisch eingelesene Modul-Prüfprotokolle, Modul-Prüfstand-Schnittstelle)*
+5.7 Zuordnung von Platinen zu Modulen *(Modultypen und Soll-Bestückung, Modul-Seriennummer, Montage per Scan (regulär aus dem Lager, Ausnahmen nur mit Bestätigung bzw. Warnung, gesperrte Platinen nie), Modulsuche, Etikett Code 128, Platinentausch mit Protokoll, automatisch eingelesene Modul-Prüfprotokolle, Modul-Prüfstand-Schnittstelle)*
 
 ## 6 Datenübernahme und Inbetriebnahme
 6.1 Migration der Excel-Bestandsdaten *(Import-Skripte, Datenbereinigung, Problemfälle)*

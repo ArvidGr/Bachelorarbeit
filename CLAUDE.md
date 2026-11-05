@@ -61,7 +61,11 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
 - **Kistenhistorie:** `kisten_protokoll` (eingepackt/umgebucht/entnommen/einzeln versandt, nur anhängend);
   aktueller Stand weiter in `platinen.kiste_id`. Muster „aktueller Stand + Append-only-Protokoll“ ist ein
   Kernargument für Revisionssicherheit. Standort „PCB-Produktion“ (Unterort Leipzig, `standorte.fertigung_id`).
-- **Abgrenzung:** ZOPF hat ein ERP-System, an das die App bewusst **nicht** angebunden ist.
+- **Abgrenzung:** ZOPF hat ein ERP-System, an das die App bewusst **nicht** angebunden ist. Verkauf von Modulen und
+  das Entfernen verkaufter Module aus der Datenbank sind nicht Teil der Arbeit (1.3, Abb. 2.1).
+- **Einbauregel Module** (`platinenFuerModulPruefen`): regulär aus dem Lager. Nicht eingelagerte Platinen sind erlaubt, in der
+  Erfassung nur nach Bestätigung, beim Modul-Prüfstand als Warnung; gesperrte oder schon verbaute Platinen werden abgelehnt.
+  In der Arbeit daher „regulär“, nicht „nur“ schreiben.
 - **SK-tronic** (Fremdfertiger): Alte SK-Aufkleber (Typ 1, SN 1–4000, ohne „SK“ im QR-Code) kollidieren
   mit Leipziger SN. In der DB liegen sie als SN + 10 000 000 (`SK_OFFSET`). Ein mehrdeutiger Scan wird über den
   Standort aufgelöst, sonst kommt eine Rückfrage (`sk.ts`, `SkRueckfrage.svelte`).

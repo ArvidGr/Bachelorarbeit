@@ -135,6 +135,15 @@ Stand: 02.11.2026
 
 ---
 
+## Kandidaten für 2.2 (noch nicht gelesen, Inhalt und Zugriff prüfen)
+
+- Hanke/Scheel: *Baugruppentechnologie der Elektronik – Montage*, 2. Aufl., Berlin: Verlag Technik, 1999, ISBN 3-341-01234-6.
+  Thematisch am passendsten. Die Kataloge nennen Autoren und Herausgeber unterschiedlich, daher Angaben von der Titelseite übernehmen.
+- Lienig/Brümmer: *Elektronische Gerätetechnik* (Springer Vieweg), neuere Auflage ISBN 978-3-662-68708-6. Eher Entwicklung als Fertigung.
+- Zickert: *Leiterplatten*, 3. Aufl. (Hanser), ISBN 978-3-446-47583-0. Prüfen, ob Bestückung und Schutzlack vorkommen.
+- Prasad: *Surface Mount Technology: Principles and Practice*, 2. Aufl. (Springer, 1997). Englisch, SMT, Inspektion, Reparatur.
+- optional IPC-A-610 (Abnahmekriterien für elektronische Baugruppen), falls über den Normenzugang erreichbar.
+
 ## Plan für 2.1 (Quellen vollständig)
 
 1. Begriff: ISO 9000:2026, 3.5.11 (S. 19) als Definition; Moe 1998 (S. 211) für intern vs. Kette und als Teilsystem des QM.

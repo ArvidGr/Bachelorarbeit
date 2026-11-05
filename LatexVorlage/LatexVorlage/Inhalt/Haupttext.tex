@@ -146,7 +146,8 @@ aus der jeweiligen Ablage. Erfasst wird jeweils, dass und wann ein Schritt
 abgeschlossen wurde, nicht seine Prozess- oder Messwerte. Die
 Rückverfolgbarkeit reicht bis zur einzelnen Platine und zum Modul; welche
 Bauteile oder Bauteilchargen auf einer Platine verbaut sind, erfasst die
-Anwendung nicht.
+Anwendung nicht. Ebenso wenig Gegenstand der Arbeit sind der Verkauf der Module
+und das Entfernen verkaufter Module aus der Datenbank.
 
 Die Produktionsverwaltung wird im Betrieb fortlaufend weiterentwickelt. Diese
 Arbeit beschreibt den Entwicklungsstand vom 30. Oktober 2026; spätere
@@ -220,8 +221,8 @@ und Raumfahrzeugen seit Langem weit entwickelte Systeme dafür einsetzen (vgl.
 \cite[S.~211]{moePerspectivesTraceabilityFood1998}). Die Produktionsverwaltung
 dient in diesem Sinne der internen Rückverfolgbarkeit: Sie bildet den Ablauf der
 Verarbeitung ab und hält zusätzlich fest, an welchem Standort des Unternehmens
-sich eine Platine befindet. Die Herkunft der Bauteile ist nach
-Abschnitt~\ref{sec:Abgrenzung} nicht Gegenstand der Arbeit.
+sich eine Platine befindet. Die Herkunft der Bauteile und der Verkauf der Module
+sind nach Abschnitt~\ref{sec:Abgrenzung} nicht Gegenstand der Arbeit.
 
 Moe bezeichnet Rückverfolgbarkeit als \enquote{an essential subsystem of
 quality management} \cite[S.~211]{moePerspectivesTraceabilityFood1998}. Die
@@ -286,7 +287,9 @@ Arbeitsschritt an einer Platine wird in dieser Arbeit als
 welchem Standort der Schritt erledigt wurde. Werden mehrere Platinen in ein
 Modul eingebaut, entsteht im Sinne Moes eine neue Einheit mit eigener
 Seriennummer, über die die eingebauten Platinen weiterhin auffindbar bleiben
-müssen.
+müssen. Regulär werden dabei nur Platinen aus dem Lager eingebaut, die also die
+Fertigung abgeschlossen haben; die Ausnahmen beschreibt
+Abschnitt~\ref{sec:Module}.
 
 \begin{figure}[htbp]
 	\centering
@@ -301,12 +304,10 @@ müssen.
 		\node[objekt, dashed, fill=none, text=black!60] (bauteile) at (0,0.6)
 			{Bauteile und\\Bauteilchargen};
 		\node[right=4mm of bauteile, text=black!60, align=left]
-			{nicht Gegenstand der Rückverfolgung\\(Abschnitt~\ref{sec:Abgrenzung})};
+			{nicht Gegenstand der Arbeit\\(Abschnitt~\ref{sec:Abgrenzung})};
 		\node[objekt, double copy shadow={shadow xshift=2pt, shadow yshift=-2pt}]
 			(platine) at (0,-2) {Platinen\\(je eine\\Seriennummer)};
-		\node[objekt] (modul) at (0,-4.9) {Modul\\(eigene\\Seriennummer)};
 		\draw[pfeil, dashed, black!60] (bauteile) -- (platine);
-		\draw[pfeil] (platine) -- node[right=1mm] {Einbau} (modul);
 
 		\node[schritt, right=8mm of platine] (s1) {SMD};
 		\node[schritt, right=3mm of s1] (s2) {THT};
@@ -322,9 +323,20 @@ müssen.
 		\node[below=1mm of s3.south east, align=center] (merkmale)
 			{jeweils mit Zeitpunkt, Mitarbeiter und Standort};
 
+		\node[objekt, below=20mm of s6] (modul) {Modul\\(eigene\\Seriennummer)};
+		\draw[pfeil] (s6) -- node[pos=0.55, left=1mm] {Einbau} (modul);
+
 		\node[draw, dashed, rounded corners=4pt, inner sep=3mm,
 			fit=(platine)(modul)(s6)(titel)(merkmale),
-			label={[anchor=south east, font=\footnotesize\itshape]south east:Umfang der Produktionsverwaltung}] {};
+			label={[anchor=south west, font=\footnotesize\itshape]south west:Umfang der Produktionsverwaltung}]
+			(umfang) {};
+
+		\node[objekt, dashed, fill=none, text=black!60, anchor=north]
+			(verkauf) at ($(modul |- umfang.south)+(0,-7mm)$)
+			{Verkauf des\\Moduls};
+		\node[left=4mm of verkauf, text=black!60, align=right]
+			{nicht Gegenstand der Arbeit\\(Abschnitt~\ref{sec:Abgrenzung})};
+		\draw[pfeil, dashed, black!60] (modul) -- (verkauf);
 	\end{tikzpicture}
 	\caption{Objekte und Aufzeichnungen der Rückverfolgbarkeit in der Platinenfertigung}
 	\quelle{Eigene Darstellung in Anlehnung an \cite[S.~212]{moePerspectivesTraceabilityFood1998}}
