@@ -8,7 +8,7 @@ Die drei Teile des Titels (Erfassung, Auswertung, Rückverfolgbarkeit) haben in 
 jeweils einen eigenen Abschnitt (5.2, 5.4, 5.5); 5.7 erweitert die Rückverfolgbarkeit auf Module.
 
 **Betrachteter Software-Stand:** 30.10.2026 (Branch `bachelorarbeit`, letzter Code-Commit `0d62eb1` vom 29.10.).
-**Ausformuliert:** Kapitel 1 (1.1–1.4, Entwurf; 1.4 am Ende noch einmal prüfen); Kapitel 2: Einleitung und 2.1.
+**Ausformuliert:** Kapitel 1 (1.1–1.4, Entwurf; 1.4 am Ende noch einmal prüfen); Kapitel 2: Einleitung, 2.1 und 2.2.
 **Umgesetzt in LaTeX:** `LatexVorlage/LatexVorlage/Inhalt/Haupttext.tex` + `Inhalt/Anhang.tex`,
 kompiliert als `Gliederung.pdf`. Bei Änderungen beide Stellen synchron halten.
 

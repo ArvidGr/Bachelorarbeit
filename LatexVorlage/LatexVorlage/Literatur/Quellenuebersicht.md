@@ -135,14 +135,47 @@ Stand: 02.11.2026
 
 ---
 
-## Kandidaten für 2.2 (noch nicht gelesen, Inhalt und Zugriff prüfen)
+## Zickert (2023): Leiterplatten
 
-- Hanke/Scheel: *Baugruppentechnologie der Elektronik – Montage*, 2. Aufl., Berlin: Verlag Technik, 1999, ISBN 3-341-01234-6.
-  Thematisch am passendsten. Die Kataloge nennen Autoren und Herausgeber unterschiedlich, daher Angaben von der Titelseite übernehmen.
-- Lienig/Brümmer: *Elektronische Gerätetechnik* (Springer Vieweg), neuere Auflage ISBN 978-3-662-68708-6. Eher Entwicklung als Fertigung.
-- Zickert: *Leiterplatten*, 3. Aufl. (Hanser), ISBN 978-3-446-47583-0. Prüfen, ob Bestückung und Schutzlack vorkommen.
-- Prasad: *Surface Mount Technology: Principles and Practice*, 2. Aufl. (Springer, 1997). Englisch, SMT, Inspektion, Reparatur.
-- optional IPC-A-610 (Abnahmekriterien für elektronische Baugruppen), falls über den Normenzugang erreichbar.
+- **Datei:** `zickert-2023-leiterplatten.pdf` (219 PDF-Seiten; gedruckte Seite = PDF-Seite − 2)
+- **Quelle:** Gerald Zickert: *Leiterplatten. Stromlaufplan, Layout und Fertigung*. 3., aktualisierte Auflage. München: Carl Hanser Verlag, 2023.
+  ISBN 978-3-446-47583-0.
+- **Zotero-Schlüssel:** `zickertLeiterplatten2023`
+- **Bewertung:** **Hauptquelle für 2.2.** Deckt Montagearten, Bestücken und Löten ab, aber nicht Prüfung, Schutzlack und Handlöten.
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 65–66 (PDF 67–68) | Durchsteck- und Oberflächenmontage, Bild 3.9; THT rückläufig | 2.2, Abb. 2.2 |
+| S. 92 (PDF 94) | Beide Montageprinzipien gemischt anwendbar, Bild 4.6 | 2.2 |
+| S. 156–157 (PDF 158–159) | Baugruppenfertigung; Handbestückung, Bestückungsautomat | 2.2 |
+| S. 159–160 (PDF 161–162) | Löten: Begriff, Ablauf, Flussmittel | 2.2 |
+| S. 167 (PDF 169) | Bedrahtete Bauteile, Steckverbinder und viele Bauteile der Leistungselektronik nicht für Reflow geeignet; Selektivlöten | 2.2 |
+| S. 169–171 (PDF 171–173) | Reflowlöten: Lotpaste, Bestücken, Zonen der Lötanlage | 2.2 |
+| S. 172–173 (PDF 174–175) | Lötfehler: Grabsteineffekt, Aufschwimmen | 2.2 |
+| S. 183 (PDF 185) | Zusammenfassung: Wellenlöten für bedrahtete Bauteile und SMD geeignet | 2.2 |
+
+## Suppa (2013): Anforderungen an eine Schutzlackierung
+
+- **Datei:** `Anforderungen_an_eine_Schutzlackierung.pdf` (4 Seiten, über wiso-net)
+- **Quelle:** Manfred Suppa: Anforderungen an eine Schutzlackierung. In: *ELEKTRONIKPRAXIS* Nr. 23 vom 2.12.2013, S. 44–47.
+- **Zotero-Schlüssel:** `suppaAnforderungenSchutzlackierung2013`
+- **Bewertung:** brauchbar für die Lackierung in 2.2. Fachzeitschrift, Auszug aus Suppas Buch; der Autor leitet die Entwicklung eines Lackherstellers.
+- **Seiten:** Nur S. 44 trägt im PDF eine Seitenzahl. Der Umfang S. 44–47 ist vom Nutzer bestätigt, die Zuordnung PDF 2–4 = S. 45–47 ergibt sich daraus.
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 44 (PDF 1) | Beschichtung richtet sich nach Funktion und Einsatzbedingungen; Tauchlackierung, partielle Beschichtung; Aufsprühen | 2.2 |
+| S. 45 (PDF 2) | IPC-A-610D: Fehlerbilder wie Verlust der Haftung, Bläschen, Entnetzungen, Einschlüsse; Tabelle 2: Schutzbeschichtung gefährdeter Bereiche | 2.2 |
+| S. 46 (PDF 3) | Lackfreie Flächen, z. B. Prüfpunkte und Kontaktflächen; Bauteile, die nicht beschichtet werden dürfen | 2.2 |
+| S. 47 (PDF 4) | Korrosion und Feuchte als häufiger Ausfallgrund | 2.2 |
+
+## Geprüft, aber nicht verwendet
+
+- **Lienig/Brümmer (2024), *Elektronische Gerätetechnik*, 2. Aufl.** (`Elektronische Gerätetechnik.pdf`): behandelt Entwicklung, nicht Fertigung.
+  Tab. 4.2 (S. 62) nennt für automatische Lötstellen 0,069–2,6 FIT, für manuelle nur den Minimalwert 0,14 FIT. Daraus lässt sich **nicht**
+  ableiten, dass Handlöten fehleranfälliger ist.
+- **`Surface Mount Technology.pdf`:** nur eine Buchbesprechung von Prasads Buch im *Microelectronics Journal*, nicht das Buch selbst.
+- **Hanke/Scheel, *Baugruppentechnologie der Elektronik – Montage*:** liegt nicht vor. Wäre eine Ergänzung zu Prüfung und Handlöten, falls gedruckt verfügbar.
 
 ## Plan für 2.1 (Quellen vollständig)
 

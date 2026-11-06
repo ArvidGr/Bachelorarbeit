@@ -108,7 +108,13 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   Verwendet „der Verfasser“ statt Ich-Form.
 - Kapitel 2: Kapiteleinleitung und 2.1 Rückverfolgbarkeit geschrieben (02.11.2026), mit Abb. 2.1 (TikZ) und Zitaten
   aus ISO 9000/9001:2026, Moe 1998, Koubek 2017, Yilmaz et al. 2022. Definiert den Begriff *Produktionsnachweis*
-  (= Aufzeichnung im Sinne der ISO 9000). Übrige Abschnitte: nur `\geplant{...}`.
+  (= Aufzeichnung im Sinne der ISO 9000).
+- 2.2 Fertigungsprozess geschrieben (05.11.2026), mit Abb. 2.2 (TikZ, THT/SMD), Quellen Zickert 2023, Suppa 2013, Koubek 2017.
+  Angaben des Nutzers zu ZOPF: SMD maschinell im Reflow, THT von Hand gelötet; Prüfung durch Mitarbeiter am Prüfstand mit Blick auf
+  häufige Fehler (verkehrt eingelötet, kalte Lötstellen), keine automatische optische Inspektion; Endkontrolle = erneute optische
+  Prüfung und Lackbild, Vier-Augen-Prinzip. Lackiert wird meist extern, zum Teil auch bei ZOPF selbst; zum Lack selbst liegen
+  keine Details vor. Einen Satz wie „Angaben stammen aus dem Unternehmen“ will der Nutzer in 2.2 nicht haben.
+  Übrige Abschnitte: nur `\geplant{...}`.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
 

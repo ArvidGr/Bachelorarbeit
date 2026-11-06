@@ -18,7 +18,8 @@ Bauelementen bestückte Leiterplatten, die im Folgenden kurz als \emph{Platinen}
 bezeichnet werden. An dem Hauptstandort Leipzig werden die Platinen
 gefertigt, geprüft und sowohl in Leipzig als auch in dem Zweitstandort Wickede gelagert 
 und zum Teil zu größeren Baugruppen, den \emph{Modulen}, verbaut. 
-Die Lackierung der Platinen übernimmt ein externer Dienstleister. 
+Die Lackierung der Platinen übernimmt meist ein externer Dienstleister, zum Teil
+erfolgt sie auch bei ZOPF selbst. 
 Jede Platine durchläuft eine feste Folge von Arbeitsschritten: 
 die Bestückung mit oberflächenmontierten Bauelementen
 (Surface-Mounted Device, kurz SMD), die Bestückung mit bedrahteten Bauelementen
@@ -384,7 +385,148 @@ Verlust schützt (Abschnitt~\ref{sec:RelationaleDatenbanken}).
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}
-\geplant{SMD- und THT-Bestückung, Prüfung und optische Kontrolle, Lackierung, Endkontrolle, Reparatur.}
+Eine Leiterplattenbaugruppe entsteht, indem elektronische Bauteile auf einer
+Leiterplatte bestückt und gelötet werden (vgl.
+\cite[S.~156]{zickertLeiterplatten2023}). Zickert unterscheidet dabei zwei
+Montagearten, die Abbildung~\ref{fig:Montagearten} gegenüberstellt. Bei der
+\emph{Durchsteckmontage} (THT) werden die Anschlüsse bedrahteter Bauelemente
+durch Bohrungen in der Leiterplatte gesteckt und auf der gegenüberliegenden Seite
+verlötet. \emph{Oberflächenmontierte} Bauelemente (SMD) werden dagegen auf
+derselben Seite platziert und verlötet. Ihre Anschlüsse und Lötflächen können
+kleiner ausfallen, und beide Seiten der Leiterplatte stehen für die Bestückung
+zur Verfügung, dadurch ist eine höhere Packungsdichte möglich (vgl.
+\cite[S.~65\,f.]{zickertLeiterplatten2023}). Beide Montagearten lassen sich auf
+einer Leiterplatte kombinieren (vgl. \cite[S.~92]{zickertLeiterplatten2023}).
+Die Oberflächenmontage ersetzt die Durchsteckmontage zwar zunehmend (vgl.
+\cite[S.~66]{zickertLeiterplatten2023}), bedrahtete Bauformen, Steckverbinder
+und viele Bauteile der Leistungselektronik eignen sich jedoch nicht für das
+Reflowlöten (vgl. \cite[S.~167]{zickertLeiterplatten2023}). Die Platinen von
+ZOPF verbinden beide Montagearten, weshalb die Fertigung zwei
+Bestückungsschritte umfasst.
+
+\begin{figure}[htbp]
+	\centering
+	\begin{tikzpicture}[
+		font=\footnotesize,
+		beschriftung/.style={align=center},
+		hinweis/.style={-{Stealth[length=1.5mm]}, black!60},
+		]
+		% Durchsteckmontage
+		\node[font=\footnotesize\bfseries] at (2.5,2.3) {Durchsteckmontage (THT)};
+		\fill[black!15] (0,0) rectangle (5,0.4);
+		\fill[white] (1.15,-0.01) rectangle (1.45,0.41);
+		\fill[white] (3.55,-0.01) rectangle (3.85,0.41);
+		\draw (0,0) -- (1.15,0) (1.45,0) -- (3.55,0) (3.85,0) -- (5,0);
+		\draw (0,0.4) -- (1.15,0.4) (1.45,0.4) -- (3.55,0.4) (3.85,0.4) -- (5,0.4);
+		\draw (0,0) -- (0,0.4) (5,0) -- (5,0.4);
+		\draw (1.15,0) -- (1.15,0.4) (1.45,0) -- (1.45,0.4);
+		\draw (3.55,0) -- (3.55,0.4) (3.85,0) -- (3.85,0.4);
+		\foreach \x in {1.3,3.7} {
+			\fill[black!55] (\x-0.4,0) .. controls (\x-0.15,-0.03) and (\x-0.08,-0.2)
+				.. (\x,-0.34) .. controls (\x+0.08,-0.2) and (\x+0.15,-0.03)
+				.. (\x+0.4,0) -- cycle;
+		}
+		\draw[very thick] (1.3,-0.34) -- (1.3,1.15) -- (1.8,1.15);
+		\draw[very thick] (3.7,-0.34) -- (3.7,1.15) -- (3.2,1.15);
+		\draw[fill=white, rounded corners=2pt] (1.8,0.9) rectangle (3.2,1.4);
+		\node[beschriftung] at (2.5,1.75) {bedrahtetes Bauelement};
+		\node at (2.5,0.2) {Leiterplatte};
+		\node[beschriftung] (l1) at (2.5,-0.75) {Lötstellen auf der Gegenseite};
+		\draw[hinweis] (l1.north west) ++(0.3,0) -- (1.5,-0.15);
+		\draw[hinweis] (l1.north east) ++(-0.3,0) -- (3.5,-0.15);
+
+		% Oberflächenmontage
+		\begin{scope}[xshift=6.6cm]
+			\node[font=\footnotesize\bfseries] at (2.5,2.3) {Oberflächenmontage (SMD)};
+			\draw[fill=black!15] (0,0) rectangle (5,0.4);
+			\fill[black!80] (1.25,0.4) rectangle (2.0,0.46);
+			\fill[black!80] (3.0,0.4) rectangle (3.75,0.46);
+			\fill[black!55] (1.3,0.46) -- (1.8,0.46) -- (1.8,0.84) -- cycle;
+			\fill[black!55] (3.7,0.46) -- (3.2,0.46) -- (3.2,0.84) -- cycle;
+			\draw[fill=white, rounded corners=1pt] (1.8,0.46) rectangle (3.2,0.92);
+			\node at (2.5,0.69) {SMD};
+			\node at (2.5,0.2) {Leiterplatte};
+			\node[beschriftung] (l2) at (2.5,1.75) {Lötstellen auf derselben Seite};
+			\draw[hinweis] (l2.south west) ++(0.3,0) -- (1.6,0.7);
+			\draw[hinweis] (l2.south east) ++(-0.3,0) -- (3.4,0.7);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Durchsteckmontage und Oberflächenmontage im Vergleich}
+	\quelle{Eigene Darstellung in Anlehnung an \cite[S.~65]{zickertLeiterplatten2023}}
+	\label{fig:Montagearten}
+\end{figure}
+
+Beide Montagearten nutzen das Löten, die häufigste und wichtigste Methode, in
+der Elektronik eine elektrische Verbindung herzustellen. Dabei benetzt
+geschmolzenes Lot die Verbindungspartner, die wegen des niedrigeren
+Schmelzpunktes des Lotes selbst nicht anschmelzen. Flussmittel baut zuvor die
+Oxidschicht auf der Kupferoberfläche ab (vgl.
+\cite[S.~159\,f.]{zickertLeiterplatten2023}).
+
+Für SMD wird das \emph{Reflowlöten} bevorzugt (vgl.
+\cite[S.~169]{zickertLeiterplatten2023}). Zunächst wird Lotpaste aufgetragen,
+etwa im Schablonendruck. Anschließend werden die Bauelemente bestückt, in der
+Serienfertigung hauptsächlich mit Bestückungsautomaten; die leicht klebrige
+Paste hält sie bis zum Löten in Position (vgl.
+\cite[S.~156, 170]{zickertLeiterplatten2023}). Die Baugruppe durchläuft danach
+die Zonen einer Lötanlage: In der Vorheiz- und der Haltezone wird sie erwärmt
+und das Flussmittel aktiviert, in der Peakzone erfolgt das Löten, und zuletzt
+kühlt sie in der Abkühlzone ab (vgl. \cite[S.~171]{zickertLeiterplatten2023}).
+Typische Fehler dieses Verfahrens sind das Aufrichten eines Bauelements, der
+sogenannte Grabsteineffekt, und Fehlplatzierungen durch das Aufschwimmen der
+Bauelemente auf dem flüssigen Lot (vgl.
+\cite[S.~172\,f.]{zickertLeiterplatten2023}).
+
+Für bedrahtete Bauelemente eignet sich das Wellenlöten; sollen nur einzelne
+Lötstellen gelötet werden, bietet sich das Selektivlöten mit einer Miniwelle an
+(vgl. \cite[S.~167, 183]{zickertLeiterplatten2023}). Bei ZOPF werden sie im
+Schritt THT, im Gegensatz zu SMD-Bauteilen, von Hand gelötet.
+
+Anschließend wird die Platine geprüft. Ein Mitarbeiter testet sie am Prüfstand
+und kontrolliert sie optisch auf bekannte oder offensichtliche Fehler, etwa
+verkehrt herum eingelötete Bauelemente oder kalte Lötstellen. Eine automatische
+optische Inspektion wird nicht eingesetzt.
+
+Danach erhält die Platine eine Schutzlackierung. Korrosion und Feuchte sind ein
+häufiger Grund für den Ausfall elektronischer Baugruppen, und eine
+Schutzbeschichtung bewahrt gefährdete Bereiche vor dem direkten Kontakt mit
+Umgebungsluft und Feuchte (vgl.
+\cite[S.~45, 47]{suppaAnforderungenSchutzlackierung2013}). Ob und wie eine
+Baugruppe beschichtet wird, ergibt sich aus ihrer Funktion und ihren
+Einsatzbedingungen. Infrage kommen unter anderem das Aufsprühen, die
+Tauchlackierung und eine partielle Beschichtung (vgl.
+\cite[S.~44]{suppaAnforderungenSchutzlackierung2013}); Flächen wie Prüfpunkte
+und Kontaktflächen müssen frei von Lack bleiben (vgl.
+\cite[S.~46]{suppaAnforderungenSchutzlackierung2013}). Bei ZOPF übernimmt diesen
+Schritt meist ein externer Dienstleister, zum Teil wird auch im Unternehmen
+selbst lackiert. Extern lackierte Platinen verlassen dafür das Unternehmen,
+weshalb auch ihr Weg dorthin und zurück rückverfolgbar sein muss
+(Abschnitt~\ref{sec:Lagerverwaltung}).
+
+Den Abschluss bildet die Endkontrolle. Die Platine wird erneut optisch geprüft,
+und es wird beurteilt, ob der Lack einwandfrei ist. Als Fehlerbilder einer
+Schutzbeschichtung nennt die Richtlinie IPC-A-610 unter anderem den Verlust der
+Haftung, Bläschen und Einschlüsse von Fremdkörpern (vgl.
+\cite[S.~45]{suppaAnforderungenSchutzlackierung2013}). Die Endkontrolle dient
+bei ZOPF als Vier-Augen-Prinzip und soll ausschließen, dass in den vorherigen
+Schritten etwas übersehen wurde. Nach der ISO 9001 setzt die Freigabe von
+Produkten eine solche Verifizierung voraus; aufzubewahren sind Aufzeichnungen
+darüber, ob die Annahmekriterien erfüllt sind und wer freigegeben hat (vgl.
+\cite[S.~103]{koubekDINISO90012018}). Nach der Endkontrolle wird die Platine
+eingelagert.
+
+Nicht jede Platine durchläuft diese Kette fehlerfrei. Für fehlerhafte Ergebnisse
+sieht die ISO 9001 unter anderem die Korrektur, das Aussondern und das Sperren
+vor; Aufzeichnungen über den Fehler, die Maßnahmen und die Entscheidung sind
+aufzubewahren (vgl. \cite[S.~105]{koubekDINISO90012018}). Fehler werden etwa
+durch Nacharbeit oder Reparatur behoben (vgl.
+\cite[S.~106]{koubekDINISO90012018}). Bei ZOPF gibt es dafür neben der
+Hauptkette die Sonderschritte Reparatur und Gesperrt. Nach einer Reparatur kann
+eine Platine Arbeitsschritte erneut durchlaufen, sodass derselbe Schritt an einer
+Platine mehrfach vorkommt (Abschnitt~\ref{sec:Zustandsmodell}). Damit die
+Rückverfolgbarkeit erhalten bleibt, darf eine Wiederholung den früheren
+Nachweis nicht überschreiben. Wie eine Datenbank solche Anforderungen
+unterstützt, beschreibt der folgende Abschnitt.
 
 \section{Relationale Datenbanken und Integritätssicherung}
 \label{sec:RelationaleDatenbanken}
