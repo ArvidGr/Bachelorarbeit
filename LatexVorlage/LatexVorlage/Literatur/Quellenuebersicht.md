@@ -3,7 +3,7 @@
 Arbeitsnotiz zu den PDFs in `Literatur/Quellen/` (git-ignoriert). Seitenangaben: **S.** = gedruckte Buchseite (zum Zitieren),
 **PDF** = Seite in der PDF-Datei. Zitierschlüssel erst eintragen, wenn die Quelle in Zotero ist.
 
-Stand: 02.11.2026
+Stand: 12.11.2026
 
 ---
 
@@ -168,6 +168,93 @@ Stand: 02.11.2026
 | S. 45 (PDF 2) | IPC-A-610D: Fehlerbilder wie Verlust der Haftung, Bläschen, Entnetzungen, Einschlüsse; Tabelle 2: Schutzbeschichtung gefährdeter Bereiche | 2.2 |
 | S. 46 (PDF 3) | Lackfreie Flächen, z. B. Prüfpunkte und Kontaktflächen; Bauteile, die nicht beschichtet werden dürfen | 2.2 |
 | S. 47 (PDF 4) | Korrosion und Feuchte als häufiger Ausfallgrund | 2.2 |
+
+## Taschenbuch Datenbanken (Kudraß, Hrsg., 2015): vier Kapitel für 2.3
+
+- **Buch:** Thomas Kudraß (Hrsg.): *Taschenbuch Datenbanken*. 2., neu bearbeitete Auflage. München: Carl Hanser Verlag, 2015.
+  ISBN 978-3-446-43508-7. Jedes Kapitel wird als eigener Buchteil (`@incollection`) mit Kapitelautor zitiert.
+- **Aufbau des Buches** (laut Kudraß, Abschnitt 1.7, S. 33–35): 2 Informationsmodellierung, 3 Relationales Datenmodell, 4 SQL,
+  5 Java-Anbindung, 6 Web-Anbindung (Skriptsprachen, dynamisches HTML), 7 Komponenten eines DBMS (darin **7.5 Transaktionen**),
+  8 Dateiorganisation und Indexe, 9 Optimierung, 10 objektrelational, 11 XML, 12 NoSQL, 13 verteilte DBS, 14–17 Data Warehouse,
+  Data Mining, Multimedia, Geodaten. **Ein eigenes Kapitel zur Datenbanksicherheit gibt es nicht**, die Zugriffskontrolle steht in 4.9.
+- **Bewertung:** **Hauptquelle für 2.3.** Lehrbuch des Erstprüfers, deckt alle Grundlagen ab. Für Transaktionen reichen Kap. 1 und 4.8.
+  Kap. 7.5 wäre nur für eine ausführlichere ACID-Definition nötig. Kap. 6 eventuell für 2.4.
+
+### Kudraß: Datenbanken: Grundlagen und Überblick (Kap. 1, S. 19–43)
+
+- **Datei:** `kudraß-2015-datenbanken-grundlagen-und-überblick.pdf` (25 PDF-Seiten; gedruckte Seite = PDF-Seite + 18)
+- **Zotero-Schlüssel:** `kudrassDatenbankenGrundlagenUnd2015`
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 20 (PDF 2) | Herkömmliche Dateiverarbeitung führt zu **Redundanz**; Nachteile: Speicher, Synchronisation; Gefahr der **Inkonsistenz** | 2.3 Einstieg, 3.1 (Excel-Listen) |
+| S. 20–21 (PDF 2–3) | Definitionen Datenbank, **DBMS**, Datenbanksystem | 2.3 |
+| S. 21 (PDF 3) | Datenmodell = Datenstrukturen, Operationen, **Integritätsbedingungen** (Regeln für erlaubte Zustände und Zustandsübergänge) | 2.3 |
+| S. 22 (PDF 4) | Relationales Datenmodell: Tabellen, über Primär- und Fremdschlüssel verknüpft; meiste Systeme relational; ERM als semantisches Modell für den Entwurf | 2.3 |
+| S. 23–24 (PDF 5–6) | **Aufgaben eines DBMS:** integrierte Datenhaltung (jedes Datenelement nur an einer Stelle), Sprache (DDL, DML, DCL), Katalog, Sichten, **Konsistenzkontrolle/Integritätssicherung**, **Datenzugriffskontrolle**, **Transaktionen** (Atomarität, Dauerhaftigkeit), **Mehrbenutzerfähigkeit** (Isolation), **Recovery** | 2.3 Kernstelle |
+| S. 24–25 (PDF 6–7) | Vorteile: Standards, effizienter Zugriff, Datenunabhängigkeit, Verfügbarkeit; Änderungen nach Transaktionsende sofort sichtbar | 2.3, 3.4 |
+| S. 25 (PDF 7) | Nachteile; Dateien genügen nur ohne Mehrbenutzerzugriff und bei einfachen, unveränderlichen Daten | 3.1, Begründung gegen Excel |
+| S. 27–28 (PDF 9–10) | Schema vs. Datenbankzustand, Bild 1.1 `CREATE TABLE` | optional |
+| S. 28–30 (PDF 10–12) | Drei-Ebenen-Architektur, Datenunabhängigkeit | optional 4.1 |
+
+### Sauer: Informationsmodellierung (Kap. 2, S. 44–66)
+
+- **Datei:** `sauer-2015-informationsmodellierung.pdf` (23 PDF-Seiten; gedruckte Seite = PDF-Seite + 43)
+- **Zotero-Schlüssel:** noch nicht in der `.bib` (vermutlich `sauerInformationsmodellierung2015`)
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 44–45 (PDF 1–2) | Phasen des DB-Entwurfs: Anforderungsanalyse, konzeptioneller, logischer Entwurf, Datendefinition, physischer Entwurf, Implementierung; iterativ (Bild 2.1) | 2.3, 4.2 |
+| S. 46 (PDF 3) | Konzeptioneller Entwurf: Weltausschnitt (UoD), unabhängig vom DBMS, Beschreibung mit dem ERM | 2.3 |
+| S. 47–48 (PDF 4–5) | Logischer Entwurf: Abbildung ERM → Relationenmodell, danach Normalisierung; Datendefinition mit der DDL inkl. Primär- und Fremdschlüssel | 2.3 |
+| S. 49–50 (PDF 6–7) | ERM von **Chen (1976)**, De-facto-Standard; ER-Diagramm als grafische Darstellung | 2.3 |
+| S. 51–52 (PDF 8–9) | Entity, Beziehung; **Entitytyp = Rechteck, Beziehungstyp = Raute**; Attribute charakterisieren und identifizieren | 2.3, Abb. 2.3 |
+| S. 53 (PDF 10) | **Attribute als Ellipsen** (Bild 2.5) | 2.3, Abb. 2.3 |
+| S. 54 (PDF 11) | **(1, M, N)-Notation**: wie viele Entities maximal in Beziehung; 1:1, 1:N, N:1, M:N | 2.3, Abb. 2.3 |
+| S. 54–55 (PDF 11–12) | (min,max)-Notation, Kurzformen; Krähenfuß- und Bachman-Notation als grafische Varianten | 2.3 (Hinweis auf Notationen in 4.2) |
+| S. 58 (PDF 15) | Schlüssel: identifizierend und minimal; oft künstlich; **Primärschlüssel unterstrichen** | 2.3, Abb. 2.3 |
+| S. 65 (PDF 22) | **Temporale Daten**: Änderungshistorie soll gespeichert werden; **Gültigkeitszeit** vs. **Transaktionszeit**, bitemporal; Modellierung über Zeitattribut im Schlüssel oder eigenen Entitytyp Zeit | 2.3 Historisierung, Kernstelle |
+| S. 66 (PDF 23) | Beispiel: Historie der Statusänderungen eines Auftrags → **M:N-Beziehung** (Bild 2.15) | 2.3, passt auf Platine–Produktionsschritt |
+
+### Sauer: Relationales Datenmodell (Kap. 3, S. 67–98)
+
+- **Datei:** `sauer-2015-relationales-datenmodell.pdf` (32 PDF-Seiten; gedruckte Seite = PDF-Seite + 66)
+- **Zotero-Schlüssel:** noch nicht in der `.bib` (vermutlich `sauerRelationalesDatenmodell2015`)
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 67 (PDF 1) | Verbreitetstes Datenmodell; **Codd 1970**; Einfachheit und mathematische Fundierung | 2.3 |
+| S. 67–68 (PDF 1–2) | Relation, Tupel, Attribut, Wertebereich; Relation als Teilmenge des kartesischen Produkts; Relationenschema mit Integritätsbedingungen (Bild 3.1) | 2.3 |
+| S. 69 (PDF 3) | Grundregeln: Tupel eindeutig, atomare Werte, Nullwerte; Information nur über Werte, Beziehungen über Fremdschlüssel | 2.3 |
+| S. 70 (PDF 4) | Ohne Integritätsbedingungen unsinnige Wertekombinationen möglich; **Schlüssel = minimale identifizierende Attributmenge** | 2.3 |
+| S. 71 (PDF 5) | Schlüsselkandidat, **Primärschlüssel**; **Entitätsintegrität**: eindeutig und nicht NULL; DBMS überwacht nur den Primärschlüssel | 2.3 |
+| S. 71–72 (PDF 5–6) | **Fremdschlüssel**, **referenzielle Integrität** | 2.3 |
+| S. 73–74 (PDF 7–8) | Kritische DML-Operationen; Verbot (Standard) oder Erlaubnis mit Kaskadierung bzw. NULL/Default | 2.3 |
+| S. 75 (PDF 9) | Abbildung EERM → Relationenmodell, Ziele u. a. 3. Normalform | 2.3 |
+| S. 77 (PDF 11) | **1:N** → Fremdschlüssel auf der N-Seite | 2.3, Abb. 2.3 |
+| S. 78 (PDF 12) | **M:N** → eigene Relation mit beiden Primärschlüsseln als Fremdschlüssel und den Attributen der Beziehung | 2.3, Abb. 2.3 |
+| S. 80–82 (PDF 14–16) | Normalformenlehre; Einfüge-, Änderungs-, Löschanomalien | 4.2 |
+| S. 85–88 (PDF 19–22) | 1NF–3NF mit Beispiel | 4.2 |
+| S. 92 (PDF 26) | Denormalisierung zugunsten von Anfragen | 7.2 (Leistung), optional |
+
+### Türker: Die Datenbanksprache SQL (Kap. 4, S. 99–143)
+
+- **Datei:** `türker-2015-die-datenbanksprache-sql.pdf` (45 PDF-Seiten; gedruckte Seite = PDF-Seite + 98)
+- **Zotero-Schlüssel:** noch nicht in der `.bib`
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 99 (PDF 1) | SQL beruht auf dem Relationenmodell; Tabelle = Multimenge; Spalten- und Tabellenbedingungen | 2.3 |
+| S. 100 (PDF 2) | Sichten; Routinen; **Trigger: automatisch auf Ereignisse reagieren, Funktionalität zentral in der DB, bessere Wartbarkeit**; Sequenzgeneratoren für Schlüssel | 2.3 |
+| S. 101 (PDF 3) | Teilsprachen DDL, DML, DQL, DCL | 2.3 |
+| S. 102 (PDF 4) | **SQL:2011 führt temporale Features ein** | 2.3 Historisierung, 8.3 Ausblick |
+| S. 128 (PDF 30) | **Integritätsbedingungen in SQL:** NOT NULL, UNIQUE, PRIMARY KEY, REFERENCES, CHECK; Beispiel | 2.3 |
+| S. 129 (PDF 31) | Fremdschlüssel verhindern Löschen referenzierter Zeilen; **referenzielle Aktionen** NO ACTION (Voreinstellung), CASCADE, SET NULL, SET DEFAULT, RESTRICT | 2.3, 6.3 |
+| S. 137–138 (PDF 39–40) | **Trigger:** BEFORE/AFTER/INSTEAD OF, Ereignis INSERT/UPDATE/DELETE, OLD/NEW, FOR EACH ROW/STATEMENT, WHEN; Beispiel ON DELETE CASCADE per Trigger | 2.3, 6.3 |
+| S. 138–139 (PDF 40–41) | **Transaktion:** atomar, ganz oder gar nicht; START TRANSACTION, COMMIT, ROLLBACK, Sicherungspunkte | 2.3 |
+| S. 140 (PDF 42) | Anomalien Lost Update, Dirty Read, Non-Repeatable Read, Phantom; vier Isolationsebenen (Tab. 4.10) | 2.3 kurz |
+| S. 141 (PDF 43) | Prüfung von Integritätsbedingungen IMMEDIATE oder DEFERRED (spätestens bei COMMIT) | optional |
+| S. 141–143 (PDF 43–45) | **Zugriffskontrolle:** GRANT/REVOKE, Privilegien, Rollen | 2.3 kurz, 4.5, 7.5 |
 
 ## Geprüft, aber nicht verwendet
 

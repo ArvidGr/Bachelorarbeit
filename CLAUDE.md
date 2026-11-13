@@ -114,6 +114,11 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   häufige Fehler (verkehrt eingelötet, kalte Lötstellen), keine automatische optische Inspektion; Endkontrolle = erneute optische
   Prüfung und Lackbild, Vier-Augen-Prinzip. Lackiert wird meist extern, zum Teil auch bei ZOPF selbst; zum Lack selbst liegen
   keine Details vor. Einen Satz wie „Angaben stammen aus dem Unternehmen“ will der Nutzer in 2.2 nicht haben.
+- 2.3 Relationale Datenbanken als Entwurf geschrieben (12.11.2026), Quellen: Taschenbuch Datenbanken (Kudraß Kap. 1,
+  Sauer Kap. 2 und 3, Türker Kap. 4). Abb. 2.3 = kleines ER-Diagramm in **Chen-Notation mit (1, M, N)-Kardinalitäten**
+  (Wunsch des Nutzers, nach Kudraß' Vorlesung; Rechteck/Raute/Ellipse, Schlüssel unterstrichen). Das große ER-Diagramm in 4.2
+  soll dieselbe Notation verwenden. Sauer- und Türker-Kapitel waren am 12.11. noch nicht in Zotero; die Schlüssel im Text
+  (`sauerInformationsmodellierung2015`, `sauerRelationalesDatenmodell2015`, `turkerDatenbankspracheSQL2015`) sind Platzhalter.
   Übrige Abschnitte: nur `\geplant{...}`.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
