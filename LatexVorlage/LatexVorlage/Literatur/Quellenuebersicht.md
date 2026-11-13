@@ -3,7 +3,7 @@
 Arbeitsnotiz zu den PDFs in `Literatur/Quellen/` (git-ignoriert). Seitenangaben: **S.** = gedruckte Buchseite (zum Zitieren),
 **PDF** = Seite in der PDF-Datei. Zitierschlüssel erst eintragen, wenn die Quelle in Zotero ist.
 
-Stand: 12.11.2026
+Stand: 13.11.2026
 
 ---
 
@@ -255,6 +255,105 @@ Stand: 12.11.2026
 | S. 140 (PDF 42) | Anomalien Lost Update, Dirty Read, Non-Repeatable Read, Phantom; vier Isolationsebenen (Tab. 4.10) | 2.3 kurz |
 | S. 141 (PDF 43) | Prüfung von Integritätsbedingungen IMMEDIATE oder DEFERRED (spätestens bei COMMIT) | optional |
 | S. 141–143 (PDF 43–45) | **Zugriffskontrolle:** GRANT/REVOKE, Privilegien, Rollen | 2.3 kurz, 4.5, 7.5 |
+
+## Taschenbuch Datenbanken: zwei weitere Kapitel für 2.4 (13.11.2026)
+
+Gleiches Buch wie oben, als Buchteil mit Kapitelautor anlegen (Auflage „2., neu bearbeitete Auflage“, ISBN 978-3-446-44026-5).
+
+### Rakow: Datenbanken im Web (Kap. 6, S. 189–226)
+
+- **Datei:** `rakow-2015-datenbanken-im-web.pdf` (38 PDF-Seiten; gedruckte Seite = PDF-Seite + 188)
+- **Zotero-Schlüssel:** `kudrassTaschenbuchDatenbankenImWeb`
+- **Bewertung:** **Hauptquelle für 2.4** (Web-Grundlagen aus Sicht der Datenbank). Technikteil (CGI, Applets, JSP, SOAP) veraltet, nicht verwenden.
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 192 (PDF 4) | Anforderungen an Webanwendungen: Heterogenität (Skripte evtl. abgeschaltet), Interaktivität, Verfügbarkeit, Sicherheit | 3.4 NFA |
+| S. 195 (PDF 7) | Def. **dynamische Webseite** (Erzeugung zum Zeitpunkt der Anfrage) | 2.4 |
+| S. 198 (PDF 10) | HTTP über TCP/IP, Ablauf Anfrage/Antwort, **GET vs. POST** | 2.4 |
+| S. 199–200 (PDF 11–12) | HTTP **zustandslos**; Def. Session; Session über verstecktes Feld, **Cookie**, URL-Rewrite; HTTPS | 2.4, 4.5, 7.5 (Login nur clientseitig!) |
+| S. 201–202 (PDF 13–14) | **Drei-Schichten-Architektur** (Präsentation, Anwendungslogik, Datenhaltung); Webclient, Webserver, Applikationsserver, DB-Server, Firewalls, ERP abgeschottet | 2.4, 4.1 |
+| S. 203 (PDF 15) | Prüfungen im Client umgehbar, **Server darf sich nicht darauf verlassen**; Prüfung gegen DB nur auf dem Server | 2.4, 7.5 |
+| S. 204 (PDF 16) | SQL-Injection; Transaktionen an Schnittstellen meist AutoCommit | 2.4 |
+| S. 206–207 (PDF 18–19) | Def. **clientseitige** DB-Anbindung, Nachteile (DB-Client, Firewall) | 2.4 |
+| S. 212 (PDF 24) | Def. **serverseitige** DB-Anbindung, Webseitengenerator | 2.4 |
+
+### Schiefer: Datenbank-Anwendungsprogrammierung (Kap. 5, S. 144–188)
+
+- **Datei:** `schiefer-2015-datenbank-anwendungsprogrammierung.pdf` (45 PDF-Seiten; gedruckte Seite = PDF-Seite + 143)
+- **Zotero-Schlüssel:** `kudrassTaschenbuchDatenbankenAnwendungsPro`
+- **Bewertung:** für 2.4 (SQL-Injection, Pooling) und ggf. 4.1/7.5 (Architekturansätze, Trigger als Logik in der DB). Embedded SQL, JDBC, JPA nicht relevant.
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 144–145 (PDF 1–2) | **Impedance Mismatch** (Tab. 5.1) | optional 5.x (kein ORM, direktes SQL) |
+| S. 146–147 (PDF 3–4) | Def. **SQL-Injection** mit Beispiel; Def. **Prepared Statement** als Schutz | 2.4 |
+| S. 148–151 (PDF 5–8) | Architekturansätze: Fat Client, Thin Client (Logik in der DB, Vor-/Nachteile, Herstellerabhängigkeit), Thin Client mit Applikationsserver | 2.4 (S. 150), 4.1, 7.5 (Trigger in PostgreSQL) |
+| S. 162–163 (PDF 19–20) | Def. **Connection Pooling** | 2.4 |
+| S. 177–178 (PDF 34–35) | Objektrelationale Abbildung (ORM) | optional (bewusst kein ORM) |
+
+## Goll (2020): JavaServer Faces. JSF verstehen und praktisch einsetzen
+
+- **Datei:** `GrundlagenDerWebentwicklung.pdf` (ganzes Buch, 269 PDF-Seiten; gedruckte Seite = PDF-Seite − 9)
+- **Quelle:** Michael Goll: *JavaServer Faces. JSF verstehen und praktisch einsetzen*. 3., überarbeitete Auflage.
+  Wiesbaden: Springer Vieweg, 2020. ISBN 978-3-658-31802-4 (E-Book 978-3-658-31803-1). „Grundlagen der Webentwicklung“ ist nur Kap. 3.
+- **Zotero-Schlüssel:** `gollJavaServerFacesJSF2020` (Buch).
+- **Bewertung:** JSF-Lehrbuch, nur Kap. 3.2 brauchbar (Architekturmuster). Rest nicht verwenden.
+
+| Seite | Inhalt | Verwendung |
+| --- | --- | --- |
+| S. 10–12 (PDF 19–21) | **Model 1**: jede Seite steuert sich selbst, bei Wachstum schwer wartbar | 2.4 |
+| S. 12–13 (PDF 21–22) | **Model 2 = MVC**: zentraler (Front-)Controller, Model, View; klare Aufgabentrennung | 2.4 |
+| S. 14 (PDF 23) | Webframeworks liefern den allgemeinen Front-Controller | 2.4 |
+
+## Webquellen für 2.4 (gelesen am 13.11.2026)
+
+Die Doku beschreibt inzwischen SvelteKit 3; die App nutzt SvelteKit 2.70 und Svelte 5.56 (`package-lock.json`). Die zitierten
+Konzepte (load, Form-Actions, `+server`, Runes) sind in beiden gleich.
+**Je Dokumentation ein Eintrag** (Oberseite), die Stelle steht im Zitat als Abschnitt:
+`\cite[Abschnitt \enquote{Form actions}]{IntroductionSvelteKitDocsa}`. Autor „Svelte-Team“ → Kürzel [Svea]/[Sveb].
+
+| Schlüssel | Abschnitt / URL der Unterseite | Belegt in 2.4 |
+| --- | --- | --- |
+| `IntroductionSvelteKitDocsa` | Introduction, https://svelte.dev/docs/kit/introduction | Svelte = Komponentensprache mit Compiler; SvelteKit ergänzt Router, SSR |
+| `IntroductionSvelteKitDocsa` | Routing, https://svelte.dev/docs/kit/routing | dateibasierter Router, `+page.svelte`, `+page.server`, `+server` |
+| `IntroductionSvelteKitDocsa` | Glossary, https://svelte.dev/docs/kit/glossary | SSR, CSR, Hydration, Hybrid-Modus |
+| `IntroductionSvelteKitDocsa` | Loading data, https://svelte.dev/docs/kit/load | Server-Load nur auf dem Server, DB und private Variablen, `data` |
+| `IntroductionSvelteKitDocsa` | Form actions, https://svelte.dev/docs/kit/form-actions | POST, ohne JS, Progressive Enhancement, `fail`, `form`, `use:enhance` |
+| `OverviewSvelteDocs` | What are runes?, https://svelte.dev/docs/svelte/what-are-runes | Def. Runes |
+| `OverviewSvelteDocs` | $state, https://svelte.dev/docs/svelte/$state | reaktiver Zustand |
+| `OverviewSvelteDocs` | $derived, https://svelte.dev/docs/svelte/$derived | abgeleiteter Zustand, ohne Nebenwirkungen |
+| `OverviewSvelteDocs` | $effect, https://svelte.dev/docs/svelte/$effect | nur im Browser, sparsam einsetzen |
+| `PorsagerPostgresPostgresjs` | README, Abschnitte Queries / Transactions, https://github.com/porsager/postgres | Template-Literale → Parameter, kein SQL-Injection; Pool max. 10; `sql.begin` |
+
+Nicht verwendet, aber gelesen: Adapters und Node servers (https://svelte.dev/docs/kit/adapters, …/adapter-node) → für 6.x Bereitstellung.
+
+## ten Hompel, Büchter, Franzke (2008): Identifikationssysteme und Automatisierung
+
+- **Daten:** ten Hompel, Michael; Büchter, Hubert; Franzke, Ulrich: *Identifikationssysteme und Automatisierung*. Berlin, Heidelberg:
+  Springer, 2008 (Reihe Intralogistik/VDI-Buch). ISBN 978-3-540-75880-8, e-ISBN 978-3-540-75881-5. PDF: `Quellen/Identifikationssysteme und Automatisierung.pdf` (ganzes Buch).
+- **Bewertung:** Fraunhofer IML, gutes Lehrbuch. Kap. 2 „Automatische Identifikation“ (S. 9–119) ist die Grundlage für 2.5. Logistiklastig;
+  RFID (2.11) nicht gebraucht. Etwas älter (2008), die Codes selbst haben sich aber nicht verändert.
+- **Seiten:** PDF-Seite = Buchseite + 9.
+- **Zotero-Schlüssel:** `tenhompelIdentifikationssystemeUndAutomatisierung2008` (Buch), Kürzel [THBF08].
+
+| Seite | Inhalt | Verwendet in |
+| --- | --- | --- |
+| S. 9 (PDF 18) | AutoID = Grundlage für fehlerfreie Identifikation in kürzester Zeit; Barcode > 70 % der Anwendungen | 2.5 Einstieg |
+| S. 12 f. (PDF 21 f.) | Künstliche Identifikatoren (ID) nur **innerhalb eines Aktionsraums** eindeutig (Telefonnummer) | 2.5: SN je Platinentyp → Art.-Nr. + SN |
+| S. 22 f. (PDF 31 f.) | Aufbau Barcode: Ruhezone, Start, Nutzzeichen, Prüfzeichen, Stopp; Modulbreite 0,25–0,6 mm | 2.5 |
+| S. 24 (PDF 33) | Organisation: keine doppelten Labels; **fehlende Nummern durch falsches Aufkleben**; Erstellung intern oder durch Fremdfirma | 2.5: verworfene Aufkleber, Lieferant |
+| S. 45 f. (PDF 54 f.) | Code 128: Mehrbreitencode, 3 Striche + 3 Lücken = 11 Module, ASCII 0–127, selbstüberprüfend, Zeichensätze A–C, > 200 Zeichen | 2.5 Moduletikett |
+| S. 55 f. (PDF 64 f.) | Codegrößen, Toleranzen, Lesedistanz; NoReads oft durch falsche Lesedistanz | (nicht verwendet) |
+| S. 57 (PDF 66) | Code 128 = technische Basisschicht ohne Semantik; intern genügt interne Norm, übergreifend EAN 128 | 2.5 eigenes Format |
+| S. 75 (PDF 84) | 2D-Codes; 1D = Referenz auf Information, 2D kann die Information selbst tragen | 2.5 |
+| S. 83 (PDF 92) | QR-Code: 1994 Nippondenso, 21×21–177×177, drei Suchelemente, bis 30 % rekonstruierbar | 2.5 Kistenetikett |
+| S. 84 (PDF 93) | Data Matrix: 10×10–144×144, L-Rahmen + Taktmuster, Reed-Solomon ECC200 bis 25 %, **anfangs Leiterplattenkennzeichnung** | 2.5 Platinen-Aufkleber |
+| S. 91 f. (PDF 100 f.) | Barcodeleser = Scanner + Decoder, Ausgabe als ASCII | 2.5 |
+| S. 94 (PDF 103) | **Tastatureinschleifung**: Handscanner verhält sich für den Rechner wie die Tastatur | 2.5 Scan im Browser |
+| S. 95 f. (PDF 104 f.) | Direkte vs. **indirekte Kennzeichnung** (Etikett, zeitversetzt verknüpft) | 2.5 |
+| S. 96–99 (PDF 105–108) | Druckqualität, Thermodirekt-/Thermotransferdruck; Labelerstellung an Fremdunternehmen (S. 98) | 2.5 (S. 98) |
+| S. 102 (PDF 111) | **Fremde Labels** derselben Codefamilie → Konflikt mit eigenen IDs, entfernen/überkleben | 2.5 SK-Altaufkleber, 8.2 |
 
 ## Geprüft, aber nicht verwendet
 

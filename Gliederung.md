@@ -35,7 +35,7 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 2.2 Fertigungsprozess von Leiterplattenbaugruppen *(SMD, THT, Prüfung, Lackierung, Endkontrolle)*
 2.3 Relationale Datenbanken und Integritätssicherung *(Relationenmodell, Constraints, Trigger, Historisierung)*
 2.4 Webanwendungen mit SvelteKit *(Server-Rendering, Form-Actions, Runes)*
-2.5 Maschinenlesbare Kennzeichnung *(Barcode/Code 128, QR-Code, Etikettendruck)*
+2.5 Maschinenlesbare Kennzeichnung *(Data Matrix, QR-Code, Code 128, Handscanner, Etiketten)*
 
 ## 3 Anforderungsanalyse
 3.1 Analyse des bisherigen Nachweisprozesses
@@ -44,7 +44,7 @@ substantivische Überschriften, kein „Hauptteil“, eigenes Schlusskapitel.
 3.4 Nichtfunktionale Anforderungen *(Revisionssicherheit, Bedienbarkeit in der Fertigung, Antwortzeiten, Sicherheit)*
 
 ## 4 Konzeption
-4.1 Systemarchitektur *(Komponentendiagramm)*
+4.1 Systemarchitektur *(Komponentendiagramm, Begründung der Technologiewahl: SvelteKit, PostgreSQL)*
 4.2 Datenmodell *(ER-Diagramm: Laufkarten, SN-Bereiche, Platinen, Nachweise mit Versuchen, Änderungsprotokoll, Standorte, Module mit Soll-Bestückung, Protokolltabellen für Kisten-/Modulzuordnung, Modulprüfungen; Seriennummernkonzept inkl. SK-Versatz)*
 4.3 Zustandsmodell einer Platine *(Hauptkette, Reparatur, Sperrung, zweiter Durchlauf mit direkter Einlagerung)*
 4.4 Gestaltung der Benutzeroberfläche *(UI-Entwürfe, Quelle kennzeichnen)*

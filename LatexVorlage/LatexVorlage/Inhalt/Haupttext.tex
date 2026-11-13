@@ -28,7 +28,7 @@ Lackierung, die Endkontrolle und schließlich die Einlagerung. Diese Schritte
 werden in Abschnitt~\ref{sec:Fertigungsprozess} näher beschrieben. Zur
 Kennzeichnung trägt jede Platine einen Aufkleber mit dem Zopf-internen Namen der Platine, der Artikelnummer 
 und einer \emph{Seriennummer}, welche innerhalb des Platinentyps eindeutig ist.
-Auf dem Aufkleber ist zudem ein maschinenlesbarer QR-Code aufgebracht, der diese Daten codiert.
+Auf dem Aufkleber ist zudem ein maschinenlesbarer Data-Matrix-Code aufgebracht, der diese Daten codiert.
 
 Gesteuert wird die Fertigung über \emph{Laufkarten}. Eine Laufkarte beschreibt
 einen Fertigungsauftrag über eine bestimmte Stückzahl eines Platinentyps und
@@ -169,8 +169,8 @@ und~\ref{sec:Oberflaeche}) als solche gekennzeichnet.
 Kapitel~\ref{sec:Grundlagen} legt die fachlichen und technischen Grundlagen:
 die Rückverfolgbarkeit in der Elektronikfertigung, den Fertigungsprozess von
 Platinen, relationale Datenbanken und die Sicherung ihrer Integrität, das
-Webframework Svelte 5 und SvelteKit sowie die maschinenlesbare Kennzeichnung mit Barcodes
-und QR-Codes. Darauf aufbauend analysiert Kapitel~\ref{sec:Anforderungsanalyse}
+Webframework Svelte 5 und SvelteKit sowie die maschinenlesbare Kennzeichnung mit ein- und
+zweidimensionalen Codes. Darauf aufbauend analysiert Kapitel~\ref{sec:Anforderungsanalyse}
 den bisherigen Nachweisprozess und leitet die Akteure sowie die funktionalen
 und nichtfunktionalen Anforderungen an die Anwendung ab.
 
@@ -788,11 +788,368 @@ Abschnitt~\ref{sec:RueckverfolgbarkeitUmsetzung}.
 
 \section{Webanwendungen mit SvelteKit}
 \label{sec:SvelteKit}
-\geplant{Client-Server-Architektur, serverseitiges Rendering, Load-Funktionen und Form-Actions, Svelte-5-Runes.}
+Die Produktionsverwaltung ist eine Webanwendung: Die Mitarbeiter bedienen sie
+über einen Webbrowser, während Programmlogik und Daten zentral auf einem Server
+im Firmennetz liegen. Dieser Abschnitt erläutert die dafür nötigen Grundlagen
+des Web und das eingesetzte Framework SvelteKit.
+
+Browser und Webserver kommunizieren über das \emph{Hypertext Transfer Protocol}
+(HTTP), das auf TCP/IP aufsetzt. Der Client sendet eine Anfrage, der Server
+antwortet mit einem Antwortcode und gegebenenfalls einer Webseite in HTML, die
+der Browser anzeigt. Parameter werden bei der Methode GET an die URL angehängt,
+bei POST im Rumpf der Nachricht übertragen (vgl.
+\cite[S.~198]{kudrassTaschenbuchDatenbankenImWeb}). Eine HTTP-Verbindung ist
+zustandslos, jede Anfrage steht also für sich. Sollen mehrere Anfragen eines
+Benutzers zusammengehören, etwa nach einer Anmeldung, muss die Anwendung eine
+\emph{Session} verwalten. Meist geschieht das über ein Cookie, das der Server
+vergibt und der Browser bei folgenden Anfragen mitsendet (vgl.
+\cite[S.~199\,f.]{kudrassTaschenbuchDatenbankenImWeb}). Wie die Produktionsverwaltung
+Anmeldungen behandelt, beschreibt Abschnitt~\ref{sec:Berechtigungskonzept}.
+
+Eine Webseite heißt \emph{dynamisch}, wenn sie erst zum Zeitpunkt der Anfrage
+erzeugt wird (vgl. \cite[S.~195]{kudrassTaschenbuchDatenbankenImWeb}). Nur so kann sie
+den aktuellen Stand einer Datenbank zeigen. Rakow unterscheidet zwei Arten der
+Datenbankanbindung. Bei der clientseitigen verbindet sich ein Programm im
+Browser selbst mit der Datenbank. Das setzt einen Datenbankclient auf jedem
+Rechner und einen durch Firewalls hindurch erreichbaren Datenbankserver voraus.
+Bei der serverseitigen greift ein Programm auf dem Webserver auf die Datenbank
+zu und liefert das Ergebnis als Webseite aus (vgl.
+\cite[S.~206\,f., 212]{kudrassTaschenbuchDatenbankenImWeb}). Die Aufgaben verteilen sich
+dabei auf drei Schichten: Präsentation, Anwendungslogik und Datenhaltung.
+Zugriffe erfolgen nur innerhalb einer Schicht oder auf eine darunterliegende
+(vgl. \cite[S.~201]{kudrassTaschenbuchDatenbankenImWeb}). Liegt die Anwendungslogik auf
+einem eigenen Server, wird sie zentral gewartet, und die Clients werden
+entlastet (vgl. \cite[S.~150]{kudrassTaschenbuchDatenbankenAnwendungsPro}).
+In der Produktionsverwaltung übernimmt der Browser die Präsentation, ein
+SvelteKit-Server die Anwendungslogik und PostgreSQL die Datenhaltung
+(Abschnitt~\ref{sec:Systemarchitektur}). Auf den Rechnern in der Fertigung
+genügt deshalb ein Browser.
+
+Die Trennung hat auch Folgen für die Sicherheit. Prüfungen im Browser ersparen
+dem Benutzer bei Fehleingaben die Wartezeit auf den Server. Sie lassen sich aber
+umgehen, weil der Benutzer die Seite verändern oder Skripte abschalten kann. Der
+Server darf sich deshalb nicht auf sie verlassen, und Prüfungen gegen den
+Datenbestand sind ohnehin nur dort möglich (vgl.
+\cite[S.~203]{kudrassTaschenbuchDatenbankenImWeb}). Eine typische Gefahr ist die
+\emph{SQL-Injection}: Eingaben enthalten SQL-Code und verändern so die
+Anweisung, in die sie eingesetzt werden (vgl.
+\cite[S.~146\,f.]{kudrassTaschenbuchDatenbankenAnwendungsPro};
+\cite[S.~204]{kudrassTaschenbuchDatenbankenImWeb}). Wirksamen Schutz bieten
+\emph{Prepared Statements}. Sie enthalten Platzhalter statt Werten, und die
+später übergebenen Werte können die Struktur der Anweisung nicht mehr verändern
+(vgl. \cite[S.~147]{kudrassTaschenbuchDatenbankenAnwendungsPro}). Die
+Produktionsverwaltung greift über die Node.js-Bibliothek Postgres.js auf die
+Datenbank zu. Deren Abfragen werden als Template-Literale geschrieben, und
+eingesetzte Werte überträgt die Bibliothek getrennt als Parameter an die
+Datenbank. Laut Dokumentation ist SQL-Injection damit ausgeschlossen (vgl.
+\cite[Abschnitt \enquote{Queries}]{PorsagerPostgresPostgresjs}). Die Bibliothek hält außerdem mehrere Datenbankverbindungen
+in einem Pool bereit, standardmäßig höchstens zehn. Ein solches
+\emph{Connection Pooling} spart das wiederholte Öffnen und Schließen von
+Verbindungen (vgl. \cite[S.~162\,f.]{kudrassTaschenbuchDatenbankenAnwendungsPro}).
+Mit \texttt{sql.begin} stellt Postgres.js die Transaktionen aus
+Abschnitt~\ref{sec:RelationaleDatenbanken} bereit: Schlägt eine Anweisung fehl,
+wird die gesamte Transaktion zurückgesetzt (vgl.
+\cite[Abschnitt \enquote{Transactions}]{PorsagerPostgresPostgresjs}).
+
+Für die Struktur des Programmcodes beschreibt Goll zwei Architekturmuster. Bei
+\emph{Model~1} ruft der Browser jede Seite direkt auf, und jede Seite liest
+selbst die Anfrage aus, ruft die Geschäftslogik auf und erzeugt ihre Ausgabe.
+Mit wachsender Anwendung werden solche Seiten unübersichtlich und schwer
+wartbar. Bei \emph{Model~2}, auch \emph{Model-View-Controller} (MVC) genannt,
+nimmt eine zentrale Stelle, der Controller, alle Anfragen entgegen, erzeugt das
+Model mit den benötigten Daten und überlässt die Ausgabe der View (vgl.
+\cite[S.~10--13]{gollJavaServerFacesJSF2020}). Einen solchen allgemeinen
+Controller müssen Entwickler nicht selbst schreiben, Webframeworks bringen ihn
+mit (vgl. \cite[S.~14]{gollJavaServerFacesJSF2020}).
+
+Ein solches Framework ist \emph{SvelteKit}, mit dem die Produktionsverwaltung
+entwickelt wurde (Version~2, mit Svelte~5). Es baut auf \emph{Svelte} auf, einer
+Sprache für Komponenten der Benutzeroberfläche. Der Svelte-Compiler übersetzt
+diese Komponenten in JavaScript, das den HTML-Code der Seite erzeugt. SvelteKit
+ergänzt unter anderem eine Navigation zwischen Seiten (Router) und das Erzeugen
+von Seiten auf dem Server (vgl. \cite[Abschnitt \enquote{Introduction}]{IntroductionSvelteKitDocsa}). Der Router ist
+dateibasiert: Die Verzeichnisse im Quellcode legen die URL-Pfade der Anwendung
+fest. Jedes Verzeichnis enthält Routendateien, die am vorangestellten
+\enquote{+} erkennbar sind (vgl. \cite[Abschnitt \enquote{Routing}]{IntroductionSvelteKitDocsa}):
+
+\begin{itemize}
+	\item \texttt{+page.svelte} ist die Komponente, die eine Seite darstellt,
+	\item \texttt{+page.server.ts} läuft nur auf dem Server und enthält
+	Load-Funktionen zum Laden sowie Form-Actions zum Schreiben von Daten,
+	\item \texttt{+server.ts} definiert einen Endpunkt ohne Seite, der für jede
+	HTTP-Methode eine eigene Funktion anbietet und die Antwort vollständig selbst
+	bestimmt.
+\end{itemize}
+
+\noindent Übertragen auf Model~2 übernimmt der Router die Rolle des
+Controllers, die Load-Funktion liefert das Model und \texttt{+page.svelte} ist
+die View.
+
+SvelteKit kombiniert zwei Arten, eine Seite zu erzeugen. Beim
+\emph{Server-Side Rendering} (SSR) entsteht der Seiteninhalt auf dem Server,
+beim \emph{Client-Side Rendering} (CSR) im Browser mit JavaScript.
+Standardmäßig liefert SvelteKit die erste Seite per SSR als fertiges HTML aus.
+Anschließend prüft Svelte im Browser, ob die Seite dem erwarteten Zustand
+entspricht, und verbindet sie mit den Ereignisbehandlungen. Dieser Vorgang heißt
+\emph{Hydration}. Weitere Seitenwechsel erledigt SvelteKit per CSR, ohne die
+Seite vollständig neu zu laden (vgl. \cite[Abschnitt \enquote{Glossary}]{IntroductionSvelteKitDocsa}).
+
+\emph{Load-Funktionen} stellen die Daten bereit, die eine Seite vor dem
+Darstellen braucht. Eine Load-Funktion in \texttt{+page.server.ts} läuft immer
+auf dem Server. Sie ist deshalb der vorgesehene Ort für Datenbankzugriffe und
+für vertrauliche Konfigurationswerte wie Zugangsdaten. Ihr Rückgabewert steht
+der Seite als Eigenschaft \texttt{data} zur Verfügung (vgl.
+\cite[Abschnitt \enquote{Loading data}]{IntroductionSvelteKitDocsa}). Die Erfassungsseite der Produktionsverwaltung lädt so
+zum Beispiel die Platinen- und Modultypen für ihre Auswahllisten.
+
+\emph{Form-Actions} sind das Gegenstück zum Schreiben. Sie werden in
+\texttt{+page.server.ts} definiert und über ein HTML-Formular per POST
+aufgerufen. GET scheidet aus, weil eine GET-Anfrage keine Nebenwirkungen haben
+soll. Clientseitiges JavaScript ist dafür nicht nötig: Das Formular
+funktioniert auch ohne, und JavaScript kann es schrittweise verbessern
+(\emph{Progressive Enhancement}). Mit der Funktion \texttt{fail} gibt eine
+Action bei ungültigen Eingaben einen HTTP-Statuscode wie 400 und eine
+Fehlermeldung an die Seite zurück. Nach jeder Action laufen die Load-Funktionen
+der Seite erneut, und der Rückgabewert der Action steht der Seite als
+\texttt{form} zur Verfügung. Ergänzt das Formular die Anweisung
+\texttt{use:enhance}, ahmt SvelteKit das Verhalten des Browsers nach, aber ohne
+die Seite vollständig neu zu laden (vgl. \cite[Abschnitt \enquote{Form actions}]{IntroductionSvelteKitDocsa}). Mit
+einer solchen Action speichert die Erfassungsseite neue Produktionsnachweise.
+Fehlen Pflichtangaben wie Arbeitsschritt oder Datum, antwortet sie mit
+\texttt{fail} und dem Status~400.
+
+Den gesamten Ablauf zeigt Abbildung~\ref{fig:SvelteKitAblauf}. Endpunkte in
+\texttt{+server.ts} dienen dagegen anderen Programmen. Über sie meldet etwa
+der Prüfstand in der Fertigung Prüfergebnisse im Datenformat JSON an die
+Produktionsverwaltung (Abschnitt~\ref{sec:Erfassung}).
+
+\begin{figure}[htb]
+	\centering
+	\begin{tikzpicture}[
+		font=\footnotesize,
+		kopf/.style={draw, minimum width=28mm, minimum height=7mm, fill=white},
+		pfeil/.style={-{Stealth[length=2mm]}},
+		antwort/.style={-{Stealth[length=2mm]}, dashed},
+		lbl/.style={above, align=center, inner sep=1.5pt},
+		schritt/.style={draw, fill=gray!15, minimum width=3mm, inner sep=0pt},
+		]
+		\def\yende{-8.6}
+		\node[kopf] (b) at (0,0) {Browser};
+		\node[kopf] (s) at (6,0) {SvelteKit-Server};
+		\node[kopf] (d) at (11.5,0) {PostgreSQL};
+		\foreach \n/\x in {b/0, s/6, d/11.5}
+			\draw[gray] (\n.south) -- (\x,\yende);
+
+		% Seitenaufruf
+		\draw[gray] (-1.6,-1.1) -- (-1.6,-3.6);
+		\node[rotate=90, font=\footnotesize\bfseries] at (-1.9,-2.35) {Seitenaufruf};
+		\draw[pfeil] (0,-1.4) -- node[lbl] {GET \texttt{/erfassung}} (6,-1.4);
+		\draw[pfeil] (6,-2.0) -- node[lbl] {\texttt{load}: SELECT} (11.5,-2.0);
+		\draw[antwort] (11.5,-2.5) -- node[lbl] {Zeilen} (6,-2.5);
+		\draw[antwort] (6,-3.1) -- node[lbl] {HTML (SSR) und Daten} (0,-3.1);
+		\node[anchor=west, font=\scriptsize\itshape] at (0.1,-3.5) {Hydration im Browser};
+
+		% Formular absenden
+		\draw[gray] (-1.6,-4.7) -- (-1.6,-8.0);
+		\node[rotate=90, font=\footnotesize\bfseries] at (-1.9,-6.35) {Formular absenden};
+		\draw[pfeil] (0,-5.0) -- node[lbl] {POST \texttt{?/speichern} (Formulardaten)} (6,-5.0);
+		\draw[pfeil] (6,-5.6) -- node[lbl] {Action: INSERT (Transaktion)} (11.5,-5.6);
+		\draw[antwort] (11.5,-6.1) -- node[lbl] {OK} (6,-6.1);
+		\draw[pfeil] (6,-6.7) -- node[lbl] {\texttt{load} erneut: SELECT} (11.5,-6.7);
+		\draw[antwort] (11.5,-7.2) -- node[lbl] {Zeilen} (6,-7.2);
+		\draw[antwort] (6,-7.8) -- node[lbl] {Ergebnis (\texttt{form}) und neue Daten} (0,-7.8);
+	\end{tikzpicture}
+	\caption{Seitenaufruf und Formularversand in SvelteKit am Beispiel der Erfassungsseite}
+	\label{fig:SvelteKitAblauf}
+	\quelle{Eigene Darstellung}
+\end{figure}
+
+Die Oberfläche selbst entsteht aus Svelte-Komponenten. Seit Svelte~5 steuern
+\emph{Runes} deren Verhalten. Das sind Schlüsselwörter mit vorangestelltem
+\texttt{\$}, die wie Funktionen aussehen und den Compiler anweisen (vgl.
+\cite[Abschnitt \enquote{What are runes?}]{OverviewSvelteDocs}). Mit \texttt{\$state} wird ein reaktiver Zustand angelegt:
+Ändert er sich, aktualisiert sich die Oberfläche (vgl. \cite[Abschnitt \enquote{\$state}]{OverviewSvelteDocs}).
+\texttt{\$derived} beschreibt einen Wert, der aus anderem Zustand berechnet
+wird. Der Ausdruck soll frei von Nebenwirkungen sein (vgl. \cite[Abschnitt \enquote{\$derived}]{OverviewSvelteDocs}).
+\texttt{\$effect} führt Code aus, wenn sich Zustand ändert, und zwar nur im
+Browser. Die Dokumentation empfiehlt, Effekte sparsam einzusetzen und vor allem
+nicht, um Zustand abzugleichen (vgl. \cite[Abschnitt \enquote{\$effect}]{OverviewSvelteDocs}). Auf der
+Erfassungsseite ist zum Beispiel der Schalter für den Scan-Modus ein
+\texttt{\$state}, während das angezeigte Speicherergebnis per \texttt{\$derived}
+aus dem Rückgabewert der Form-Action folgt.
+
+Damit ist beschrieben, wie Daten zwischen Browser, Server und Datenbank
+fließen. Offen bleibt, wie die Anwendung eine Platine eindeutig erkennt, die ein
+Mitarbeiter in der Hand hält. Darum geht es im folgenden Abschnitt.
 
 \section{Maschinenlesbare Kennzeichnung}
 \label{sec:Kennzeichnung}
-\geplant{Barcode (Code 128) und QR-Code, Barcode-Scanner als Tastatureingabe, Etikettendruck.}
+Dass jede Platine eindeutig gekennzeichnet sein muss, folgt schon aus den
+Anforderungen an die Rückverfolgbarkeit (Abschnitt~\ref{sec:Rueckverfolgbarkeit}).
+Für eine Software reicht das aber noch nicht aus. Eine Seriennummer, die ein
+Mitarbeiter abliest und von Hand eintippt, bringt genau die Zahlendreher und
+Verschreiber zurück, an denen die bisherige Dokumentation gelitten hat
+(Abschnitt~\ref{sec:Ausgangssituation}). Diese Fehlerquelle verschwindet erst,
+wenn ein Gerät die Kennzeichnung liest. Ten Hompel, Büchter und Franzke sehen in
+der automatischen Identifikation (AutoID) deshalb die Grundlage dafür, Objekte in
+Produktion und Logistik fehlerfrei und in kürzester Zeit zu erkennen. Den
+größten Anteil daran hat nach ihren Angaben mit über 70\,\% der Anwendungen der
+Barcode (vgl. \cite[S.~9]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
+
+Gelesen wird dabei ein \emph{Identifikator}, also eine künstlich vergebene
+Nummer oder ein Name, der ein Objekt eindeutig bezeichnet, allerdings immer nur
+innerhalb eines bestimmten Aktionsraums. Die Autoren zeigen das an
+Telefonnummern, die innerhalb eines Unternehmens eindeutig sind, in einem
+anderen Unternehmen aber genauso vorkommen können (vgl.
+\cite[S.~12\,f.]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Bei ZOPF ist dieser
+Aktionsraum der Platinentyp, denn eine Seriennummer ist nur innerhalb eines
+Typs eindeutig. Ein Aufkleber mit der bloßen Seriennummer wäre deshalb wenig
+wert; erst zusammen mit der Artikelnummer bezeichnet er genau eine Platine.
+Mindestens so wichtig wie das Format ist nach Hompel et al. die Verwaltung der
+Nummern: Es dürfen keine doppelten Etiketten im Umlauf sein, und jedes falsch
+aufgeklebte und weggeworfene Etikett hinterlässt eine Lücke im Nummernkreis
+(vgl. \cite[S.~24]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Solche Lücken entstehen
+in der Fertigung tatsächlich, wenn ein verdorbener Aufkleber eine Seriennummer
+verbraucht, ohne dass es je eine Platine dazu gibt. Die Produktionsverwaltung
+darf eine reservierte Seriennummer daher nicht mit einer gefertigten Platine
+gleichsetzen.
+
+Wie aus der Nummer ein maschinenlesbares Zeichen wird, hängt vom gewählten Code
+ab. Die älteste Form ist der eindimensionale Barcode, eine Folge von Strichen und
+Lücken unterschiedlicher Breite. Auf eine Ruhezone folgen ein Startzeichen, die
+eigentlichen Nutzzeichen, meist ein Prüfzeichen und ein Stoppzeichen, bevor eine
+zweite Ruhezone den Code abschließt (vgl.
+\cite[S.~22\,f.]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Ein solcher Code ist im
+Grunde nur ein Verweis auf eine Information. Zweidimensionale Codes nutzen
+dagegen auch die Höhe und können wegen ihrer größeren Informationsdichte die
+Information selbst transportieren (vgl.
+\cite[S.~75]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Bei ZOPF kommen beide Arten vor,
+und zwar an drei Stellen, die Abbildung~\ref{fig:Codes} nebeneinanderstellt.
+
+\begin{figure}[htb]
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[page=1, height=22mm]{Kennzeichnung}\\[1.5ex]
+		{\footnotesize Data Matrix (Platine)\\
+		\texttt{OEA101|10010310|00000001}}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.25\textwidth}
+		\centering
+		\includegraphics[page=2, height=22mm]{Kennzeichnung}\\[1.5ex]
+		{\footnotesize QR-Code (Kiste)\\
+		\texttt{KISTE-000124}}
+	\end{minipage}\hfill
+	\begin{minipage}[b]{0.4\textwidth}
+		\centering
+		\includegraphics[page=3, height=15mm]{Kennzeichnung}\\[1.5ex]
+		{\footnotesize Code 128 (Modul)\\
+		\texttt{10030001;L26010001}}
+	\end{minipage}
+	\caption{Die drei Codes der Produktionsverwaltung mit Beispielinhalten}
+	\label{fig:Codes}
+	\quelle{Eigene Darstellung}
+\end{figure}
+
+Auf den Platinen sitzt ein \emph{Data-Matrix-Code}. Er besteht aus einem
+Raster von 10\,$\times$\,10 bis 144\,$\times$\,144 Feldern, das an zwei Seiten
+von einer durchgehenden Linie in L-Form eingefasst ist. An ihr erkennt das
+Lesegerät die Lage des Codes, während ein abwechselnd schwarz-weißes Muster an
+den beiden übrigen Seiten wie ein Takt die Größe der Felder vorgibt. Dank einer
+Reed-Solomon-Fehlerkorrektur bleibt der Inhalt selbst dann lesbar, wenn bis zu
+25\,\% des Codes beschädigt sind. Anfangs war der Code übrigens vor allem in der
+Elektroindustrie verbreitet, etwa zur Kennzeichnung von Leiterplatten (vgl.
+\cite[S.~84]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Für ZOPF ist er damit eine
+naheliegende Wahl, weil er auf kleiner Fläche Platz findet und einen Kratzer
+verzeiht. Die Aufkleber kauft ZOPF fertig bedruckt bei einem Lieferanten ein,
+eine Möglichkeit, die Hompel et al. neben dem eigenen Druck ausdrücklich vorsehen (vgl.
+\cite[S.~24, 98]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Aufgeklebt werden sie vor
+dem SMD-Löten, sodass jede Platine schon vom ersten Arbeitsschritt an eine
+Identität hat. Fachlich handelt es sich um eine indirekte Kennzeichnung: Zuerst
+wird ein Etikett bedruckt, das erst später mit dem Objekt verbunden wird (vgl.
+\cite[S.~95\,f.]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
+
+Der Code enthält den internen Namen des Platinentyps, die Artikelnummer und die
+achtstellige Seriennummer, allerdings in zwei Fassungen. Auf älteren Aufklebern
+trennen Leerzeichen die Angaben, etwa \texttt{TR102 10312 00000615}. Weil manche
+Typnamen selbst Leerzeichen enthalten, ist dann nicht sicher zu erkennen, wo der
+Name endet und die Artikelnummer beginnt. Neuere Aufkleber trennen die Angaben
+deshalb mit einem senkrechten Strich und tragen die vollständige achtstellige
+statt einer fünfstelligen Artikelnummer, etwa
+\texttt{OEA101|10010310|00000001}. So können Programme im Unternehmen eindeutig
+erkennen, welche Teile zusammengehören. Beide Fassungen sind im Umlauf, die
+Anwendung muss also beide verstehen. Welche Angaben ein Code in welcher
+Reihenfolge trägt, legt die Codeart selbst gar nicht fest. Hompel et al.
+beschreiben den Code~128 deshalb als rein technische Grundlage, für die innerhalb
+eines Unternehmens eine interne Vereinbarung genügt; eine gemeinsame Sprache wie
+der EAN-128-Standard wird erst nötig, wenn Daten über die Unternehmensgrenze
+hinweg ausgetauscht werden (vgl. \cite[S.~57]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
+Die Aufkleber bei ZOPF folgen genau einer solchen internen Vereinbarung.
+
+Die beiden anderen Codes kennzeichnen keine einzelnen Platinen, sondern Einheiten,
+die aus ihnen entstehen. Nach Moe braucht jede Einheit, die durch das
+Zusammenführen mehrerer rückverfolgbarer Einheiten entsteht, eine eigene
+Identifikation (vgl. \cite[S.~212]{moePerspectivesTraceabilityFood1998}). Für
+Kisten und Paletten im Lager druckt die Produktionsverwaltung deshalb ein
+Etikett mit einem \emph{QR-Code}. Dieser quadratische Code wurde 1994 bei
+Nippondenso entwickelt, umfasst 21\,$\times$\,21 bis 177\,$\times$\,177 Felder
+und lässt sich an drei ineinander geschachtelten Quadraten in den Ecken
+ausrichten; seine Fehlerkorrektur rekonstruiert den Inhalt selbst bei bis zu
+30\,\% zerstörter Fläche (vgl. \cite[S.~83]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
+Obwohl ein QR-Code viel mehr aufnehmen könnte, steht in ihm bewusst nur die
+Nummer der Kiste, zum Beispiel \texttt{KISTE-000124}. Der Inhalt einer Kiste
+ändert sich, wenn Platinen umgebucht oder entnommen werden, und ein Code, der nur
+auf den Datensatz verweist, bleibt dabei gültig. Platinentyp und Stückzahl stehen
+zusätzlich in Klarschrift auf dem Etikett, das die Anwendung selbst erzeugt und
+auf einem kleinen Etikettendrucker (Brother QL-500) mit 62\,mm breitem
+Endlosband ausgibt.
+
+Module erhalten dagegen einen eindimensionalen \emph{Code~128} mit Artikelnummer
+und Seriennummer, durch ein Semikolon getrennt. Das Etikett übernimmt den Aufbau
+des bisher verwendeten Moduletiketts. Der Code~128 ist ein Mehrbreitencode, der
+jedes Zeichen aus drei Strichen und drei Lücken in vier möglichen Breiten bildet,
+zusammen immer elf Module breit. Weil diese Regel beim Lesen überprüft werden
+kann, gilt der Code als selbstüberprüfend. Er stellt den gesamten ASCII-Bereich
+dar und kommt über drei Zeichensätze sogar auf mehr als 200 Zeichen (vgl.
+\cite[S.~45\,f.]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
+
+Gelesen werden alle drei Codes mit kabellosen 2D-Handscannern (Inateck
+BCST-75S). Ein solches Lesegerät beleuchtet den Code, digitalisiert das
+reflektierte Licht und übersetzt es über einen eingebauten Decoder in
+ASCII-Zeichen (vgl. \cite[S.~91\,f.]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Kleinere
+Handscanner lassen sich außerdem so anschließen, dass sie sich gegenüber dem
+Rechner genauso verhalten wie eine Tastatur (vgl.
+\cite[S.~94]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Für eine Webanwendung ist das
+ein Glücksfall, denn der Browser braucht weder Treiber noch eine besondere
+Schnittstelle. Der gelesene Text landet im gerade aktiven Eingabefeld, als hätte
+ihn jemand getippt, und der Scanner schließt ihn mit der Eingabetaste ab. Die
+Kehrseite ist ebenso klar. Was der Scanner liefert, ist nur Text. Ob er von
+einem alten oder neuen Platinenaufkleber, einem Kistenetikett oder einem Modul
+stammt, muss die Anwendung selbst herausfinden. Dieselbe Zeichenkette schickt
+auch der Prüfstand, der den Aufkleber einer Platine ebenfalls einliest.
+Wie die Anwendung sie zerlegt, beschreibt Abschnitt~\ref{sec:Erfassung}.
+
+Schwieriger wird es mit Aufklebern, die nicht von ZOPF stammen. Hompel et al.
+warnen, dass Objekte, die bereits anderswo gekennzeichnet wurden, mit den eigenen
+Identifikatoren in Konflikt geraten können. Gehören die fremden Codes einer
+anderen Codefamilie an, lässt sich das Lesegerät so einstellen, dass es sie
+übergeht; gehören sie zur selben, sollten sie entfernt oder überklebt werden (vgl.
+\cite[S.~102]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Genau diesen Fall gibt es bei
+ZOPF. Ältere Aufkleber eines Fremdfertigers tragen Seriennummern, die sich mit
+den eigenen Nummern desselben Platinentyps überschneiden, und sehen für den
+Scanner nicht anders aus. Wie die Anwendung solche Platinen trotzdem
+auseinanderhält, zeigt Abschnitt~\ref{sec:Erfassung}; die Grenzen dieser Lösung
+bewertet Abschnitt~\ref{sec:KritischeBewertung}. Funketiketten (RFID), denen
+Hompel et al. einen großen Teil ihres Kapitels widmen, setzt ZOPF nicht ein.
+
+Zusammengenommen ergibt dieses Kapitel ein recht klares Bild davon, was die
+Produktionsverwaltung leisten muss. Sie begleitet Platinen, die über ihren
+Aufkleber eindeutig und maschinell erkennbar sind, durch eine feste Folge von
+Arbeitsschritten, hält jeden Schritt als Aufzeichnung im Sinne der ISO~9000 fest
+und legt diese Aufzeichnungen in einer Datenbank ab, deren Integritätsregeln sie
+vor Widersprüchen schützen. SvelteKit verbindet dabei Browser und Datenbank.
+Wie die Arbeit bei ZOPF vor der Einführung der Anwendung tatsächlich ablief und
+welche Anforderungen daraus folgen, untersucht das nächste Kapitel.
 
 
 \chapter{Anforderungsanalyse}
@@ -820,7 +1177,7 @@ Abschnitt~\ref{sec:RueckverfolgbarkeitUmsetzung}.
 
 \section{Systemarchitektur}
 \label{sec:Systemarchitektur}
-\geplant{Komponentenübersicht: Browser, SvelteKit-Server, PostgreSQL, Fileserver für Prüfprotokolle.}
+\geplant{Komponentenübersicht: Browser, SvelteKit-Server, PostgreSQL, Fileserver für Prüfprotokolle; Begründung der Technologiewahl (SvelteKit, PostgreSQL) aus den Anforderungen.}
 
 \section{Datenmodell}
 \label{sec:Datenmodell}

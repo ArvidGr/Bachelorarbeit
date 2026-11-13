@@ -66,7 +66,7 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
 - **Einbauregel Module** (`platinenFuerModulPruefen`): regulär aus dem Lager. Nicht eingelagerte Platinen sind erlaubt, in der
   Erfassung nur nach Bestätigung, beim Modul-Prüfstand als Warnung; gesperrte oder schon verbaute Platinen werden abgelehnt.
   In der Arbeit daher „regulär“, nicht „nur“ schreiben.
-- **SK-tronic** (Fremdfertiger): Alte SK-Aufkleber (Typ 1, SN 1–4000, ohne „SK“ im QR-Code) kollidieren
+- **SK-tronic** (Fremdfertiger): Alte SK-Aufkleber (Typ 1, SN 1–4000, ohne „SK“ im Data-Matrix-Code) kollidieren
   mit Leipziger SN. In der DB liegen sie als SN + 10 000 000 (`SK_OFFSET`). Ein mehrdeutiger Scan wird über den
   Standort aufgelöst, sonst kommt eine Rückfrage (`sk.ts`, `SkRueckfrage.svelte`).
 - **DB-Geschäftsregeln als Trigger:** `trg_platinen_seriennummer_bereich`, `trg_laufkarten_bereich_schutz`.
@@ -121,6 +121,17 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   `kudrassTaschenbuchRelationalesDatenmodell`, `kudrassTaschenbuchDatenbankspracheSQL` (von Better BibTeX nach dem Umstellen der
   Kapitelautoren nicht neu erzeugt, bewusst so gelassen). In alphadin muss `edition` den vollen Text enthalten
   („2., neu bearbeitete Auflage“), sonst steht nur „2.“ im Verzeichnis.
+- 2.4 Webanwendungen mit SvelteKit als Entwurf geschrieben (13.11.2026), ohne Unterabschnitte, mit Abb. 2.4 (TikZ-Ablauf
+  Seitenaufruf/Formularversand). Quellen: Rakow Kap. 6 und Schiefer Kap. 5 (Taschenbuch Datenbanken), Goll 2020 (nur MVC),
+  SvelteKit-/Svelte-Doku und Postgres.js-README als Webquellen: je Doku **ein** Zotero-Eintrag (Oberseite), Stelle im Zitat
+  als `\cite[Abschnitt \enquote{…}]{…}` (Schlüssel in der Quellenübersicht). Die App nutzt SvelteKit 2.70/Svelte 5.56, die Online-Doku beschreibt schon SvelteKit 3.
+  Begründung der Technologiewahl (SvelteKit, PostgreSQL) gehört nach 4.1, nicht nach 2.4.
+- 2.5 Maschinenlesbare Kennzeichnung geschrieben (13.11.2026), **erster Abschnitt im neuen, flüssigeren Stil** (Probe für die
+  spätere Überarbeitung, siehe Memory „schreibstil-sprachfluss“). Quelle: ten Hompel/Büchter/Franzke 2008 (Kap. 2), dazu Moe.
+  Abb. 2.5 = drei echte Codes aus `Abbildungen/Kennzeichnung.pdf` (pst-barcode; Quelle `Kennzeichnung.tex`, Bauanleitung im Kopf).
+  Fakten des Nutzers: Platinen tragen **Data-Matrix**-Aufkleber, fertig vom Lieferanten bezogen und vor dem SMD-Löten aufgeklebt;
+  neues Format mit „|“, damit Programme die Teile sicher trennen; Handscanner Inateck BCST-75S (kabellos, 2D).
+  Endet mit einem kurzen Fazit zu Kapitel 2 und der Überleitung zu Kapitel 3.
   Übrige Abschnitte: nur `\geplant{...}`.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
@@ -180,7 +191,9 @@ Integritätsregeln/Trigger und Revisionssicherheit verdienen in der Arbeit Gewic
   („Aktuell halten“, Format Better BibTeX) nach `Literatur/Literatur.bib` exportiert, also **nicht von Hand bearbeiten**.
   Zitierschlüssel aus der `.bib` übernehmen.
 - Stil `alphadin` (BibTeX) erzeugt Kürzel wie [Kud15]. Das Abrufdatum heißt dort `lastchecked`, nicht `urldate`.
-  Better BibTeX liefert es über ein Postscript, nur für Webseiten und als TT.MM.JJJJ.
+  Better BibTeX liefert es über ein Postscript, nur für Webseiten und als TT.MM.JJJJ. alphadin druckt es nur, wenn die URL
+  im Feld `url` steht; Better BibTeX legt sie bei `@misc` aber in `howpublished` ab, deshalb verschiebt das Postscript
+  sie (seit 13.11.2026).
   Beim Export weggelassen werden `month,urldate,doi,file,langid`, weil alphadin daraus kaputte Umlaute bzw. doppelte URLs macht.
   Kapitel aus Sammelbänden (z. B. Kudraß' Taschenbuch Datenbanken) werden als Buchteil (`@incollection`) mit Kapitelautor angelegt.
 - **`Literatur/Quellenuebersicht.md`**: Übersicht aller Quellen mit Bewertung und Seitenangaben (Buchseite + PDF-Seite).

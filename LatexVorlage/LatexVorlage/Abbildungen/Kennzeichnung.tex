@@ -1,0 +1,24 @@
+% Beispielcodes für Abbildung 2.5 (Abschnitt 2.5, Maschinenlesbare Kennzeichnung).
+% Erzeugt mit pst-barcode (BWIPP). pdflatex kann PSTricks nicht direkt, deshalb einmalig:
+%   latex Kennzeichnung.tex
+%   dvips Kennzeichnung.dvi
+%   ps2pdf Kennzeichnung.ps Kennzeichnung.pdf
+% width/height von \psbarcode sind in Zoll (2,2 cm = 0,866 in). pst-barcode zeichnet hier 20 pt unterhalb
+% des Bezugspunkts, deshalb \rput(0,20pt). Jede pspicture wird eine eigene Seite, eingebunden per
+% \includegraphics[page=n]. Prüfen: mgs -q -dNOPAUSE -dBATCH -sDEVICE=bbox Kennzeichnung.pdf
+\documentclass[pstricks,border=0pt]{standalone}
+\usepackage{pst-barcode}
+\begin{document}
+% Seite 1: Data Matrix des Platinen-Aufklebers (neues Format)
+\begin{pspicture}(2.2,2.2)
+	\rput[lb](0,20pt){\psbarcode{OEA101|10010310|00000001}{width=0.866 height=0.866}{datamatrix}}
+\end{pspicture}
+% Seite 2: QR-Code des Kistenetiketts, Fehlerkorrekturstufe M wie in der Anwendung
+\begin{pspicture}(2.2,2.2)
+	\rput[lb](0,20pt){\psbarcode{KISTE-000124}{width=0.866 height=0.866 eclevel=M}{qrcode}}
+\end{pspicture}
+% Seite 3: Code 128 des Moduletiketts (fiktive Beispielwerte)
+\begin{pspicture}(5.4,1.5)
+	\rput[lb](0,20pt){\psbarcode{10030001;L26010001}{width=2.126 height=0.591}{code128}}
+\end{pspicture}
+\end{document}
