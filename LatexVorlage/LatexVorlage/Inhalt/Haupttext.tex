@@ -530,14 +530,14 @@ unterstützt, beschreibt der folgende Abschnitt.
 
 \section{Relationale Datenbanken und Integritätssicherung}
 \label{sec:RelationaleDatenbanken}
-Legt jede Anwendung ihre Daten in eigenen Dateien ab, entsteht leicht
-Redundanz, also das mehrfache Vorhandensein derselben Information. Jede Änderung
-muss dann in allen Kopien nachgezogen werden, und es droht Inkonsistenz, die
-widersprüchliche Speicherung gleicher Informationen (vgl.
-\cite[S.~20]{kudrassDatenbankenGrundlagenUnd2015}). Eine Datenbank ist dagegen
+Würde jede Anwendung ihre Daten in eigenen Dateien ablegen, entstünde leicht
+Redundanz, also das mehrfache Vorhandensein derselben Information. Zudem müsste
+dann jede Änderung in allen Kopien nachgezogen werden, und es drohte
+Inkonsistenz, also die widersprüchliche Speicherung gleicher Informationen (vgl.
+\cite[S.~20]{kudrassDatenbankenGrundlagenUnd2015}). Eine Datenbank ist dahingegen
 eine logisch zusammenhängende Sammlung von Daten für einen festgelegten Zweck.
-Verwaltet wird sie von einem \emph{Datenbankmanagementsystem} (DBMS), einem
-Softwaresystem, mit dem Datenbanken definiert, erzeugt und bearbeitet werden;
+Verwaltet wird sie von einem \emph{Datenbankmanagementsystem} (DBMS) -- einem
+Softwaresystem, mit dem Datenbanken definiert, erzeugt und bearbeitet werden.
 DBMS und Datenbanken bilden zusammen ein Datenbanksystem (vgl.
 \cite[S.~20\,f.]{kudrassDatenbankenGrundlagenUnd2015}). Zu den Aufgaben eines
 DBMS zählt Kudraß unter anderem (vgl.
@@ -564,32 +564,32 @@ Zustandsübergänge der Daten erlaubt sind (vgl.
 \cite[S.~21]{kudrassDatenbankenGrundlagenUnd2015}). Die meisten in der Praxis
 eingesetzten Datenbanksysteme beruhen auf dem relationalen Datenmodell (vgl.
 \cite[S.~22]{kudrassDatenbankenGrundlagenUnd2015}), so auch das von der
-Produktionsverwaltung genutzte PostgreSQL, das Kudraß als objektrelationales
+Produktionsverwaltung genutzte PostgreSQL, welches Kudraß als objektrelationales
 System einordnet (vgl. \cite[S.~26]{kudrassDatenbankenGrundlagenUnd2015}).
 
 Der Entwurf einer Datenbank verläuft in Phasen: Auf die Anforderungsanalyse
 folgen der konzeptionelle Entwurf, der logische Entwurf und die Datendefinition
-in der Sprache des DBMS (vgl. \cite[S.~44\,f.]{sauerInformationsmodellierung2015}).
+in der Sprache des DBMS (vgl. \cite[S.~44\,f.]{kudrassTaschenbuchInformationsmodellierung}).
 Im konzeptionellen Entwurf wird der abzubildende Ausschnitt der realen Welt
 unabhängig von einem bestimmten DBMS beschrieben, in der Regel mit dem
 \emph{Entity-Relationship-Modell} (ERM) (vgl.
-\cite[S.~46]{sauerInformationsmodellierung2015}). Das ERM wurde 1976 von Chen
-vorgestellt und gilt als De-facto-Standard der Informationsmodellierung; seine
+\cite[S.~46]{kudrassTaschenbuchInformationsmodellierung}). Das ERM wurde 1976 von Chen
+vorgestellt und gilt als De-facto-Standard der Informationsmodellierung. Seine
 grafische Darstellung ist das ER-Diagramm (vgl.
-\cite[S.~49\,f.]{sauerInformationsmodellierung2015}). Ein \emph{Entity} ist ein
+\cite[S.~49\,f.]{kudrassTaschenbuchInformationsmodellierung}). Ein \emph{Entity} ist ein
 abgrenzbarer Gegenstand, ein Begriff oder auch ein Ereignis. Gleichartige
 Entities fasst ein \emph{Entitytyp} zusammen, der im Diagramm als Rechteck
-erscheint; gleichartige Beziehungen zwischen Entities beschreibt ein
+erscheint. Gleichartige Beziehungen zwischen Entities beschreibt ein
 \emph{Beziehungstyp}, dargestellt als Raute. Entity- und Beziehungstypen werden
 durch Attribute charakterisiert, die als Ellipsen angehängt sind (vgl.
-\cite[S.~51--53]{sauerInformationsmodellierung2015}). Ein \emph{Schlüssel} ist
-eine minimale Menge von Attributen, die ein Entity eindeutig identifiziert; der
-zur Identifizierung gewählte Primärschlüssel wird unterstrichen (vgl.
-\cite[S.~58]{sauerInformationsmodellierung2015}). Die \emph{Kardinalität} eines
+\cite[S.~51--53]{kudrassTaschenbuchInformationsmodellierung}). Ein \emph{Schlüssel} ist
+eine minimale Menge von Attributen, die ein Entity eindeutig identifiziert. Der
+zur Identifizierung gewählte \emph{Primärschlüssel} wird unterstrichen (vgl.
+\cite[S.~58]{kudrassTaschenbuchInformationsmodellierung}). Die \emph{Kardinalität} eines
 Beziehungstyps gibt in der (1,\,M,\,N)-Notation an, mit wie vielen Entities des
 anderen Typs ein Entity höchstens in Beziehung steht. Daraus ergeben sich die
 Beziehungstypen 1:1, 1:N und M:N (vgl.
-\cite[S.~54]{sauerInformationsmodellierung2015}).
+\cite[S.~54]{kudrassTaschenbuchInformationsmodellierung}).
 
 Abbildung~\ref{fig:ERBeispiel} zeigt einen vereinfachten Ausschnitt aus dem
 Datenmodell der Produktionsverwaltung. Eine Laufkarte umfasst viele Platinen,
@@ -637,29 +637,29 @@ Datenmodell beschreibt Abschnitt~\ref{sec:Datenmodell}.
 		\draw (bez) -- (ps) (rf) -- (ps);
 	\end{tikzpicture}
 	\caption{ER-Diagramm eines vereinfachten Ausschnitts der Produktionsverwaltung}
-	\quelle{Eigene Darstellung, Notation nach \cite[S.~52--54, 58]{sauerInformationsmodellierung2015}}
+	\quelle{Eigene Darstellung, Notation nach \cite[S.~52--54, 58]{kudrassTaschenbuchInformationsmodellierung}}
 	\label{fig:ERBeispiel}
 \end{figure}
 
 Im logischen Entwurf wird das konzeptuelle Schema in das Datenmodell des DBMS
-überführt (vgl. \cite[S.~47]{sauerInformationsmodellierung2015}). Das
+überführt (vgl. \cite[S.~47]{kudrassTaschenbuchInformationsmodellierung}). Das
 relationale Datenmodell geht auf Codd zurück, der seine Grundlagen 1970
 veröffentlichte; seine Vorzüge sind die Einfachheit und die strenge
-mathematische Fundierung (vgl. \cite[S.~67]{sauerRelationalesDatenmodell2015}).
+mathematische Fundierung (vgl. \cite[S.~67]{kudrassTaschenbuchRelationalesDatenmodell}).
 Die grundlegende Datenstruktur ist die \emph{Relation}, die wie eine Tabelle
 aussieht: Ihre Spalten heißen Attribute, ihre Zeilen Tupel, und jedes Attribut
 nimmt Werte aus einem festgelegten Wertebereich an. Formal ist eine Relation
 eine Teilmenge des kartesischen Produkts der Wertebereiche ihrer Attribute (vgl.
-\cite[S.~67\,f.]{sauerRelationalesDatenmodell2015}). Beziehungen zwischen
+\cite[S.~67\,f.]{kudrassTaschenbuchRelationalesDatenmodell}). Beziehungen zwischen
 Relationen werden ausschließlich über Werte ausgedrückt, indem Attributwerte
 einer anderen Relation als \emph{Fremdschlüssel} übernommen werden (vgl.
-\cite[S.~69]{sauerRelationalesDatenmodell2015}). Für die Abbildung eines
+\cite[S.~69]{kudrassTaschenbuchRelationalesDatenmodell}). Für die Abbildung eines
 ER-Diagramms gelten feste Regeln: Jeder Entitytyp wird zu einer Relation. Bei
 einem 1:N-Beziehungstyp erhält die Relation der N-Seite den Primärschlüssel der
 1-Seite als Fremdschlüssel; ein M:N-Beziehungstyp wird zu einer eigenen
 Relation, die die Primärschlüssel beider Seiten als Fremdschlüssel sowie die
 Attribute der Beziehung aufnimmt (vgl.
-\cite[S.~76--78]{sauerRelationalesDatenmodell2015}). Aus
+\cite[S.~76--78]{kudrassTaschenbuchRelationalesDatenmodell}). Aus
 Abbildung~\ref{fig:ERBeispiel} entstehen so vier Relationen:
 
 \begin{center}
@@ -678,35 +678,35 @@ mehrfach durchlaufen kann; erst der Versuch macht jedes Tupel eindeutig.
 
 Ohne weitere Einschränkungen könnte eine Relation beliebige, auch unsinnige
 Wertekombinationen enthalten. Integritätsbedingungen schränken die zulässigen
-Werte deshalb ein (vgl. \cite[S.~70]{sauerRelationalesDatenmodell2015}). Zum
+Werte deshalb ein (vgl. \cite[S.~70]{kudrassTaschenbuchRelationalesDatenmodell}). Zum
 relationalen Datenmodell gehören zwei davon. Die \emph{Entitätsintegrität}
 verlangt, dass die Werte des Primärschlüssels eindeutig sind und keinen Nullwert
-enthalten (vgl. \cite[S.~71]{sauerRelationalesDatenmodell2015}). Die
+enthalten (vgl. \cite[S.~71]{kudrassTaschenbuchRelationalesDatenmodell}). Die
 \emph{referenzielle Integrität} verlangt, dass zu jedem Wert eines Fremdschlüssels
 ein gleicher Primärschlüsselwert in der referenzierten Relation existiert (vgl.
-\cite[S.~72]{sauerRelationalesDatenmodell2015}). Kritisch sind deshalb das
+\cite[S.~72]{kudrassTaschenbuchRelationalesDatenmodell}). Kritisch sind deshalb das
 Einfügen in die referenzierende Relation sowie das Löschen und das Ändern von
 Schlüsselwerten in der referenzierten Relation. Im Standardfall weist das DBMS
 solche Operationen zurück; alternativ kann es die Änderung kaskadierend
 weitergeben oder den Fremdschlüssel auf einen Null- oder Vorgabewert setzen (vgl.
-\cite[S.~73\,f.]{sauerRelationalesDatenmodell2015}). Im Beispiel lässt sich so
+\cite[S.~73\,f.]{kudrassTaschenbuchRelationalesDatenmodell}). Im Beispiel lässt sich so
 kein Produktionsnachweis für eine nicht vorhandene Platine anlegen, und eine
 Platine, zu der Nachweise vorliegen, lässt sich nicht löschen.
 
 Die Standardsprache relationaler Datenbanksysteme ist SQL (vgl.
-\cite[S.~99]{turkerDatenbankspracheSQL2015}). In der Datendefinition wird das
+\cite[S.~99]{kudrassTaschenbuchDatenbankspracheSQL}). In der Datendefinition wird das
 logische Schema einschließlich seiner Integritätsbedingungen in dieser Sprache
-beschrieben (vgl. \cite[S.~48]{sauerInformationsmodellierung2015}). SQL kennt
+beschrieben (vgl. \cite[S.~48]{kudrassTaschenbuchInformationsmodellierung}). SQL kennt
 dafür fünf Arten von Integritätsbedingungen (vgl.
-\cite[S.~128]{turkerDatenbankspracheSQL2015}): \texttt{NOT NULL} verbietet
+\cite[S.~128]{kudrassTaschenbuchDatenbankspracheSQL}): \texttt{NOT NULL} verbietet
 Nullwerte, \texttt{UNIQUE} verbietet doppelte Werte, \texttt{PRIMARY KEY}
 verbindet beides und ist je Tabelle höchstens einmal erlaubt, \texttt{REFERENCES}
 legt einen Fremdschlüssel fest, und \texttt{CHECK} prüft ein beliebiges
 boolesches Prädikat, etwa dass eine Stückzahl größer als null ist. Für
 Fremdschlüssel lässt sich mit referenziellen Aktionen festlegen, wie das DBMS auf
-das Löschen oder Ändern einer referenzierten Zeile reagiert; voreingestellt ist
+das Löschen oder Ändern einer referenzierten Zeile reagiert. Voreingestellt ist
 \texttt{NO ACTION}, also das Zurückweisen der Anweisung (vgl.
-\cite[S.~129]{turkerDatenbankspracheSQL2015}). Weil das DBMS diese Bedingungen
+\cite[S.~129]{kudrassTaschenbuchDatenbankspracheSQL}). Weil das DBMS diese Bedingungen
 bei jeder Änderung selbst prüft, gelten sie unabhängig davon, ob die Daten über
 die Oberfläche der Anwendung, eine Schnittstelle oder ein Importskript
 geschrieben werden.
@@ -716,13 +716,13 @@ Für Regeln, die Daten aus mehreren Tabellen einbeziehen, bietet SQL
 der Datenbank, indem er benutzerdefinierte Anweisungen ausführt. Damit lässt sich
 Anwendungsfunktionalität zentral in der Datenbank verwalten, was die
 Wartbarkeit des gesamten Systems erhöht (vgl.
-\cite[S.~100]{turkerDatenbankspracheSQL2015}). Ausgelöst wird ein Trigger durch
+\cite[S.~100]{kudrassTaschenbuchDatenbankspracheSQL}). Ausgelöst wird ein Trigger durch
 eine \texttt{INSERT}-, \texttt{UPDATE}- oder \texttt{DELETE}-Anweisung auf einer
 Tabelle. Er wird vor (\texttt{BEFORE}), nach (\texttt{AFTER}) oder anstelle
 (\texttt{INSTEAD OF}) dieser Anweisung ausgeführt, entweder einmal je Anweisung
 oder für jede betroffene Zeile, und kann über die Variablen \texttt{OLD} und
 \texttt{NEW} auf den Zustand einer Zeile vor und nach der Änderung zugreifen
-(vgl. \cite[S.~137]{turkerDatenbankspracheSQL2015}). Ein Trigger, der vor der
+(vgl. \cite[S.~137]{kudrassTaschenbuchDatenbankspracheSQL}). Ein Trigger, der vor der
 Änderung ausgeführt wird, kann diese prüfen und gegebenenfalls abweisen. Die
 Produktionsverwaltung stellt auf diese Weise unter anderem sicher, dass die
 Seriennummer einer Platine im Bereich ihrer Laufkarte liegt
@@ -738,10 +738,10 @@ synchronisiert, dass jedem Benutzer die Daten erscheinen, als arbeite er allein
 eine Transaktion mit \texttt{COMMIT}, das alle Änderungen übernimmt, oder mit
 \texttt{ROLLBACK}, das sie zurücksetzt; sie wird also entweder vollständig
 ausgeführt oder hinterlässt keinerlei Wirkung (vgl.
-\cite[S.~138\,f.]{turkerDatenbankspracheSQL2015}). Welche gegenseitigen
+\cite[S.~138\,f.]{kudrassTaschenbuchDatenbankspracheSQL}). Welche gegenseitigen
 Beeinflussungen nebenläufiger Transaktionen ausgeschlossen sind, etwa das Lesen
 von Daten einer noch nicht abgeschlossenen Transaktion, legen vier
-Isolationsebenen fest (vgl. \cite[S.~140]{turkerDatenbankspracheSQL2015}). In der
+Isolationsebenen fest (vgl. \cite[S.~140]{kudrassTaschenbuchDatenbankspracheSQL}). In der
 Produktionsverwaltung müssen beispielsweise bei einer Korrektur der neue
 Nachweis, die Kennzeichnung des alten und der Eintrag im Änderungsprotokoll
 gemeinsam gespeichert werden; bricht der Vorgang ab, darf keine dieser
@@ -749,7 +749,7 @@ gemeinsam gespeichert werden; bricht der Vorgang ab, darf keine dieser
 
 Die Zugriffskontrolle erfolgt in SQL über Zugriffsrechte, die mit \texttt{GRANT}
 vergeben und mit \texttt{REVOKE} entzogen und über Rollen gebündelt werden
-können (vgl. \cite[S.~141--143]{turkerDatenbankspracheSQL2015}). Diese Rechte
+können (vgl. \cite[S.~141--143]{kudrassTaschenbuchDatenbankspracheSQL}). Diese Rechte
 gelten für die Benutzer der Datenbank. Die Produktionsverwaltung greift jedoch
 mit einer einzigen Datenbankkennung zu, sodass sie die Rechte ihrer eigenen
 Benutzer selbst prüfen muss (Abschnitt~\ref{sec:Berechtigungskonzept}).
@@ -761,19 +761,19 @@ Wert ist verloren. Sollen neben aktuellen auch historische Daten vorgehalten
 werden, spricht man von \emph{temporalen Daten}, deren Änderungshistorie
 gespeichert wird. Ihre zeitliche Bindung wird durch Zeitstempel ausgedrückt:
 Die \emph{Gültigkeitszeit} gibt an, wann ein Sachverhalt in der realen Welt
-zutrifft, die \emph{Transaktionszeit}, wann er in der Datenbank gespeichert wurde;
-werden beide berücksichtigt, heißt die Zeitstempelung bitemporal (vgl.
-\cite[S.~65]{sauerInformationsmodellierung2015}). Im ERM lässt sich das über
+zutrifft, die \emph{Transaktionszeit}, wann er in der Datenbank gespeichert wurde.
+Werden beide berücksichtigt, heißt die Zeitstempelung bitemporal (vgl.
+\cite[S.~65]{kudrassTaschenbuchInformationsmodellierung}). Im ERM lässt sich das über
 ein Zeitattribut ausdrücken, das den bestehenden Schlüssel erweitert, oder über
 einen eigenen Entitytyp für die Zeit. Sauer zeigt am Beispiel eines Auftrags,
 dessen Status wechselt, dass die Historie solcher Änderungen zu einer
-M:N-Beziehung führt (vgl. \cite[S.~65\,f.]{sauerInformationsmodellierung2015}).
+M:N-Beziehung führt (vgl. \cite[S.~65\,f.]{kudrassTaschenbuchInformationsmodellierung}).
 Dieselbe Struktur hat die Beziehung zwischen Platine und Produktionsschritt in
 Abbildung~\ref{fig:ERBeispiel}: Mit dem Versuch im Schlüssel bleibt jede
 Wiederholung eines Schritts als eigenes Tupel erhalten, und das Datum hält die
 Gültigkeitszeit fest. Seit SQL:2011 sieht auch der SQL-Standard eigene
 Sprachmittel für temporale Daten vor (vgl.
-\cite[S.~102]{turkerDatenbankspracheSQL2015}).
+\cite[S.~102]{kudrassTaschenbuchDatenbankspracheSQL}).
 
 Für Nachweise im Sinne der DIN EN ISO 9001 genügt es nicht, Wiederholungen
 festzuhalten. Auch eine Korrektur darf den ursprünglichen Eintrag nicht spurlos

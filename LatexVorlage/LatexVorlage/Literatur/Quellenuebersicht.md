@@ -172,7 +172,7 @@ Stand: 12.11.2026
 ## Taschenbuch Datenbanken (Kudraß, Hrsg., 2015): vier Kapitel für 2.3
 
 - **Buch:** Thomas Kudraß (Hrsg.): *Taschenbuch Datenbanken*. 2., neu bearbeitete Auflage. München: Carl Hanser Verlag, 2015.
-  ISBN 978-3-446-43508-7. Jedes Kapitel wird als eigener Buchteil (`@incollection`) mit Kapitelautor zitiert.
+  ISBN 978-3-446-44026-5 (in allen vier Zotero-Einträgen, Auflage „2., neu bearbeitete Auflage“). Jedes Kapitel wird als eigener Buchteil (`@incollection`) mit Kapitelautor zitiert.
 - **Aufbau des Buches** (laut Kudraß, Abschnitt 1.7, S. 33–35): 2 Informationsmodellierung, 3 Relationales Datenmodell, 4 SQL,
   5 Java-Anbindung, 6 Web-Anbindung (Skriptsprachen, dynamisches HTML), 7 Komponenten eines DBMS (darin **7.5 Transaktionen**),
   8 Dateiorganisation und Indexe, 9 Optimierung, 10 objektrelational, 11 XML, 12 NoSQL, 13 verteilte DBS, 14–17 Data Warehouse,
@@ -200,7 +200,7 @@ Stand: 12.11.2026
 ### Sauer: Informationsmodellierung (Kap. 2, S. 44–66)
 
 - **Datei:** `sauer-2015-informationsmodellierung.pdf` (23 PDF-Seiten; gedruckte Seite = PDF-Seite + 43)
-- **Zotero-Schlüssel:** noch nicht in der `.bib` (vermutlich `sauerInformationsmodellierung2015`)
+- **Zotero-Schlüssel:** `kudrassTaschenbuchInformationsmodellierung`
 
 | Seite | Inhalt | Verwendung |
 | --- | --- | --- |
@@ -219,7 +219,7 @@ Stand: 12.11.2026
 ### Sauer: Relationales Datenmodell (Kap. 3, S. 67–98)
 
 - **Datei:** `sauer-2015-relationales-datenmodell.pdf` (32 PDF-Seiten; gedruckte Seite = PDF-Seite + 66)
-- **Zotero-Schlüssel:** noch nicht in der `.bib` (vermutlich `sauerRelationalesDatenmodell2015`)
+- **Zotero-Schlüssel:** `kudrassTaschenbuchRelationalesDatenmodell`
 
 | Seite | Inhalt | Verwendung |
 | --- | --- | --- |
@@ -240,7 +240,7 @@ Stand: 12.11.2026
 ### Türker: Die Datenbanksprache SQL (Kap. 4, S. 99–143)
 
 - **Datei:** `türker-2015-die-datenbanksprache-sql.pdf` (45 PDF-Seiten; gedruckte Seite = PDF-Seite + 98)
-- **Zotero-Schlüssel:** noch nicht in der `.bib`
+- **Zotero-Schlüssel:** `kudrassTaschenbuchDatenbankspracheSQL`
 
 | Seite | Inhalt | Verwendung |
 | --- | --- | --- |
