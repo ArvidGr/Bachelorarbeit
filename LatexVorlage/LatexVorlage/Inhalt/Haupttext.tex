@@ -8,97 +8,94 @@
 
 \section{Ausgangssituation in der Platinenfertigung}
 \label{sec:Ausgangssituation}
-Die ZOPF Energieanlagen GmbH (im Folgenden ZOPF) ist ein Hersteller und
-Instandhalter von Leistungselektronik für die Industrie mit Schwerpunkt auf
-erneuerbaren Energien und Windkraft. Neben der Entwicklung, der Fertigung und dem
-Service von Phasenmodulen, Power Stacks und laminierten Stromschienen ist ZOPF
-auch in der Planung, dem Bau und der Instandhaltung von Windkraftanlagen tätig.
-Zur eigenen Fertigung gehören Leiterplattenbaugruppen, also mit elektronischen
-Bauelementen bestückte Leiterplatten, die im Folgenden kurz als \emph{Platinen}
-bezeichnet werden. An dem Hauptstandort Leipzig werden die Platinen
-gefertigt, geprüft und sowohl in Leipzig als auch in dem Zweitstandort Wickede gelagert 
-und zum Teil zu größeren Baugruppen, den \emph{Modulen}, verbaut. 
-Die Lackierung der Platinen übernimmt meist ein externer Dienstleister, zum Teil
-erfolgt sie auch bei ZOPF selbst. 
-Jede Platine durchläuft eine feste Folge von Arbeitsschritten: 
-die Bestückung mit oberflächenmontierten Bauelementen
-(Surface-Mounted Device, kurz SMD), die Bestückung mit bedrahteten Bauelementen
-(Through-Hole Technology, kurz THT), die Prüfung mit optischer Kontrolle, die
-Lackierung, die Endkontrolle und schließlich die Einlagerung. Diese Schritte
-werden in Abschnitt~\ref{sec:Fertigungsprozess} näher beschrieben. Zur
-Kennzeichnung trägt jede Platine einen Aufkleber mit dem Zopf-internen Namen der Platine, der Artikelnummer 
-und einer \emph{Seriennummer}, welche innerhalb des Platinentyps eindeutig ist.
-Auf dem Aufkleber ist zudem ein maschinenlesbarer Data-Matrix-Code aufgebracht, der diese Daten codiert.
+Die ZOPF Energieanlagen GmbH (im Folgenden ZOPF) entwickelt, fertigt und wartet
+Leistungselektronik für die Industrie, mit Schwerpunkt auf erneuerbaren
+Energien und Windkraft. Neben Phasenmodulen, Power Stacks und laminierten
+Stromschienen plant, baut und betreut das Unternehmen auch Windkraftanlagen.
+Ein Teil der Elektronik entsteht im eigenen Haus, nämlich
+Leiterplattenbaugruppen, also mit elektronischen Bauelementen bestückte
+Leiterplatten, die im Folgenden kurz \emph{Platinen} heißen. Gefertigt und
+geprüft werden sie am Hauptstandort Leipzig, gelagert in Leipzig und am
+Zweitstandort Wickede, und ein Teil von ihnen wird zu größeren Baugruppen
+weiterverbaut, den \emph{Modulen}. Lackiert werden die Platinen meist bei einem
+externen Dienstleister, zum Teil auch bei ZOPF selbst.
 
-Gesteuert wird die Fertigung über \emph{Laufkarten}. Eine Laufkarte beschreibt
+Auf ihrem Weg durchläuft jede Platine dieselbe Folge von Arbeitsschritten.
+Zuerst werden oberflächenmontierte Bauelemente bestückt (Surface-Mounted Device,
+kurz SMD), dann bedrahtete (Through-Hole Technology, kurz THT); es folgen die
+Prüfung mit optischer Kontrolle, die Lackierung und die Endkontrolle, bevor die
+Platine ins Lager geht. Abschnitt~\ref{sec:Fertigungsprozess} beschreibt diese
+Schritte genauer. Damit sich die Platinen auseinanderhalten lassen, trägt jede
+einen Aufkleber mit dem ZOPF-internen Namen des Platinentyps, der
+Artikelnummer und einer \emph{Seriennummer}, die innerhalb des Platinentyps
+eindeutig ist. Ein Data-Matrix-Code auf dem Aufkleber enthält dieselben Angaben
+in maschinenlesbarer Form.
+
+Gesteuert wird die Fertigung über \emph{Laufkarten}. Eine Laufkarte steht für
 einen Fertigungsauftrag über eine bestimmte Stückzahl eines Platinentyps und
-legt fest, welcher Bereich von Seriennummern für diesen Auftrag vergeben wird.
-Bisher wurden die Laufkarten auf Papier geführt und begleiteten die Platinen
-durch die Fertigung. Nach Abschluss eines Arbeitsschritts notierten die
-Mitarbeiter von Hand, für welchen Seriennummernbereich der Schritt erledigt
-war, und gaben diese Angaben an die Produktionsleitung weiter. Dort wurden sie
-in Excel-Listen übertragen, je Platinentyp eine Arbeitsmappe mit einem
-Tabellenblatt je Arbeitsschritt, und per E-Mail verteilt. Auch der Fortschritt
-einer Laufkarte wurde auf Papier fortgeschrieben. Für die Module galt ein
-ähnliches Verfahren: Zu jedem Modul wurde ein Montageprotokoll ausgedruckt, auf
-dem die Seriennummern der eingebauten Platinen handschriftlich eingetragen
-wurden. Eine digitale Erfassung dieser Zuordnung gab es nicht.
+legt den Bereich der Seriennummern fest, der dafür vergeben wird. Bisher waren
+das Papierkarten, die die Platinen durch die Fertigung begleiteten. War ein
+Arbeitsschritt erledigt, notierten die Mitarbeiter von Hand, für welchen
+Seriennummernbereich das galt, und gaben die Angaben an die Produktionsleitung
+weiter. Dort wanderten sie in Excel-Listen, je Platinentyp eine Arbeitsmappe
+mit einem Tabellenblatt pro Arbeitsschritt, die anschließend per E-Mail
+verteilt wurden; auch den Fortschritt einer Laufkarte schrieb man auf Papier
+fort. Bei den Modulen sah es kaum anders aus. Zu jedem Modul wurde ein
+Montageprotokoll ausgedruckt, in das die Seriennummern der eingebauten Platinen
+von Hand eingetragen wurden, und digital erfasst war diese Zuordnung nirgends.
 
-Dieses Vorgehen weist mehrere Schwächen auf. Jede Angabe wurde mindestens
-einmal von Hand geschrieben und einmal übertragen; Verschreiben, Zahlendreher
-und unleserliche Handschrift führten zu fehlerhaften Einträgen. Einzelne
-Meldungen wurden vergessen, Zettel gingen verloren, sodass die Dokumentation
-lückenhaft blieb. Die Excel-Listen ließen sich zudem jederzeit nachträglich
-ändern, ohne dass der ursprüngliche Stand oder die Änderung selbst festgehalten
+Die Schwächen dieses Vorgehens liegen auf der Hand. Jede Angabe wurde
+mindestens einmal von Hand geschrieben und einmal abgetippt, und bei jedem
+dieser Schritte schlichen sich Verschreiber, Zahlendreher oder unleserliche
+Ziffern ein. Andere Meldungen fehlten ganz, weil ein Zettel vergessen wurde
+oder verloren ging. Hinzu kam, dass sich die Excel-Listen jederzeit ändern
+ließen, ohne dass der alte Stand oder die Änderung selbst irgendwo festgehalten
 wurde. Eine \emph{revisionssichere} Dokumentation, bei der jede Änderung
-nachvollziehbar bleibt und frühere Stände erhalten sind, war damit nicht
-gegeben. Die Uneinheitlichkeit der Altdaten zeigte sich deutlich bei ihrer
-Übernahme in das neue System (Abschnitt~\ref{sec:Migration}).
+nachvollziehbar bleibt und frühere Stände erhalten sind, war so nicht möglich.
+Wie uneinheitlich die Altdaten tatsächlich waren, zeigte sich spätestens bei
+ihrer Übernahme in das neue System (Abschnitt~\ref{sec:Migration}).
 
-Darunter litten vor allem zwei Aufgaben. Zum einen war der Fortschritt einer
-Laufkarte, also die Frage, wie viele Platinen welchen Arbeitsschritt bereits
-abgeschlossen haben, nur durch Zusammentragen mehrerer Listen und Zettel zu
-ermitteln. Zum anderen ließ sich für eine einzelne Platine kaum beantworten,
-wann sie welchen Schritt durchlaufen hat, wer sie bearbeitet hat, wo sie sich
-gerade befindet und in welches Modul sie eingebaut wurde. Gerade diese
-\emph{Rückverfolgbarkeit} ist für die Qualitätssicherung wesentlich: Tritt ein
-Fehler auf, müssen die betroffenen Platinen und Module eingegrenzt werden
-können (Abschnitt~\ref{sec:Rueckverfolgbarkeit}). Die Verteilung der Platinen
-auf zwei Standorte und einen externen Dienstleister erschwerte die Übersicht
-zusätzlich, weil Platinen zwischen diesen Orten wechseln und die Angaben dazu
-an verschiedenen Stellen vorlagen.
+Am deutlichsten spürbar war das bei zwei Fragen, die im Alltag ständig
+auftauchen. Wie viele Platinen einer Laufkarte haben welchen Arbeitsschritt
+schon hinter sich? Das ließ sich nur beantworten, indem man mehrere Listen und
+Zettel zusammentrug. Und was ist mit einer bestimmten Platine geschehen, wann
+hat sie welchen Schritt durchlaufen, wer hat sie bearbeitet, wo liegt sie
+gerade und in welches Modul wurde sie eingebaut? Darauf gab es oft keine
+verlässliche Antwort. Gerade diese \emph{Rückverfolgbarkeit} braucht die
+Qualitätssicherung, denn tritt ein Fehler auf, müssen die betroffenen Platinen
+und Module eingegrenzt werden können (Abschnitt~\ref{sec:Rueckverfolgbarkeit}).
+Dass die Platinen zwischen zwei Standorten und dem externen Dienstleister
+wechseln und die Angaben darüber an verschiedenen Stellen lagen, machte die
+Sache nicht einfacher.
 
-Vor diesem Hintergrund entstand im Rahmen einer Werkstudententätigkeit bei ZOPF
-die Aufgabe, die papier- und tabellenbasierte Dokumentation durch eine
-datenbankgestützte Anwendung abzulösen. Die daraus abgeleiteten Ziele und
-Fragestellungen dieser Arbeit beschreibt der folgende Abschnitt.
+Aus dieser Lage heraus entstand im Rahmen einer Werkstudententätigkeit bei
+ZOPF die Aufgabe, Papier und Tabellen durch eine datenbankgestützte Anwendung
+abzulösen.
 
 \section{Zielsetzung und Fragestellungen}
 \label{sec:Zielsetzung}
-Ziel dieser Arbeit ist die Entwicklung einer datenbankgestützten
-Webanwendung, die Papier-Laufkarten, handschriftliche Meldungen und Excel-Listen
-in der Platinenfertigung von ZOPF ablöst. Die Anwendung trägt den Namen
-\emph{Produktionsverwaltung}, da sie die gesamte Platinenproduktion verwalten soll. Entsprechend dem Titel der Arbeit
-umfasst das Ziel drei Teile:
+Ziel dieser Arbeit ist eine datenbankgestützte Webanwendung, die
+Papier-Laufkarten, handschriftliche Meldungen und Excel-Listen in der
+Platinenfertigung von ZOPF ersetzt. Sie heißt \emph{Produktionsverwaltung},
+weil sie die gesamte Platinenproduktion verwalten soll, und ihr Ziel hat, wie
+schon der Titel der Arbeit andeutet, drei Teile.
 
-\begin{itemize}
-	\item \textbf{Erfassung:} Die Mitarbeiter erfassen abgeschlossene
-	Arbeitsschritte direkt in der Fertigung, entweder für einen ganzen
-	Seriennummernbereich oder platinenweise durch Scannen der Aufkleber.
-	Ergebnisse von Prüfständen gelangen über Schnittstellen automatisch in die
-	Anwendung. Die Anwendung prüft die Eingaben bereits bei der Erfassung, etwa
-	ob der vorherige Arbeitsschritt abgeschlossen ist.
-	\item \textbf{Auswertung der Progressionsinformationen:} Aus den einzelnen
-	Erfassungen ermittelt die Anwendung jederzeit den aktuellen Fortschritt je
-	Laufkarte, je Seriennummernbereich und je Platine und weist auf nahende
-	Liefertermine hin.
-	\item \textbf{Rückverfolgbarkeit:} Für jede Platine ist lückenlos
-	nachvollziehbar, wann, durch wen und an welchem Standort sie welchen Schritt
-	durchlaufen hat, in welcher Kiste sie lag und in welches Modul sie
-	eingebaut oder aus welchem sie wieder ausgebaut wurde. Die zugehörigen
-	Prüfprotokolle sind direkt abrufbar. Korrekturen überschreiben keine Daten,
-	sondern werden revisionssicher protokolliert.
-\end{itemize}
+Der erste ist die \emph{Erfassung}. Die Mitarbeiter melden abgeschlossene
+Arbeitsschritte direkt in der Fertigung, entweder für einen ganzen
+Seriennummernbereich auf einmal oder Platine für Platine, indem sie die
+Aufkleber scannen. Was die Prüfstände ermitteln, gelangt über Schnittstellen
+ohne Zutun in die Anwendung. Damit Fehler gar nicht erst in die Datenbank
+gelangen, prüft die Anwendung schon bei der Eingabe, ob etwa der vorherige
+Arbeitsschritt abgeschlossen ist. Der zweite Teil ist die \emph{Auswertung der
+Progressionsinformationen}: Aus den einzelnen Erfassungen ermittelt die
+Anwendung jederzeit den aktuellen Fortschritt je Laufkarte, je
+Seriennummernbereich und je Platine und weist auf nahende Liefertermine hin.
+Der dritte Teil, die \emph{Rückverfolgbarkeit}, verlangt, dass sich für jede
+Platine lückenlos nachvollziehen lässt, wann, durch wen und an welchem Standort
+sie welchen Schritt durchlaufen hat, in welcher Kiste sie lag und in welches
+Modul sie eingebaut oder aus welchem sie wieder ausgebaut wurde. Die
+zugehörigen Prüfprotokolle sind direkt abrufbar, und Korrekturen überschreiben
+keine Daten, sondern werden revisionssicher protokolliert.
 
 Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
 
@@ -117,180 +114,173 @@ Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
 	Anforderungen der Fertigung und ihrer Mitarbeiter?
 \end{enumerate}
 
-Die Anwendung wurde iterativ und im laufenden Betrieb entwickelt. Bereits
-frühe Versionen kamen in der Fertigung zum Einsatz, und Rückmeldungen der
-Mitarbeiter flossen fortlaufend in die Weiterentwicklung ein. Die erste und
-zweite Fragestellung werden in den Kapiteln~\ref{sec:Konzeption}
-und~\ref{sec:Implementierung} beantwortet, die dritte zusätzlich mit Blick auf
-das Datenmodell in Abschnitt~\ref{sec:Datenmodell} und die Geschäftsregeln in
-Abschnitt~\ref{sec:Geschaeftsregeln}. Die vierte Fragestellung beantwortet die
-Evaluation in Kapitel~\ref{sec:Evaluation}, unter anderem mit einer Befragung
-der Anwender.
+Die Anwendung entstand iterativ und im laufenden Betrieb. Schon frühe
+Versionen wurden in der Fertigung genutzt, und die Rückmeldungen der
+Mitarbeiter flossen fortlaufend in die Weiterentwicklung ein. Antworten auf die
+erste und zweite Frage geben die Kapitel~\ref{sec:Konzeption}
+und~\ref{sec:Implementierung}, auf die dritte außerdem das Datenmodell in
+Abschnitt~\ref{sec:Datenmodell} und die Geschäftsregeln in
+Abschnitt~\ref{sec:Geschaeftsregeln}. Ob sich die Anwendung im Alltag bewährt,
+also die vierte Frage, klärt die Evaluation in Kapitel~\ref{sec:Evaluation},
+unter anderem mit einer Befragung der Anwender.
 
 \section{Abgrenzung}
 \label{sec:Abgrenzung}
-Die Produktionsverwaltung dokumentiert die Platinenfertigung und Modulmontage, sie plant und
-steuert sie nicht. Sie ist daher kein vollständiges Produktionsleitsystem
-(Manufacturing Execution System, kurz MES), das Fertigungsaufträge einplant,
-Maschinen ansteuert und Kapazitäten verwaltet. Ebenso wenig übernimmt sie
-Aufgaben des bei ZOPF vorhandenen ERP-Systems (Enterprise Resource Planning),
-etwa die Auftragsabwicklung oder die Materialwirtschaft. Eine Anbindung an
-dieses System ist nicht Gegenstand der Arbeit; Laufkarten werden in der
-Produktionsverwaltung selbst angelegt.
+Die Produktionsverwaltung dokumentiert Platinenfertigung und Modulmontage,
+planen und steuern soll sie beides nicht. Ein vollständiges
+Produktionsleitsystem (Manufacturing Execution System, kurz MES), das
+Fertigungsaufträge einplant, Maschinen ansteuert und Kapazitäten verwaltet, ist
+sie deshalb nicht. Ebenso wenig übernimmt sie Aufgaben des bei ZOPF
+vorhandenen ERP-Systems (Enterprise Resource Planning) wie die
+Auftragsabwicklung oder die Materialwirtschaft. Eine Anbindung an dieses System
+ist nicht Gegenstand der Arbeit; Laufkarten werden in der Produktionsverwaltung
+selbst angelegt.
 
-Fertigungsmaschinen wie Bestückungsautomaten sind nicht angebunden, die
-Arbeitsschritte erfassen die Mitarbeiter. Automatisch gelangen nur
-Ergebnisse von Prüfständen in die Anwendung: Der Prüfstand für Platinen meldet
-das Ergebnis jeder Prüfung, der Prüfstand für Module meldet getestete Module
-samt der eingebauten Platinen, und die Prüfprotokolle beider liest die Anwendung
-aus der jeweiligen Ablage. Erfasst wird jeweils, dass und wann ein Schritt
-abgeschlossen wurde, nicht seine Prozess- oder Messwerte. Die
-Rückverfolgbarkeit reicht bis zur einzelnen Platine und zum Modul; welche
-Bauteile oder Bauteilchargen auf einer Platine verbaut sind, erfasst die
-Anwendung nicht. Ebenso wenig Gegenstand der Arbeit sind der Verkauf der Module
-und das Entfernen verkaufter Module aus der Datenbank.
+Auch Fertigungsmaschinen wie Bestückungsautomaten sind nicht angeschlossen,
+die Arbeitsschritte erfassen die Mitarbeiter selbst. Automatisch kommen nur die
+Ergebnisse der Prüfstände herein: Der Prüfstand für Platinen meldet jede
+Prüfung, der für Module meldet getestete Module samt ihrer Platinen, und die
+Prüfprotokolle beider liest die Anwendung aus der jeweiligen Ablage.
+Festgehalten wird dabei, dass und wann ein Schritt abgeschlossen wurde, nicht
+aber seine Prozess- oder Messwerte. Ähnlich endet die Rückverfolgbarkeit bei der
+einzelnen Platine und beim Modul; welche Bauteile oder Bauteilchargen auf einer
+Platine sitzen, erfasst die Anwendung nicht. Der Verkauf der Module und das
+Entfernen verkaufter Module aus der Datenbank gehören ebenfalls nicht zur
+Arbeit.
 
 Die Produktionsverwaltung wird im Betrieb fortlaufend weiterentwickelt. Diese
 Arbeit beschreibt den Entwicklungsstand vom 30. Oktober 2026; spätere
 Änderungen sind nicht Gegenstand der Arbeit.
 
 Gegenstand der Arbeit ist die vom Verfasser entwickelte Webanwendung samt
-Datenbank. Die Software des Platinen-Prüfstandes entstand in Zusammenarbeit mit
-Mitarbeitern von ZOPF; behandelt wird nur ihre Schnittstelle zur
-Produktionsverwaltung. Das Programm des Modul-Prüfstandes hat der Verfasser
-zwar selbst entwickelt, es ist jedoch eine eigenständige Anwendung und wird
-ebenfalls nur hinsichtlich seiner Anbindung betrachtet. Erste Entwürfe der
-Benutzeroberfläche und des Datenbankschemas stammen aus dem Unternehmen; sie
-sind an den betreffenden Stellen (Abschnitte~\ref{sec:Datenmodell}
+Datenbank. Die Software des Platinen-Prüfstands entstand gemeinsam mit
+Mitarbeitern von ZOPF, weshalb hier nur ihre Schnittstelle zur
+Produktionsverwaltung behandelt wird. Das Programm des Modul-Prüfstands stammt
+zwar vom Verfasser selbst, ist aber eine eigenständige Anwendung und wird
+ebenfalls nur über seine Anbindung betrachtet. Erste Entwürfe der
+Benutzeroberfläche und des Datenbankschemas kamen aus dem Unternehmen; sie sind
+an den betreffenden Stellen (Abschnitte~\ref{sec:Datenmodell}
 und~\ref{sec:Oberflaeche}) als solche gekennzeichnet.
 
 \section{Aufbau der Arbeit}
 \label{sec:Aufbau}
-Kapitel~\ref{sec:Grundlagen} legt die fachlichen und technischen Grundlagen:
-die Rückverfolgbarkeit in der Elektronikfertigung, den Fertigungsprozess von
-Platinen, relationale Datenbanken und die Sicherung ihrer Integrität, das
-Webframework Svelte 5 und SvelteKit sowie die maschinenlesbare Kennzeichnung mit ein- und
-zweidimensionalen Codes. Darauf aufbauend analysiert Kapitel~\ref{sec:Anforderungsanalyse}
-den bisherigen Nachweisprozess und leitet die Akteure sowie die funktionalen
-und nichtfunktionalen Anforderungen an die Anwendung ab.
+Die Arbeit führt von den Grundlagen über Anforderungen und Entwurf bis zur
+Bewertung im Betrieb. Kapitel~\ref{sec:Grundlagen} legt das fachliche und
+technische Fundament: die Rückverfolgbarkeit in der Elektronikfertigung, den
+Fertigungsprozess von Platinen, relationale Datenbanken mit ihren Mitteln zur
+Integritätssicherung, das Webframework SvelteKit und die maschinenlesbare
+Kennzeichnung mit ein- und zweidimensionalen Codes. Darauf aufbauend untersucht
+Kapitel~\ref{sec:Anforderungsanalyse} den bisherigen Nachweisprozess und leitet
+die Akteure sowie die funktionalen und nichtfunktionalen Anforderungen ab.
 
-Den Entwurf der Lösung mit Systemarchitektur, Datenmodell, Zustandsmodell
-einer Platine, Benutzeroberfläche und Berechtigungskonzept enthält
-Kapitel~\ref{sec:Konzeption}. Wie dieser Entwurf umgesetzt wurde, beschreibt
-Kapitel~\ref{sec:Implementierung} entlang der drei Teilziele Erfassung,
-Auswertung und Rückverfolgbarkeit, ergänzt um die in der Datenbank verankerten
-Geschäftsregeln sowie die Erweiterungen um Lagerverwaltung und Module. Die
-Übernahme der Excel-Altdaten und die Inbetriebnahme im Unternehmensnetz folgen
-in Kapitel~\ref{sec:Inbetriebnahme}.
+Den Entwurf der Lösung mit Systemarchitektur, Datenmodell, Zustandsmodell einer
+Platine, Benutzeroberfläche und Berechtigungskonzept enthält
+Kapitel~\ref{sec:Konzeption}. Kapitel~\ref{sec:Implementierung} zeigt die
+Umsetzung entlang der drei Teilziele Erfassung, Auswertung und
+Rückverfolgbarkeit, ergänzt um die Geschäftsregeln in der Datenbank und die
+Erweiterungen um Lagerverwaltung und Module. Wie die Excel-Altdaten übernommen
+wurden und die Anwendung im Unternehmensnetz in Betrieb ging, beschreibt
+Kapitel~\ref{sec:Inbetriebnahme}.
 
-Kapitel~\ref{sec:Evaluation} bewertet das Ergebnis anhand von Tests, der
-Leistungsoptimierung, einer Befragung der Anwender und eines Abgleichs mit den
-Anforderungen; zudem zeigt es, welche Anpassungen der Praxiseinsatz nach sich
-zog. Kapitel~\ref{sec:Schluss} fasst die Ergebnisse zusammen, beantwortet die
-Fragestellungen aus Abschnitt~\ref{sec:Zielsetzung}, bewertet die Lösung
-kritisch und gibt einen Ausblick auf mögliche Weiterentwicklungen.
+Ob das Ergebnis trägt, prüft Kapitel~\ref{sec:Evaluation} mit Tests, der
+Leistungsoptimierung, einer Befragung der Anwender und einem Abgleich mit den
+Anforderungen; außerdem zeigt es, welche Anpassungen der Praxiseinsatz nach
+sich zog. Kapitel~\ref{sec:Schluss} fasst die Ergebnisse zusammen, beantwortet
+die Fragestellungen aus Abschnitt~\ref{sec:Zielsetzung}, bewertet die Lösung
+kritisch und blickt auf mögliche Weiterentwicklungen.
 
 
 \chapter{Grundlagen}
 \label{sec:Grundlagen}
-Dieses Kapitel legt die Grundlagen, auf denen die Anforderungen, der Entwurf und
-die Umsetzung der Produktionsverwaltung aufbauen. Es beginnt mit den fachlichen
-Grundlagen, der Rückverfolgbarkeit und dem Fertigungsprozess von Platinen, und
-behandelt anschließend die eingesetzten Techniken: relationale Datenbanken, das
-Webframework SvelteKit und die maschinenlesbare Kennzeichnung.
+Bevor es um Anforderungen und Entwurf gehen kann, braucht die Arbeit zwei Arten
+von Grundlagen. Die fachlichen klären, was Rückverfolgbarkeit bedeutet und wie
+eine Platine gefertigt wird. Die technischen zeigen, womit sich das abbilden
+lässt: mit einer relationalen Datenbank, einer Webanwendung auf Basis von
+SvelteKit und maschinenlesbaren Codes auf den Platinen.
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
-Die Norm DIN EN ISO 9000, die die Grundbegriffe des Qualitätsmanagements
-festlegt, definiert Rückverfolgbarkeit als die \enquote{Möglichkeit, den
-Werdegang, die Verwendung oder den Ort eines Objekts zu verfolgen}
-\cite[S.~19]{DINENISO9000_2026}. Bei einem Produkt kann sich die
-Rückverfolgbarkeit laut einer Anmerkung zu dieser Definition auf drei Aspekte
-beziehen: die Herkunft von Werkstoffen und Teilen, den Ablauf der Verarbeitung
-sowie die Verteilung und den Standort des Produkts nach der Auslieferung (vgl.
-\cite[S.~19]{DINENISO9000_2026}). Im Englischen ist der Begriff
-\emph{Traceability} gebräuchlich. Moe stützt sich auf die gleichlautende
-Definition der Vorgängernorm ISO~8402 und hebt hervor, dass Rückverfolgbarkeit
-auf aufgezeichneten Identifikationen beruht. Er unterscheidet zwei Reichweiten:
-die Rückverfolgbarkeit entlang der gesamten Lieferkette vom Rohstoff bis zum
-Verbraucher und die \emph{interne} Rückverfolgbarkeit innerhalb eines Glieds
-dieser Kette, etwa der Produktion (vgl. \cite[S.~211]{moePerspectivesTraceabilityFood1998}).
-Obwohl sein Beitrag der Lebensmittelherstellung gilt, betrachtet Moe die
-Grundlagen der Rückverfolgbarkeit als unabhängig vom Produkt und von der Art
-der Fertigung und verweist darauf, dass Hersteller von Fahrzeugen, Flugzeugen
-und Raumfahrzeugen seit Langem weit entwickelte Systeme dafür einsetzen (vgl.
-\cite[S.~211]{moePerspectivesTraceabilityFood1998}). Die Produktionsverwaltung
-dient in diesem Sinne der internen Rückverfolgbarkeit: Sie bildet den Ablauf der
-Verarbeitung ab und hält zusätzlich fest, an welchem Standort des Unternehmens
-sich eine Platine befindet. Die Herkunft der Bauteile und der Verkauf der Module
-sind nach Abschnitt~\ref{sec:Abgrenzung} nicht Gegenstand der Arbeit.
+Was Rückverfolgbarkeit heißt, legt die Norm DIN EN ISO 9000 fest, die die
+Grundbegriffe des Qualitätsmanagements definiert. Sie versteht darunter die
+\enquote{Möglichkeit, den Werdegang, die Verwendung oder den Ort eines Objekts
+zu verfolgen} \cite[S.~19]{DINENISO9000_2026}. Bei einem Produkt kann sich das
+laut einer Anmerkung auf dreierlei beziehen, nämlich auf die Herkunft von
+Werkstoffen und Teilen, auf den Ablauf der Verarbeitung und auf Verteilung und
+Standort nach der Auslieferung (vgl. \cite[S.~19]{DINENISO9000_2026}). Im
+Englischen spricht man von \emph{Traceability}. Moe, der sich auf die
+gleichlautende Definition der Vorgängernorm ISO~8402 stützt, hebt hervor, dass
+Rückverfolgbarkeit auf aufgezeichneten Identifikationen beruht. Er unterscheidet
+zwei Reichweiten, die Rückverfolgbarkeit entlang der gesamten Lieferkette vom
+Rohstoff bis zum Verbraucher und die \emph{interne} innerhalb eines einzelnen
+Glieds dieser Kette, etwa der Produktion (vgl.
+\cite[S.~211]{moePerspectivesTraceabilityFood1998}). Sein Beitrag stammt zwar
+aus der Lebensmittelherstellung, doch hält Moe die Grundlagen für unabhängig vom
+Produkt und von der Art der Fertigung und verweist darauf, dass Hersteller von
+Fahrzeugen, Flugzeugen und Raumfahrzeugen seit Langem weit entwickelte Systeme
+dafür einsetzen (vgl. \cite[S.~211]{moePerspectivesTraceabilityFood1998}). Die
+Produktionsverwaltung dient in diesem Sinne der internen Rückverfolgbarkeit: Sie
+bildet den Ablauf der Verarbeitung ab und hält zusätzlich fest, an welchem
+Standort des Unternehmens sich eine Platine befindet. Die Herkunft der Bauteile
+und der Verkauf der Module sind nach Abschnitt~\ref{sec:Abgrenzung} nicht
+Gegenstand der Arbeit.
 
-Moe bezeichnet Rückverfolgbarkeit als \enquote{an essential subsystem of
-quality management} \cite[S.~211]{moePerspectivesTraceabilityFood1998}. Die
-Anforderungen an ein Qualitätsmanagementsystem legt die Norm DIN EN ISO 9001
-fest, während DIN EN ISO 9000 die zugehörigen Grundlagen und Begriffe enthält
-(vgl. \cite[S.~9\,f.]{koubekDINISO90012018}). Die ISO 9001 erschien erstmals
-1987, ursprünglich um die Anforderungen an Lieferanten zu vereinheitlichen, und
-wird von produzierenden Unternehmen als Lieferbedingung verwendet (vgl.
-\cite[S.~8]{koubekDINISO90012018}). Seit 2026 gilt eine neue Fassung, welche
-die Ausgabe von 2015 ablöst (vgl. \cite[S.~3]{DINENISO9001_2026}). Ihr
-Abschnitt~8.5.2 \enquote{Kennzeichnung und Rückverfolgbarkeit} stellt an eine
-Organisation vier Anforderungen (vgl. \cite[S.~34]{DINENISO9001_2026}):
+Für Moe ist Rückverfolgbarkeit \enquote{an essential subsystem of quality
+management} \cite[S.~211]{moePerspectivesTraceabilityFood1998}. Die
+Anforderungen an ein solches Qualitätsmanagementsystem stehen in der DIN EN ISO
+9001, während die ISO~9000 die zugehörigen Grundlagen und Begriffe liefert (vgl.
+\cite[S.~9\,f.]{koubekDINISO90012018}). Die ISO~9001 erschien erstmals 1987,
+ursprünglich um die Anforderungen an Lieferanten zu vereinheitlichen, und dient
+produzierenden Unternehmen als Lieferbedingung (vgl.
+\cite[S.~8]{koubekDINISO90012018}). Seit 2026 gilt eine neue Fassung, die die
+Ausgabe von 2015 ablöst (vgl. \cite[S.~3]{DINENISO9001_2026}). Ihr
+Abschnitt~8.5.2 \enquote{Kennzeichnung und Rückverfolgbarkeit} verlangt von einer
+Organisation, die Ergebnisse ihrer Prozesse zu kennzeichnen, wo das für die
+Konformität der Produkte nötig ist, und deren Status in Bezug auf die
+Überwachungs- und Messanforderungen während der gesamten Produktion zu
+kennzeichnen. Ist Rückverfolgbarkeit gefordert, muss sie außerdem die eindeutige
+Kennzeichnung steuern und die dafür nötige dokumentierte Information als
+Nachweis verfügbar halten (vgl. \cite[S.~34]{DINENISO9001_2026}). Wie eng beides
+zusammenhängt, erläutert der informative Anhang der Norm: \enquote{Kennzeichnung
+und Rückverfolgbarkeit sind eng miteinander verbunden, denn die
+Rückverfolgbarkeit erfordert eine eindeutige Kennzeichnung der Outputs, wenn es
+notwendig ist, frühere Verarbeitungsstufen oder den Status nach der Auslieferung
+zu bestimmen} \cite[S.~50]{DINENISO9001_2026}. Gefordert sein kann
+Rückverfolgbarkeit von der Organisation selbst, von Kunden oder durch
+gesetzliche und behördliche Vorgaben (vgl. \cite[S.~50]{DINENISO9001_2026});
+besonders wichtig ist sie etwa bei Medizinprodukten, Lebensmitteln und in der
+Automobilindustrie (vgl. \cite[S.~100]{koubekDINISO90012018}).
 
-\begin{itemize}
-	\item die Ergebnisse ihrer Prozesse zu kennzeichnen, wenn dies für die
-	Konformität der Produkte notwendig ist,
-	\item den Status dieser Ergebnisse während der gesamten Produktion in Bezug
-	auf die Überwachungs- und Messanforderungen zu kennzeichnen,
-	\item ihre eindeutige Kennzeichnung zu steuern, wenn Rückverfolgbarkeit
-	gefordert ist,
-	\item die dafür notwendige dokumentierte Information als Nachweis verfügbar
-	zu halten.
-\end{itemize}
-
-\noindent Der informative
-Anhang der Norm erläutert den Zusammenhang: \enquote{Kennzeichnung und
-Rückverfolgbarkeit sind eng miteinander verbunden, denn die Rückverfolgbarkeit
-erfordert eine eindeutige Kennzeichnung der Outputs, wenn es notwendig ist,
-frühere Verarbeitungsstufen oder den Status nach der Auslieferung zu bestimmen}
-\cite[S.~50]{DINENISO9001_2026}. Gefordert sein kann Rückverfolgbarkeit von der
-Organisation selbst, von Kunden oder durch gesetzliche und behördliche Vorgaben
-(vgl. \cite[S.~50]{DINENISO9001_2026}). Besondere Bedeutung hat sie etwa bei
-Medizinprodukten, Lebensmitteln und in der Automobilindustrie (vgl.
-\cite[S.~100]{koubekDINISO90012018}).
-
-Grundlage jeder Rückverfolgbarkeit von Produkten ist nach Moe, sie eindeutig
-identifizieren zu können, entweder durch eine Kennzeichnung am Produkt oder an
-seiner Verpackung oder durch Aufzeichnungen. Ein Rückverfolgungssystem
-beschreibt er durch zwei Elemente: die \emph{Route}, also den Weg, auf dem ein
-Produkt durch Fertigung und Vertrieb identifizierbar bleibt, und den
-\emph{Umfang}, also die Auswahl der erfassten Angaben. Zu verfolgen sind sowohl
-die Produkte als auch die Aktivitäten, die an ihnen ausgeführt werden, etwa
-Verarbeitung, Lagerung und Transport. Die kleinste Einheit, die ein solches
-System unterscheidet, heißt \emph{Traceable Resource Unit} (TRU). Was als TRU
-gilt, legt der Entwickler des Systems fest; werden mehrere TRUs zusammengeführt,
-entsteht eine neue TRU, die eine eigene Identifikation erhalten muss (vgl.
+Wie ein Rückverfolgungssystem aufgebaut ist, beschreibt Moe genauer.
+Grundlage ist, Produkte eindeutig identifizieren zu können, sei es durch eine
+Kennzeichnung am Produkt oder an seiner Verpackung oder durch Aufzeichnungen.
+Das System selbst besteht aus zwei Elementen: der \emph{Route}, also dem Weg, auf
+dem ein Produkt durch Fertigung und Vertrieb identifizierbar bleibt, und dem
+\emph{Umfang}, also der Auswahl der erfassten Angaben. Verfolgt werden sowohl die
+Produkte als auch die Aktivitäten an ihnen, etwa Verarbeitung, Lagerung und
+Transport. Die kleinste Einheit, die ein solches System unterscheidet, nennt Moe
+\emph{Traceable Resource Unit} (TRU). Was als TRU gilt, legt der Entwickler des
+Systems fest, und werden mehrere TRUs zusammengeführt, entsteht eine neue, die
+eine eigene Identifikation braucht (vgl.
 \cite[S.~212]{moePerspectivesTraceabilityFood1998}). Yilmaz et al. fassen zwei
-weitere Sichtweisen zusammen: Nach Aung und Chang muss ein wirksames System die
+weitere Sichtweisen zusammen. Nach Aung und Chang muss ein wirksames System die
 Informationen mit dem physischen Fluss der Produkte verbinden, etwa über
 Verpackungen und Beschriftungen, und Regattieri et al. nennen als seine vier
 Bestandteile die Identifikation des Produkts, die Verfolgung der Daten, den
 Materialfluss und ein Werkzeug zur Rückverfolgung (vgl.
 \cite[S.~13]{yilmazTransparenzUndRueckverfolgbarkeit2022}).
 
-Übertragen auf die Platinenfertigung ergibt sich das Bild in
+Überträgt man das auf die Platinenfertigung, ergibt sich das Bild in
 Abbildung~\ref{fig:Rueckverfolgbarkeit}. Jede Platine ist durch ihre
-Seriennummer eine eigene TRU; die Rückverfolgbarkeit reicht damit bis zum
-einzelnen Stück und nicht nur bis zum Fertigungsauftrag. Die Aktivitäten sind
-die Arbeitsschritte der Fertigung. Die Aufzeichnung über einen abgeschlossenen
-Arbeitsschritt an einer Platine wird in dieser Arbeit als
-\emph{Produktionsnachweis} bezeichnet; sie hält fest, wann, durch wen und an
-welchem Standort der Schritt erledigt wurde. Werden mehrere Platinen in ein
-Modul eingebaut, entsteht im Sinne Moes eine neue Einheit mit eigener
-Seriennummer, über die die eingebauten Platinen weiterhin auffindbar bleiben
-müssen. Regulär werden dabei nur Platinen aus dem Lager eingebaut, die also die
-Fertigung abgeschlossen haben; die Ausnahmen beschreibt
-Abschnitt~\ref{sec:Module}.
+Seriennummer eine eigene TRU, sodass die Rückverfolgbarkeit bis zum einzelnen
+Stück reicht und nicht beim Fertigungsauftrag stehen bleibt. Die Aktivitäten
+sind die Arbeitsschritte der Fertigung, und die Aufzeichnung über einen
+abgeschlossenen Schritt an einer Platine heißt in dieser Arbeit
+\emph{Produktionsnachweis}. Sie hält fest, wann, durch wen und an welchem
+Standort der Schritt erledigt wurde. Werden mehrere Platinen in ein Modul
+eingebaut, entsteht im Sinne Moes eine neue Einheit mit eigener Seriennummer,
+über die die eingebauten Platinen weiterhin auffindbar bleiben müssen. Regulär
+kommen dabei nur Platinen aus dem Lager zum Einsatz, die die Fertigung also
+abgeschlossen haben; die Ausnahmen beschreibt Abschnitt~\ref{sec:Module}.
 
 \begin{figure}[htbp]
 	\centering
@@ -344,44 +334,44 @@ Abschnitt~\ref{sec:Module}.
 	\label{fig:Rueckverfolgbarkeit}
 \end{figure}
 
-Damit eine solche Rückverfolgung im Bedarfsfall gelingt, müssen die
-Aufzeichnungen bestimmten Anforderungen genügen. Ein Produktionsnachweis ist im
+Damit eine solche Rückverfolgung im Ernstfall gelingt, müssen die
+Aufzeichnungen bestimmte Anforderungen erfüllen. Ein Produktionsnachweis ist im
 Sinne der DIN EN ISO 9000 eine \emph{Aufzeichnung}, also ein \enquote{Dokument,
 das erreichte Ergebnisse angibt oder einen Nachweis ausgeführter Tätigkeiten
-bereitstellt} \cite[S.~26]{DINENISO9000_2026}. Als einen Zweck solcher
-Aufzeichnungen nennt die Norm ausdrücklich die Darlegung von
-Rückverfolgbarkeit. Aufzeichnungen sind Teil der \emph{dokumentierten
-Information}, die in jedem Format und auf jedem Medium vorliegen kann (vgl.
-\cite[S.~26]{DINENISO9000_2026}), auf Papier ebenso wie in einer Datenbank.
-DIN EN ISO 9001 verlangt, dass dokumentierte Information verfügbar ist, wo und
-wann sie benötigt wird, dass sie vor dem Verlust ihrer Integrität geschützt
-wird und dass Änderungen an ihr überwacht werden, etwa durch eine
-Versionskontrolle (vgl. \cite[S.~27]{DINENISO9001_2026}). Für Nachweise gilt
-darüber hinaus: \enquote{Dokumentierte Information, die als Nachweis der
-Konformität verfügbar ist, muss vor unbeabsichtigten Änderungen geschützt
-werden} \cite[S.~28]{DINENISO9001_2026}. Der informative Anhang nennt zusätzlich
-den Schutz vor unbefugten Änderungen und vor dem Löschen (vgl.
+bereitstellt} \cite[S.~26]{DINENISO9000_2026}, und die Norm nennt die Darlegung
+von Rückverfolgbarkeit ausdrücklich als einen ihrer Zwecke. Aufzeichnungen
+gehören zur \emph{dokumentierten Information}, die in jedem Format und auf jedem
+Medium vorliegen darf (vgl. \cite[S.~26]{DINENISO9000_2026}), auf Papier ebenso
+wie in einer Datenbank. Die DIN EN ISO 9001 verlangt von ihr, verfügbar zu sein,
+wo und wann sie gebraucht wird, sie vor dem Verlust ihrer Integrität zu schützen
+und ihre Änderungen zu überwachen, etwa durch eine Versionskontrolle (vgl.
+\cite[S.~27]{DINENISO9001_2026}). Für Nachweise wird die Norm noch deutlicher:
+\enquote{Dokumentierte Information, die als Nachweis der Konformität verfügbar
+ist, muss vor unbeabsichtigten Änderungen geschützt werden}
+\cite[S.~28]{DINENISO9001_2026}. Der informative Anhang ergänzt den Schutz vor
+unbefugten Änderungen und vor dem Löschen (vgl.
 \cite[S.~48]{DINENISO9001_2026}).
 
-Moe betont, dass Rückverfolgbarkeit rückwärts arbeitet: Die Aufzeichnungen
-werden erst im Nachhinein abgefragt, etwa wenn ein Fehler aufgetreten ist, und
-müssen deshalb von vornherein für diese Abfrage ausgelegt sein. Unverzichtbar
-ist dafür ein stabiles und zugängliches System zur Aufzeichnung (vgl.
-\cite[S.~212]{moePerspectivesTraceabilityFood1998}). Rückverfolgungssysteme
-können auch auf Papier funktionieren; mit Rechnerunterstützung lassen sich
-jedoch deutlich mehr Daten verarbeiten und die Geschichte eines Produkts und
+Warum das so wichtig ist, macht ein Gedanke von Moe deutlich. Rückverfolgbarkeit
+arbeitet rückwärts: Die Aufzeichnungen werden erst im Nachhinein abgefragt,
+typischerweise wenn ein Fehler aufgetreten ist, und müssen deshalb von vornherein
+für diese Abfrage ausgelegt sein. Unverzichtbar ist dafür ein stabiles und
+zugängliches System zur Aufzeichnung (vgl.
+\cite[S.~212]{moePerspectivesTraceabilityFood1998}). Zwar funktionieren
+Rückverfolgungssysteme auch auf Papier, mit Rechnerunterstützung lassen sich
+aber deutlich mehr Daten verarbeiten und die Geschichte eines Produkts und
 seiner Verarbeitung sehr detailliert festhalten. Als Nutzen einer internen
 Rückverfolgbarkeit nennt Moe unter anderem eine bessere Prozesssteuerung,
-Hinweise auf Ursachen, wenn ein Produkt nicht den Vorgaben entspricht, und
+Hinweise auf die Ursache, wenn ein Produkt nicht den Vorgaben entspricht, und
 eine einfachere Informationsbeschaffung bei Audits des Qualitätsmanagements
 (vgl. \cite[S.~213]{moePerspectivesTraceabilityFood1998}).
 
-Aus diesen Grundlagen ergeben sich drei Voraussetzungen für die
-Produktionsverwaltung: eine eindeutige, maschinenlesbare Kennzeichnung jeder
-Platine (Abschnitt~\ref{sec:Kennzeichnung}), eine lückenlose Aufzeichnung der
-Arbeitsschritte, deren Ablauf Abschnitt~\ref{sec:Fertigungsprozess} beschreibt,
-und eine Datenhaltung, die diese Aufzeichnungen vor unbemerkter Änderung und
-Verlust schützt (Abschnitt~\ref{sec:RelationaleDatenbanken}).
+Für die Produktionsverwaltung folgen daraus drei Voraussetzungen. Jede Platine
+braucht eine eindeutige, maschinenlesbare Kennzeichnung
+(Abschnitt~\ref{sec:Kennzeichnung}), jeder Arbeitsschritt eine lückenlose
+Aufzeichnung, und die Datenhaltung muss diese Aufzeichnungen vor unbemerkter
+Änderung und Verlust schützen (Abschnitt~\ref{sec:RelationaleDatenbanken}).
+Welche Arbeitsschritte aufzuzeichnen sind, zeigt der Blick auf die Fertigung.
 
 \section{Fertigungsprozess von Leiterplattenbaugruppen}
 \label{sec:Fertigungsprozess}
@@ -390,19 +380,19 @@ Leiterplatte bestückt und gelötet werden (vgl.
 \cite[S.~156]{zickertLeiterplatten2023}). Zickert unterscheidet dabei zwei
 Montagearten, die Abbildung~\ref{fig:Montagearten} gegenüberstellt. Bei der
 \emph{Durchsteckmontage} (THT) werden die Anschlüsse bedrahteter Bauelemente
-durch Bohrungen in der Leiterplatte gesteckt und auf der gegenüberliegenden Seite
-verlötet. \emph{Oberflächenmontierte} Bauelemente (SMD) werden dagegen auf
-derselben Seite platziert und verlötet. Ihre Anschlüsse und Lötflächen können
-kleiner ausfallen, und beide Seiten der Leiterplatte stehen für die Bestückung
-zur Verfügung, dadurch ist eine höhere Packungsdichte möglich (vgl.
-\cite[S.~65\,f.]{zickertLeiterplatten2023}). Beide Montagearten lassen sich auf
-einer Leiterplatte kombinieren (vgl. \cite[S.~92]{zickertLeiterplatten2023}).
-Die Oberflächenmontage ersetzt die Durchsteckmontage zwar zunehmend (vgl.
-\cite[S.~66]{zickertLeiterplatten2023}), bedrahtete Bauformen, Steckverbinder
-und viele Bauteile der Leistungselektronik eignen sich jedoch nicht für das
-Reflowlöten (vgl. \cite[S.~167]{zickertLeiterplatten2023}). Die Platinen von
-ZOPF verbinden beide Montagearten, weshalb die Fertigung zwei
-Bestückungsschritte umfasst.
+durch Bohrungen in der Leiterplatte gesteckt und auf der Gegenseite verlötet,
+während \emph{oberflächenmontierte} Bauelemente (SMD) auf derselben Seite
+platziert und verlötet werden. Weil ihre Anschlüsse und Lötflächen kleiner
+ausfallen können und beide Seiten der Leiterplatte für die Bestückung frei
+sind, erlaubt die Oberflächenmontage eine höhere Packungsdichte (vgl.
+\cite[S.~65\,f.]{zickertLeiterplatten2023}). Beide Arten lassen sich auf einer
+Leiterplatte kombinieren (vgl. \cite[S.~92]{zickertLeiterplatten2023}). Die
+Oberflächenmontage verdrängt die Durchsteckmontage zwar zunehmend (vgl.
+\cite[S.~66]{zickertLeiterplatten2023}), doch bedrahtete Bauformen,
+Steckverbinder und viele Bauteile der Leistungselektronik eignen sich nicht für
+das Reflowlöten (vgl. \cite[S.~167]{zickertLeiterplatten2023}). Weil ZOPF genau
+Leistungselektronik herstellt, verbinden seine Platinen beide Montagearten, und
+die Fertigung umfasst zwei Bestückungsschritte.
 
 \begin{figure}[htbp]
 	\centering
@@ -456,149 +446,147 @@ Bestückungsschritte umfasst.
 	\label{fig:Montagearten}
 \end{figure}
 
-Beide Montagearten nutzen das Löten, die häufigste und wichtigste Methode, in
-der Elektronik eine elektrische Verbindung herzustellen. Dabei benetzt
-geschmolzenes Lot die Verbindungspartner, die wegen des niedrigeren
-Schmelzpunktes des Lotes selbst nicht anschmelzen. Flussmittel baut zuvor die
-Oxidschicht auf der Kupferoberfläche ab (vgl.
+Verbunden werden die Bauteile in beiden Fällen durch Löten, die häufigste und
+wichtigste Methode, in der Elektronik eine elektrische Verbindung herzustellen.
+Geschmolzenes Lot benetzt dabei die Verbindungspartner, die selbst nicht
+anschmelzen, weil das Lot einen niedrigeren Schmelzpunkt hat; zuvor baut ein
+Flussmittel die Oxidschicht auf der Kupferoberfläche ab (vgl.
 \cite[S.~159\,f.]{zickertLeiterplatten2023}).
 
 Für SMD wird das \emph{Reflowlöten} bevorzugt (vgl.
-\cite[S.~169]{zickertLeiterplatten2023}). Zunächst wird Lotpaste aufgetragen,
-etwa im Schablonendruck. Anschließend werden die Bauelemente bestückt, in der
-Serienfertigung hauptsächlich mit Bestückungsautomaten; die leicht klebrige
-Paste hält sie bis zum Löten in Position (vgl.
-\cite[S.~156, 170]{zickertLeiterplatten2023}). Die Baugruppe durchläuft danach
-die Zonen einer Lötanlage: In der Vorheiz- und der Haltezone wird sie erwärmt
-und das Flussmittel aktiviert, in der Peakzone erfolgt das Löten, und zuletzt
-kühlt sie in der Abkühlzone ab (vgl. \cite[S.~171]{zickertLeiterplatten2023}).
-Typische Fehler dieses Verfahrens sind das Aufrichten eines Bauelements, der
-sogenannte Grabsteineffekt, und Fehlplatzierungen durch das Aufschwimmen der
-Bauelemente auf dem flüssigen Lot (vgl.
-\cite[S.~172\,f.]{zickertLeiterplatten2023}).
+\cite[S.~169]{zickertLeiterplatten2023}). Zuerst wird Lotpaste aufgetragen,
+etwa im Schablonendruck, dann werden die Bauelemente bestückt, in der
+Serienfertigung meist von Bestückungsautomaten, und die leicht klebrige Paste
+hält sie bis zum Löten an ihrem Platz (vgl.
+\cite[S.~156, 170]{zickertLeiterplatten2023}). Anschließend durchläuft die
+Baugruppe die Zonen einer Lötanlage. In der Vorheiz- und der Haltezone wird sie
+erwärmt und das Flussmittel aktiviert, in der Peakzone wird gelötet, und in der
+Abkühlzone kühlt sie wieder ab (vgl. \cite[S.~171]{zickertLeiterplatten2023}).
+Typische Fehler sind das Aufrichten eines Bauelements, der sogenannte
+Grabsteineffekt, und Fehlplatzierungen, wenn Bauelemente auf dem flüssigen Lot
+aufschwimmen (vgl. \cite[S.~172\,f.]{zickertLeiterplatten2023}).
 
-Für bedrahtete Bauelemente eignet sich das Wellenlöten; sollen nur einzelne
-Lötstellen gelötet werden, bietet sich das Selektivlöten mit einer Miniwelle an
-(vgl. \cite[S.~167, 183]{zickertLeiterplatten2023}). Bei ZOPF werden sie im
-Schritt THT, im Gegensatz zu SMD-Bauteilen, von Hand gelötet.
+Für bedrahtete Bauelemente eignet sich das Wellenlöten, und wo nur einzelne
+Lötstellen anfallen, bietet sich das Selektivlöten mit einer Miniwelle an (vgl.
+\cite[S.~167, 183]{zickertLeiterplatten2023}). Bei ZOPF werden sie im Schritt
+THT dagegen von Hand gelötet.
 
-Anschließend wird die Platine geprüft. Ein Mitarbeiter testet sie am Prüfstand
-und kontrolliert sie optisch auf bekannte oder offensichtliche Fehler, etwa
-verkehrt herum eingelötete Bauelemente oder kalte Lötstellen. Eine automatische
-optische Inspektion wird nicht eingesetzt.
+Danach wird die Platine geprüft. Ein Mitarbeiter testet sie am Prüfstand und
+sieht sie sich genau an, wobei er gezielt nach bekannten oder offensichtlichen
+Fehlern sucht, etwa verkehrt herum eingelöteten Bauelementen oder kalten
+Lötstellen. Eine automatische optische Inspektion gibt es nicht.
 
-Danach erhält die Platine eine Schutzlackierung. Korrosion und Feuchte sind ein
-häufiger Grund für den Ausfall elektronischer Baugruppen, und eine
+Anschließend bekommt die Platine eine Schutzlackierung. Korrosion und Feuchte
+sind ein häufiger Grund für den Ausfall elektronischer Baugruppen, und eine
 Schutzbeschichtung bewahrt gefährdete Bereiche vor dem direkten Kontakt mit
 Umgebungsluft und Feuchte (vgl.
 \cite[S.~45, 47]{suppaAnforderungenSchutzlackierung2013}). Ob und wie eine
-Baugruppe beschichtet wird, ergibt sich aus ihrer Funktion und ihren
-Einsatzbedingungen. Infrage kommen unter anderem das Aufsprühen, die
-Tauchlackierung und eine partielle Beschichtung (vgl.
-\cite[S.~44]{suppaAnforderungenSchutzlackierung2013}); Flächen wie Prüfpunkte
-und Kontaktflächen müssen frei von Lack bleiben (vgl.
-\cite[S.~46]{suppaAnforderungenSchutzlackierung2013}). Bei ZOPF übernimmt diesen
-Schritt meist ein externer Dienstleister, zum Teil wird auch im Unternehmen
-selbst lackiert. Extern lackierte Platinen verlassen dafür das Unternehmen,
-weshalb auch ihr Weg dorthin und zurück rückverfolgbar sein muss
+Baugruppe beschichtet wird, hängt von ihrer Funktion und ihren
+Einsatzbedingungen ab. Infrage kommen unter anderem das Aufsprühen, die
+Tauchlackierung und eine nur partielle Beschichtung (vgl.
+\cite[S.~44]{suppaAnforderungenSchutzlackierung2013}), wobei Flächen wie
+Prüfpunkte und Kontaktflächen frei von Lack bleiben müssen (vgl.
+\cite[S.~46]{suppaAnforderungenSchutzlackierung2013}). Weil diesen Schritt
+meist der externe Dienstleister übernimmt, verlassen die Platinen dafür das
+Unternehmen, und auch ihr Weg dorthin und zurück muss rückverfolgbar sein
 (Abschnitt~\ref{sec:Lagerverwaltung}).
 
-Den Abschluss bildet die Endkontrolle. Die Platine wird erneut optisch geprüft,
-und es wird beurteilt, ob der Lack einwandfrei ist. Als Fehlerbilder einer
+Den Abschluss bildet die Endkontrolle. Die Platine wird noch einmal optisch
+geprüft, und diesmal wird auch der Lack begutachtet. Als Fehlerbilder einer
 Schutzbeschichtung nennt die Richtlinie IPC-A-610 unter anderem den Verlust der
-Haftung, Bläschen und Einschlüsse von Fremdkörpern (vgl.
-\cite[S.~45]{suppaAnforderungenSchutzlackierung2013}). Die Endkontrolle dient
-bei ZOPF als Vier-Augen-Prinzip und soll ausschließen, dass in den vorherigen
-Schritten etwas übersehen wurde. Nach der ISO 9001 setzt die Freigabe von
-Produkten eine solche Verifizierung voraus; aufzubewahren sind Aufzeichnungen
-darüber, ob die Annahmekriterien erfüllt sind und wer freigegeben hat (vgl.
-\cite[S.~103]{koubekDINISO90012018}). Nach der Endkontrolle wird die Platine
-eingelagert.
+Haftung, Bläschen und eingeschlossene Fremdkörper (vgl.
+\cite[S.~45]{suppaAnforderungenSchutzlackierung2013}). Bei ZOPF dient die
+Endkontrolle als Vier-Augen-Prinzip, das ausschließen soll, dass in den
+Schritten davor etwas übersehen wurde. Auch die ISO~9001 setzt für die Freigabe
+von Produkten eine solche Verifizierung voraus und verlangt, Aufzeichnungen
+darüber aufzubewahren, ob die Annahmekriterien erfüllt sind und wer
+freigegeben hat (vgl. \cite[S.~103]{koubekDINISO90012018}). Erst danach wird
+die Platine eingelagert.
 
-Nicht jede Platine durchläuft diese Kette fehlerfrei. Für fehlerhafte Ergebnisse
-sieht die ISO 9001 unter anderem die Korrektur, das Aussondern und das Sperren
-vor; Aufzeichnungen über den Fehler, die Maßnahmen und die Entscheidung sind
-aufzubewahren (vgl. \cite[S.~105]{koubekDINISO90012018}). Fehler werden etwa
-durch Nacharbeit oder Reparatur behoben (vgl.
+Nicht jede Platine kommt fehlerfrei durch diese Kette. Für fehlerhafte
+Ergebnisse sieht die ISO~9001 unter anderem die Korrektur, das Aussondern und
+das Sperren vor und verlangt, Aufzeichnungen über den Fehler, die Maßnahmen und
+die Entscheidung aufzubewahren (vgl. \cite[S.~105]{koubekDINISO90012018});
+behoben werden Fehler etwa durch Nacharbeit oder Reparatur (vgl.
 \cite[S.~106]{koubekDINISO90012018}). Bei ZOPF gibt es dafür neben der
 Hauptkette die Sonderschritte Reparatur und Gesperrt. Nach einer Reparatur kann
-eine Platine Arbeitsschritte erneut durchlaufen, sodass derselbe Schritt an einer
-Platine mehrfach vorkommt (Abschnitt~\ref{sec:Zustandsmodell}). Damit die
-Rückverfolgbarkeit erhalten bleibt, darf eine Wiederholung den früheren
-Nachweis nicht überschreiben. Wie eine Datenbank solche Anforderungen
-unterstützt, beschreibt der folgende Abschnitt.
+eine Platine Arbeitsschritte erneut durchlaufen, sodass derselbe Schritt an ihr
+mehrfach vorkommt (Abschnitt~\ref{sec:Zustandsmodell}). Für die Datenhaltung
+ist das eine harte Bedingung: Eine Wiederholung darf den früheren Nachweis nicht
+überschreiben, sonst ginge genau die Geschichte verloren, um die es bei der
+Rückverfolgbarkeit geht.
 
 \section{Relationale Datenbanken und Integritätssicherung}
 \label{sec:RelationaleDatenbanken}
-Würde jede Anwendung ihre Daten in eigenen Dateien ablegen, entstünde leicht
-Redundanz, also das mehrfache Vorhandensein derselben Information. Zudem müsste
-dann jede Änderung in allen Kopien nachgezogen werden, und es drohte
-Inkonsistenz, also die widersprüchliche Speicherung gleicher Informationen (vgl.
-\cite[S.~20]{kudrassDatenbankenGrundlagenUnd2015}). Eine Datenbank ist dahingegen
-eine logisch zusammenhängende Sammlung von Daten für einen festgelegten Zweck.
-Verwaltet wird sie von einem \emph{Datenbankmanagementsystem} (DBMS) -- einem
-Softwaresystem, mit dem Datenbanken definiert, erzeugt und bearbeitet werden.
-DBMS und Datenbanken bilden zusammen ein Datenbanksystem (vgl.
-\cite[S.~20\,f.]{kudrassDatenbankenGrundlagenUnd2015}). Zu den Aufgaben eines
-DBMS zählt Kudraß unter anderem (vgl.
-\cite[S.~23\,f.]{kudrassDatenbankenGrundlagenUnd2015}):
+Wo solche Aufzeichnungen dauerhaft liegen sollen, ist keine Nebensache. Würde
+jede Anwendung ihre Daten in eigenen Dateien ablegen, entstünde leicht
+\emph{Redundanz}, also das mehrfache Vorhandensein derselben Information. Jede
+Änderung müsste dann in allen Kopien nachgezogen werden, und es drohte
+\emph{Inkonsistenz}, die widersprüchliche Speicherung gleicher Informationen
+(vgl. \cite[S.~20]{kudrassDatenbankenGrundlagenUnd2015}). Die per E-Mail
+verteilten Excel-Listen aus Abschnitt~\ref{sec:Ausgangssituation} sind dafür
+ein gutes Beispiel. Eine Datenbank ist dagegen eine logisch zusammenhängende
+Sammlung von Daten für einen festgelegten Zweck. Verwaltet wird sie von einem
+\emph{Datenbankmanagementsystem} (DBMS), einem Softwaresystem, mit dem sich
+Datenbanken definieren, erzeugen und bearbeiten lassen, und beide zusammen
+bilden ein Datenbanksystem (vgl.
+\cite[S.~20\,f.]{kudrassDatenbankenGrundlagenUnd2015}).
 
-\begin{itemize}
-	\item die integrierte Datenhaltung, bei der jedes logische Datenelement nur an
-	einer Stelle gespeichert wird,
-	\item die Konsistenzkontrolle, auch Integritätssicherung genannt: Das DBMS
-	prüft während des Betriebs benutzerdefinierte Integritätsbedingungen, die einen
-	korrekten Zustand der Datenbank beschreiben,
-	\item die Datenzugriffskontrolle, die unberechtigte Zugriffe auf die Daten
-	verhindert,
-	\item Transaktionen und Mehrbenutzerfähigkeit, damit zusammengehörige
-	Änderungen als Ganzes ausgeführt werden und sich gleichzeitig arbeitende
-	Benutzer nicht gegenseitig beeinflussen,
-	\item die Datensicherung, die nach Hardware- oder Softwarefehlern wieder einen
-	korrekten Zustand herstellt.
-\end{itemize}
+Unter den Aufgaben, die Kudraß einem DBMS zuschreibt, sind für die
+Produktionsverwaltung vor allem fünf von Bedeutung (vgl.
+\cite[S.~23\,f.]{kudrassDatenbankenGrundlagenUnd2015}). Die integrierte
+Datenhaltung speichert jedes logische Datenelement nur an einer Stelle. Die
+Konsistenzkontrolle, auch Integritätssicherung genannt, prüft während des
+Betriebs benutzerdefinierte Integritätsbedingungen, die einen korrekten Zustand
+der Datenbank beschreiben. Die Datenzugriffskontrolle verhindert unberechtigte
+Zugriffe, Transaktionen und Mehrbenutzerfähigkeit sorgen dafür, dass
+zusammengehörige Änderungen als Ganzes ausgeführt werden und sich gleichzeitig
+arbeitende Benutzer nicht gegenseitig beeinflussen, und die Datensicherung
+stellt nach Hardware- oder Softwarefehlern wieder einen korrekten Zustand her.
+Integritätsbedingungen gehören dabei neben Datenstrukturen und Operationen zu
+jedem Datenmodell und legen fest, welche Zustände und Zustandsübergänge der
+Daten erlaubt sind (vgl. \cite[S.~21]{kudrassDatenbankenGrundlagenUnd2015}).
+Die meisten Datenbanksysteme in der Praxis beruhen auf dem relationalen
+Datenmodell (vgl. \cite[S.~22]{kudrassDatenbankenGrundlagenUnd2015}), so auch
+PostgreSQL, das die Produktionsverwaltung nutzt und das Kudraß als
+objektrelationales System einordnet (vgl.
+\cite[S.~26]{kudrassDatenbankenGrundlagenUnd2015}).
 
-\noindent Integritätsbedingungen gehören neben den Datenstrukturen und den
-Operationen zu jedem Datenmodell. Sie legen fest, welche Zustände und
-Zustandsübergänge der Daten erlaubt sind (vgl.
-\cite[S.~21]{kudrassDatenbankenGrundlagenUnd2015}). Die meisten in der Praxis
-eingesetzten Datenbanksysteme beruhen auf dem relationalen Datenmodell (vgl.
-\cite[S.~22]{kudrassDatenbankenGrundlagenUnd2015}), so auch das von der
-Produktionsverwaltung genutzte PostgreSQL, welches Kudraß als objektrelationales
-System einordnet (vgl. \cite[S.~26]{kudrassDatenbankenGrundlagenUnd2015}).
-
-Der Entwurf einer Datenbank verläuft in Phasen: Auf die Anforderungsanalyse
-folgen der konzeptionelle Entwurf, der logische Entwurf und die Datendefinition
-in der Sprache des DBMS (vgl. \cite[S.~44\,f.]{kudrassTaschenbuchInformationsmodellierung}).
-Im konzeptionellen Entwurf wird der abzubildende Ausschnitt der realen Welt
-unabhängig von einem bestimmten DBMS beschrieben, in der Regel mit dem
+Eine Datenbank entsteht in mehreren Phasen. Auf die Anforderungsanalyse folgen
+der konzeptionelle Entwurf, der logische Entwurf und schließlich die
+Datendefinition in der Sprache des DBMS (vgl.
+\cite[S.~44\,f.]{kudrassTaschenbuchInformationsmodellierung}). Der
+konzeptionelle Entwurf beschreibt den abzubildenden Ausschnitt der realen Welt
+noch unabhängig von einem bestimmten DBMS, in der Regel mit dem
 \emph{Entity-Relationship-Modell} (ERM) (vgl.
-\cite[S.~46]{kudrassTaschenbuchInformationsmodellierung}). Das ERM wurde 1976 von Chen
-vorgestellt und gilt als De-facto-Standard der Informationsmodellierung. Seine
-grafische Darstellung ist das ER-Diagramm (vgl.
-\cite[S.~49\,f.]{kudrassTaschenbuchInformationsmodellierung}). Ein \emph{Entity} ist ein
-abgrenzbarer Gegenstand, ein Begriff oder auch ein Ereignis. Gleichartige
-Entities fasst ein \emph{Entitytyp} zusammen, der im Diagramm als Rechteck
-erscheint. Gleichartige Beziehungen zwischen Entities beschreibt ein
-\emph{Beziehungstyp}, dargestellt als Raute. Entity- und Beziehungstypen werden
-durch Attribute charakterisiert, die als Ellipsen angehängt sind (vgl.
-\cite[S.~51--53]{kudrassTaschenbuchInformationsmodellierung}). Ein \emph{Schlüssel} ist
-eine minimale Menge von Attributen, die ein Entity eindeutig identifiziert. Der
-zur Identifizierung gewählte \emph{Primärschlüssel} wird unterstrichen (vgl.
-\cite[S.~58]{kudrassTaschenbuchInformationsmodellierung}). Die \emph{Kardinalität} eines
-Beziehungstyps gibt in der (1,\,M,\,N)-Notation an, mit wie vielen Entities des
-anderen Typs ein Entity höchstens in Beziehung steht. Daraus ergeben sich die
+\cite[S.~46]{kudrassTaschenbuchInformationsmodellierung}). Chen stellte es 1976
+vor, heute gilt es als De-facto-Standard der Informationsmodellierung, und
+seine grafische Form ist das ER-Diagramm (vgl.
+\cite[S.~49\,f.]{kudrassTaschenbuchInformationsmodellierung}). Ein
+\emph{Entity} ist ein abgrenzbarer Gegenstand, ein Begriff oder auch ein
+Ereignis. Gleichartige Entities bilden einen \emph{Entitytyp}, im Diagramm ein
+Rechteck, gleichartige Beziehungen zwischen ihnen einen \emph{Beziehungstyp},
+dargestellt als Raute, und beide werden durch Attribute beschrieben, die als
+Ellipsen angehängt sind (vgl.
+\cite[S.~51--53]{kudrassTaschenbuchInformationsmodellierung}). Ein
+\emph{Schlüssel} ist eine minimale Menge von Attributen, die ein Entity
+eindeutig identifiziert; der zur Identifizierung gewählte
+\emph{Primärschlüssel} wird unterstrichen (vgl.
+\cite[S.~58]{kudrassTaschenbuchInformationsmodellierung}). Mit wie vielen
+Entities des anderen Typs ein Entity höchstens in Beziehung steht, gibt die
+\emph{Kardinalität} an. In der (1,\,M,\,N)-Notation ergeben sich daraus die
 Beziehungstypen 1:1, 1:N und M:N (vgl.
 \cite[S.~54]{kudrassTaschenbuchInformationsmodellierung}).
 
 Abbildung~\ref{fig:ERBeispiel} zeigt einen vereinfachten Ausschnitt aus dem
 Datenmodell der Produktionsverwaltung. Eine Laufkarte umfasst viele Platinen,
-jede Platine gehört zu genau einer Laufkarte (1:N). Eine Platine durchläuft
-mehrere Produktionsschritte, und jeder Produktionsschritt wird an vielen Platinen
-ausgeführt (M:N). Diese Beziehung trägt eigene Attribute, das Datum und die
-Nummer des Versuchs, weil eine Platine nach einer Reparatur denselben Schritt
-erneut durchlaufen kann (Abschnitt~\ref{sec:Fertigungsprozess}). Das vollständige
-Datenmodell beschreibt Abschnitt~\ref{sec:Datenmodell}.
+jede Platine gehört aber zu genau einer Laufkarte (1:N). Zwischen Platine und
+Produktionsschritt besteht dagegen eine M:N-Beziehung, denn eine Platine
+durchläuft mehrere Schritte, und jeder Schritt wird an vielen Platinen
+ausgeführt. Diese Beziehung trägt eigene Attribute, das Datum und die Nummer
+des Versuchs, weil eine Platine nach einer Reparatur denselben Schritt erneut
+durchlaufen kann. Das vollständige Datenmodell folgt in
+Abschnitt~\ref{sec:Datenmodell}.
 
 \begin{figure}[htbp]
 	\centering
@@ -641,24 +629,24 @@ Datenmodell beschreibt Abschnitt~\ref{sec:Datenmodell}.
 	\label{fig:ERBeispiel}
 \end{figure}
 
-Im logischen Entwurf wird das konzeptuelle Schema in das Datenmodell des DBMS
-überführt (vgl. \cite[S.~47]{kudrassTaschenbuchInformationsmodellierung}). Das
-relationale Datenmodell geht auf Codd zurück, der seine Grundlagen 1970
-veröffentlichte; seine Vorzüge sind die Einfachheit und die strenge
-mathematische Fundierung (vgl. \cite[S.~67]{kudrassTaschenbuchRelationalesDatenmodell}).
-Die grundlegende Datenstruktur ist die \emph{Relation}, die wie eine Tabelle
-aussieht: Ihre Spalten heißen Attribute, ihre Zeilen Tupel, und jedes Attribut
-nimmt Werte aus einem festgelegten Wertebereich an. Formal ist eine Relation
-eine Teilmenge des kartesischen Produkts der Wertebereiche ihrer Attribute (vgl.
-\cite[S.~67\,f.]{kudrassTaschenbuchRelationalesDatenmodell}). Beziehungen zwischen
-Relationen werden ausschließlich über Werte ausgedrückt, indem Attributwerte
-einer anderen Relation als \emph{Fremdschlüssel} übernommen werden (vgl.
-\cite[S.~69]{kudrassTaschenbuchRelationalesDatenmodell}). Für die Abbildung eines
-ER-Diagramms gelten feste Regeln: Jeder Entitytyp wird zu einer Relation. Bei
-einem 1:N-Beziehungstyp erhält die Relation der N-Seite den Primärschlüssel der
-1-Seite als Fremdschlüssel; ein M:N-Beziehungstyp wird zu einer eigenen
-Relation, die die Primärschlüssel beider Seiten als Fremdschlüssel sowie die
-Attribute der Beziehung aufnimmt (vgl.
+Im logischen Entwurf wird dieses konzeptuelle Schema in das Datenmodell des DBMS
+überführt (vgl. \cite[S.~47]{kudrassTaschenbuchInformationsmodellierung}), hier
+also in das relationale Modell. Seine Grundlagen veröffentlichte Codd 1970, und
+seine Vorzüge liegen in der Einfachheit und der strengen mathematischen
+Fundierung (vgl. \cite[S.~67]{kudrassTaschenbuchRelationalesDatenmodell}). Die
+grundlegende Datenstruktur ist die \emph{Relation}. Sie sieht aus wie eine
+Tabelle, deren Spalten Attribute und deren Zeilen Tupel heißen, wobei jedes
+Attribut Werte aus einem festgelegten Wertebereich annimmt; formal ist sie eine
+Teilmenge des kartesischen Produkts dieser Wertebereiche (vgl.
+\cite[S.~67\,f.]{kudrassTaschenbuchRelationalesDatenmodell}). Beziehungen
+zwischen Relationen drückt das Modell ausschließlich über Werte aus, indem eine
+Relation Attributwerte einer anderen als \emph{Fremdschlüssel} übernimmt (vgl.
+\cite[S.~69]{kudrassTaschenbuchRelationalesDatenmodell}). Für die Abbildung
+eines ER-Diagramms gibt es feste Regeln. Jeder Entitytyp wird zu einer
+Relation. Bei einem 1:N-Beziehungstyp erhält die Relation der N-Seite den
+Primärschlüssel der 1-Seite als Fremdschlüssel, während ein M:N-Beziehungstyp
+eine eigene Relation bekommt, die die Primärschlüssel beider Seiten als
+Fremdschlüssel und die Attribute der Beziehung aufnimmt (vgl.
 \cite[S.~76--78]{kudrassTaschenbuchRelationalesDatenmodell}). Aus
 Abbildung~\ref{fig:ERBeispiel} entstehen so vier Relationen:
 
@@ -673,255 +661,256 @@ Abbildung~\ref{fig:ERBeispiel} entstehen so vier Relationen:
 
 \noindent Jedes Tupel der letzten Relation ist ein Produktionsnachweis im Sinne
 von Abschnitt~\ref{sec:Rueckverfolgbarkeit}. Die beiden Fremdschlüssel allein
-genügen hier nicht als Primärschlüssel, weil dieselbe Platine einen Schritt
-mehrfach durchlaufen kann; erst der Versuch macht jedes Tupel eindeutig.
+reichen hier als Primärschlüssel nicht aus, erst der Versuch macht jedes Tupel
+eindeutig.
 
 Ohne weitere Einschränkungen könnte eine Relation beliebige, auch unsinnige
-Wertekombinationen enthalten. Integritätsbedingungen schränken die zulässigen
-Werte deshalb ein (vgl. \cite[S.~70]{kudrassTaschenbuchRelationalesDatenmodell}). Zum
-relationalen Datenmodell gehören zwei davon. Die \emph{Entitätsintegrität}
+Wertekombinationen enthalten, weshalb Integritätsbedingungen die zulässigen
+Werte eingrenzen (vgl. \cite[S.~70]{kudrassTaschenbuchRelationalesDatenmodell}).
+Zwei davon gehören fest zum relationalen Modell. Die \emph{Entitätsintegrität}
 verlangt, dass die Werte des Primärschlüssels eindeutig sind und keinen Nullwert
-enthalten (vgl. \cite[S.~71]{kudrassTaschenbuchRelationalesDatenmodell}). Die
-\emph{referenzielle Integrität} verlangt, dass zu jedem Wert eines Fremdschlüssels
-ein gleicher Primärschlüsselwert in der referenzierten Relation existiert (vgl.
-\cite[S.~72]{kudrassTaschenbuchRelationalesDatenmodell}). Kritisch sind deshalb das
-Einfügen in die referenzierende Relation sowie das Löschen und das Ändern von
-Schlüsselwerten in der referenzierten Relation. Im Standardfall weist das DBMS
+enthalten (vgl. \cite[S.~71]{kudrassTaschenbuchRelationalesDatenmodell}), die
+\emph{referenzielle Integrität}, dass zu jedem Wert eines Fremdschlüssels ein
+gleicher Primärschlüsselwert in der referenzierten Relation existiert (vgl.
+\cite[S.~72]{kudrassTaschenbuchRelationalesDatenmodell}). Gefährdet wird sie
+durch das Einfügen in die referenzierende Relation sowie durch das Löschen oder
+Ändern von Schlüsselwerten in der referenzierten. Im Standardfall weist das DBMS
 solche Operationen zurück; alternativ kann es die Änderung kaskadierend
-weitergeben oder den Fremdschlüssel auf einen Null- oder Vorgabewert setzen (vgl.
-\cite[S.~73\,f.]{kudrassTaschenbuchRelationalesDatenmodell}). Im Beispiel lässt sich so
-kein Produktionsnachweis für eine nicht vorhandene Platine anlegen, und eine
-Platine, zu der Nachweise vorliegen, lässt sich nicht löschen.
+weitergeben oder den Fremdschlüssel auf einen Null- oder Vorgabewert setzen
+(vgl. \cite[S.~73\,f.]{kudrassTaschenbuchRelationalesDatenmodell}). Für das
+Beispiel heißt das, dass sich kein Produktionsnachweis für eine nicht vorhandene
+Platine anlegen und keine Platine löschen lässt, zu der Nachweise vorliegen.
 
-Die Standardsprache relationaler Datenbanksysteme ist SQL (vgl.
-\cite[S.~99]{kudrassTaschenbuchDatenbankspracheSQL}). In der Datendefinition wird das
-logische Schema einschließlich seiner Integritätsbedingungen in dieser Sprache
-beschrieben (vgl. \cite[S.~48]{kudrassTaschenbuchInformationsmodellierung}). SQL kennt
-dafür fünf Arten von Integritätsbedingungen (vgl.
-\cite[S.~128]{kudrassTaschenbuchDatenbankspracheSQL}): \texttt{NOT NULL} verbietet
-Nullwerte, \texttt{UNIQUE} verbietet doppelte Werte, \texttt{PRIMARY KEY}
+In der Datendefinition wird das logische Schema samt seiner
+Integritätsbedingungen in der Sprache des DBMS beschrieben (vgl.
+\cite[S.~48]{kudrassTaschenbuchInformationsmodellierung}), bei relationalen
+Systemen in der Standardsprache SQL (vgl.
+\cite[S.~99]{kudrassTaschenbuchDatenbankspracheSQL}). SQL kennt dafür fünf
+Arten von Integritätsbedingungen (vgl.
+\cite[S.~128]{kudrassTaschenbuchDatenbankspracheSQL}): \texttt{NOT NULL}
+verbietet Nullwerte, \texttt{UNIQUE} doppelte Werte, \texttt{PRIMARY KEY}
 verbindet beides und ist je Tabelle höchstens einmal erlaubt, \texttt{REFERENCES}
 legt einen Fremdschlüssel fest, und \texttt{CHECK} prüft ein beliebiges
-boolesches Prädikat, etwa dass eine Stückzahl größer als null ist. Für
-Fremdschlüssel lässt sich mit referenziellen Aktionen festlegen, wie das DBMS auf
-das Löschen oder Ändern einer referenzierten Zeile reagiert. Voreingestellt ist
-\texttt{NO ACTION}, also das Zurückweisen der Anweisung (vgl.
-\cite[S.~129]{kudrassTaschenbuchDatenbankspracheSQL}). Weil das DBMS diese Bedingungen
-bei jeder Änderung selbst prüft, gelten sie unabhängig davon, ob die Daten über
-die Oberfläche der Anwendung, eine Schnittstelle oder ein Importskript
-geschrieben werden.
+boolesches Prädikat, etwa dass eine Stückzahl größer als null ist. Wie das DBMS
+auf das Löschen oder Ändern einer referenzierten Zeile reagiert, bestimmen
+referenzielle Aktionen; voreingestellt ist \texttt{NO ACTION}, also das
+Zurückweisen der Anweisung (vgl.
+\cite[S.~129]{kudrassTaschenbuchDatenbankspracheSQL}). Der eigentliche Wert
+dieser Bedingungen liegt darin, dass das DBMS sie bei jeder Änderung selbst
+prüft. Sie gelten damit unabhängig davon, ob die Daten über die Oberfläche, eine
+Schnittstelle oder ein Importskript in die Datenbank gelangen.
 
-Für Regeln, die Daten aus mehreren Tabellen einbeziehen, bietet SQL
-\emph{Trigger}. Ein Trigger reagiert automatisch auf ein festgelegtes Ereignis in
-der Datenbank, indem er benutzerdefinierte Anweisungen ausführt. Damit lässt sich
-Anwendungsfunktionalität zentral in der Datenbank verwalten, was die
-Wartbarkeit des gesamten Systems erhöht (vgl.
-\cite[S.~100]{kudrassTaschenbuchDatenbankspracheSQL}). Ausgelöst wird ein Trigger durch
-eine \texttt{INSERT}-, \texttt{UPDATE}- oder \texttt{DELETE}-Anweisung auf einer
-Tabelle. Er wird vor (\texttt{BEFORE}), nach (\texttt{AFTER}) oder anstelle
-(\texttt{INSTEAD OF}) dieser Anweisung ausgeführt, entweder einmal je Anweisung
-oder für jede betroffene Zeile, und kann über die Variablen \texttt{OLD} und
-\texttt{NEW} auf den Zustand einer Zeile vor und nach der Änderung zugreifen
-(vgl. \cite[S.~137]{kudrassTaschenbuchDatenbankspracheSQL}). Ein Trigger, der vor der
-Änderung ausgeführt wird, kann diese prüfen und gegebenenfalls abweisen. Die
-Produktionsverwaltung stellt auf diese Weise unter anderem sicher, dass die
+Manche Regeln beziehen Daten aus mehreren Tabellen ein und lassen sich so nicht
+ausdrücken. Für sie bietet SQL \emph{Trigger}. Ein Trigger reagiert automatisch
+auf ein festgelegtes Ereignis in der Datenbank, indem er benutzerdefinierte
+Anweisungen ausführt. Auf diese Weise lässt sich Anwendungsfunktionalität
+zentral in der Datenbank verwalten, was die Wartbarkeit des gesamten Systems
+erhöht (vgl. \cite[S.~100]{kudrassTaschenbuchDatenbankspracheSQL}). Ausgelöst
+wird ein Trigger durch eine \texttt{INSERT}-, \texttt{UPDATE}- oder
+\texttt{DELETE}-Anweisung auf einer Tabelle. Er läuft vor (\texttt{BEFORE}),
+nach (\texttt{AFTER}) oder anstelle (\texttt{INSTEAD OF}) dieser Anweisung,
+entweder einmal je Anweisung oder für jede betroffene Zeile, und kennt über die
+Variablen \texttt{OLD} und \texttt{NEW} den Zustand einer Zeile vor und nach der
+Änderung (vgl. \cite[S.~137]{kudrassTaschenbuchDatenbankspracheSQL}). Ein
+Trigger, der vor der Änderung läuft, kann sie also prüfen und notfalls abweisen.
+Genau so stellt die Produktionsverwaltung unter anderem sicher, dass die
 Seriennummer einer Platine im Bereich ihrer Laufkarte liegt
 (Abschnitt~\ref{sec:Geschaeftsregeln}).
 
 Viele fachliche Vorgänge ändern mehrere Zeilen oder Tabellen zugleich. Solche
-Änderungen, die logisch eine Einheit bilden, fasst ein DBMS zu
-\emph{Transaktionen} zusammen. Eine Transaktion wird als Ganzes ausgeführt
-(Atomarität), ihre Wirkung bleibt bei Erfolg dauerhaft gespeichert
-(Dauerhaftigkeit), und gleichzeitig laufende Transaktionen werden so
-synchronisiert, dass jedem Benutzer die Daten erscheinen, als arbeite er allein
-(Isolation) (vgl. \cite[S.~24]{kudrassDatenbankenGrundlagenUnd2015}). In SQL endet
-eine Transaktion mit \texttt{COMMIT}, das alle Änderungen übernimmt, oder mit
-\texttt{ROLLBACK}, das sie zurücksetzt; sie wird also entweder vollständig
-ausgeführt oder hinterlässt keinerlei Wirkung (vgl.
-\cite[S.~138\,f.]{kudrassTaschenbuchDatenbankspracheSQL}). Welche gegenseitigen
-Beeinflussungen nebenläufiger Transaktionen ausgeschlossen sind, etwa das Lesen
-von Daten einer noch nicht abgeschlossenen Transaktion, legen vier
-Isolationsebenen fest (vgl. \cite[S.~140]{kudrassTaschenbuchDatenbankspracheSQL}). In der
-Produktionsverwaltung müssen beispielsweise bei einer Korrektur der neue
-Nachweis, die Kennzeichnung des alten und der Eintrag im Änderungsprotokoll
-gemeinsam gespeichert werden; bricht der Vorgang ab, darf keine dieser
-Änderungen bestehen bleiben.
+Änderungen, die logisch zusammengehören, fasst ein DBMS zu \emph{Transaktionen}
+zusammen. Eine Transaktion wird als Ganzes ausgeführt (Atomarität), ihre
+Wirkung bleibt bei Erfolg dauerhaft erhalten (Dauerhaftigkeit), und
+gleichzeitig laufende Transaktionen werden so synchronisiert, dass jedem
+Benutzer die Daten erscheinen, als arbeite er allein (Isolation) (vgl.
+\cite[S.~24]{kudrassDatenbankenGrundlagenUnd2015}). In SQL endet eine
+Transaktion mit \texttt{COMMIT}, das alle Änderungen übernimmt, oder mit
+\texttt{ROLLBACK}, das sie zurücknimmt; sie wirkt also entweder vollständig oder
+gar nicht (vgl. \cite[S.~138\,f.]{kudrassTaschenbuchDatenbankspracheSQL}).
+Welche gegenseitigen Beeinflussungen nebenläufiger Transaktionen ausgeschlossen
+sind, etwa das Lesen von Daten einer noch nicht abgeschlossenen Transaktion,
+regeln vier Isolationsebenen (vgl.
+\cite[S.~140]{kudrassTaschenbuchDatenbankspracheSQL}).
 
-Die Zugriffskontrolle erfolgt in SQL über Zugriffsrechte, die mit \texttt{GRANT}
-vergeben und mit \texttt{REVOKE} entzogen und über Rollen gebündelt werden
-können (vgl. \cite[S.~141--143]{kudrassTaschenbuchDatenbankspracheSQL}). Diese Rechte
-gelten für die Benutzer der Datenbank. Die Produktionsverwaltung greift jedoch
-mit einer einzigen Datenbankkennung zu, sodass sie die Rechte ihrer eigenen
-Benutzer selbst prüfen muss (Abschnitt~\ref{sec:Berechtigungskonzept}).
+Zugriffsrechte vergibt SQL mit \texttt{GRANT} und entzieht sie mit
+\texttt{REVOKE}, und über Rollen lassen sie sich bündeln (vgl.
+\cite[S.~141--143]{kudrassTaschenbuchDatenbankspracheSQL}). Diese Rechte gelten
+allerdings für die Benutzer der Datenbank, während die Produktionsverwaltung mit
+einer einzigen Datenbankkennung zugreift. Die Rechte ihrer eigenen Benutzer muss
+sie daher selbst prüfen (Abschnitt~\ref{sec:Berechtigungskonzept}).
 
-Eine Datenbank hält zunächst nur ihren aktuellen Zustand fest; mit jeder
+Eine Datenbank hält zunächst nur ihren aktuellen Zustand fest. Mit jeder
 Veränderung entsteht ein neuer Datenbankzustand (vgl.
 \cite[S.~27\,f.]{kudrassDatenbankenGrundlagenUnd2015}), und ein überschriebener
-Wert ist verloren. Sollen neben aktuellen auch historische Daten vorgehalten
-werden, spricht man von \emph{temporalen Daten}, deren Änderungshistorie
-gespeichert wird. Ihre zeitliche Bindung wird durch Zeitstempel ausgedrückt:
-Die \emph{Gültigkeitszeit} gibt an, wann ein Sachverhalt in der realen Welt
-zutrifft, die \emph{Transaktionszeit}, wann er in der Datenbank gespeichert wurde.
-Werden beide berücksichtigt, heißt die Zeitstempelung bitemporal (vgl.
-\cite[S.~65]{kudrassTaschenbuchInformationsmodellierung}). Im ERM lässt sich das über
-ein Zeitattribut ausdrücken, das den bestehenden Schlüssel erweitert, oder über
-einen eigenen Entitytyp für die Zeit. Sauer zeigt am Beispiel eines Auftrags,
-dessen Status wechselt, dass die Historie solcher Änderungen zu einer
-M:N-Beziehung führt (vgl. \cite[S.~65\,f.]{kudrassTaschenbuchInformationsmodellierung}).
-Dieselbe Struktur hat die Beziehung zwischen Platine und Produktionsschritt in
-Abbildung~\ref{fig:ERBeispiel}: Mit dem Versuch im Schlüssel bleibt jede
-Wiederholung eines Schritts als eigenes Tupel erhalten, und das Datum hält die
-Gültigkeitszeit fest. Seit SQL:2011 sieht auch der SQL-Standard eigene
-Sprachmittel für temporale Daten vor (vgl.
+Wert ist verloren. Sollen neben den aktuellen auch historische Daten erhalten
+bleiben, spricht man von \emph{temporalen Daten}, deren Änderungshistorie
+gespeichert wird. Ihre zeitliche Bindung drücken Zeitstempel aus: Die
+\emph{Gültigkeitszeit} gibt an, wann ein Sachverhalt in der realen Welt
+zutrifft, die \emph{Transaktionszeit}, wann er in der Datenbank gespeichert
+wurde, und werden beide berücksichtigt, heißt die Zeitstempelung bitemporal
+(vgl. \cite[S.~65]{kudrassTaschenbuchInformationsmodellierung}). Im ERM lässt
+sich das über ein Zeitattribut abbilden, das den bestehenden Schlüssel
+erweitert, oder über einen eigenen Entitytyp für die Zeit. Sauer zeigt am
+Beispiel eines Auftrags mit wechselndem Status, dass die Historie solcher
+Änderungen auf eine M:N-Beziehung hinausläuft (vgl.
+\cite[S.~65\,f.]{kudrassTaschenbuchInformationsmodellierung}). Dieselbe Struktur
+hat die Beziehung zwischen Platine und Produktionsschritt in
+Abbildung~\ref{fig:ERBeispiel}: Weil der Versuch zum Schlüssel gehört, bleibt
+jede Wiederholung eines Schritts als eigenes Tupel erhalten, und das Datum hält
+die Gültigkeitszeit fest. Seit SQL:2011 kennt auch der SQL-Standard eigene
+Sprachmittel für temporale Daten (vgl.
 \cite[S.~102]{kudrassTaschenbuchDatenbankspracheSQL}).
 
-Für Nachweise im Sinne der DIN EN ISO 9001 genügt es nicht, Wiederholungen
-festzuhalten. Auch eine Korrektur darf den ursprünglichen Eintrag nicht spurlos
-überschreiben, weil die Norm den Schutz vor unbeabsichtigten Änderungen und deren
-Überwachung verlangt (Abschnitt~\ref{sec:Rueckverfolgbarkeit}). Die
-Produktionsverwaltung verbindet dafür die Mittel dieses Abschnitts: Der
-bisherige Eintrag bleibt erhalten und wird nur als nicht mehr aktuell
-gekennzeichnet, die korrigierte Fassung wird als neues Tupel angelegt, und ein
-Änderungsprotokoll, das nur ergänzt wird, verknüpft beide.
-Alle drei Schritte laufen in einer Transaktion ab. Die Umsetzung beschreibt
+Für Nachweise im Sinne der DIN EN ISO 9001 reicht es allerdings nicht,
+Wiederholungen festzuhalten. Auch eine Korrektur darf den ursprünglichen
+Eintrag nicht spurlos überschreiben, weil die Norm verlangt, Nachweise vor
+unbeabsichtigten Änderungen zu schützen und Änderungen zu überwachen
+(Abschnitt~\ref{sec:Rueckverfolgbarkeit}). Die Produktionsverwaltung kombiniert
+dafür mehrere Mittel dieses Abschnitts. Der bisherige Eintrag bleibt erhalten
+und wird nur als nicht mehr aktuell gekennzeichnet, die korrigierte Fassung
+kommt als neues Tupel hinzu, und ein Änderungsprotokoll, das nur ergänzt wird,
+verknüpft beide. Weil alle drei Schritte in einer Transaktion ablaufen, bleibt
+bei einem Abbruch keiner von ihnen bestehen. Die Umsetzung beschreibt
 Abschnitt~\ref{sec:RueckverfolgbarkeitUmsetzung}.
 
 \section{Webanwendungen mit SvelteKit}
 \label{sec:SvelteKit}
-Die Produktionsverwaltung ist eine Webanwendung: Die Mitarbeiter bedienen sie
-über einen Webbrowser, während Programmlogik und Daten zentral auf einem Server
-im Firmennetz liegen. Dieser Abschnitt erläutert die dafür nötigen Grundlagen
-des Web und das eingesetzte Framework SvelteKit.
+Die Mitarbeiter bedienen die Produktionsverwaltung über einen Webbrowser,
+während Programmlogik und Daten zentral auf einem Server im Firmennetz liegen.
+Sie ist also eine Webanwendung, und wie eine solche Anwendung arbeitet, hängt
+zunächst an den Grundlagen des Web.
 
-Browser und Webserver kommunizieren über das \emph{Hypertext Transfer Protocol}
-(HTTP), das auf TCP/IP aufsetzt. Der Client sendet eine Anfrage, der Server
-antwortet mit einem Antwortcode und gegebenenfalls einer Webseite in HTML, die
-der Browser anzeigt. Parameter werden bei der Methode GET an die URL angehängt,
-bei POST im Rumpf der Nachricht übertragen (vgl.
-\cite[S.~198]{kudrassTaschenbuchDatenbankenImWeb}). Eine HTTP-Verbindung ist
-zustandslos, jede Anfrage steht also für sich. Sollen mehrere Anfragen eines
-Benutzers zusammengehören, etwa nach einer Anmeldung, muss die Anwendung eine
-\emph{Session} verwalten. Meist geschieht das über ein Cookie, das der Server
-vergibt und der Browser bei folgenden Anfragen mitsendet (vgl.
-\cite[S.~199\,f.]{kudrassTaschenbuchDatenbankenImWeb}). Wie die Produktionsverwaltung
-Anmeldungen behandelt, beschreibt Abschnitt~\ref{sec:Berechtigungskonzept}.
+Browser und Webserver verständigen sich über das \emph{Hypertext Transfer
+Protocol} (HTTP), das auf TCP/IP aufsetzt. Der Client sendet eine Anfrage, und
+der Server antwortet mit einem Antwortcode und gegebenenfalls einer Webseite in
+HTML, die der Browser anzeigt. Parameter hängt die Methode GET an die URL an,
+während POST sie im Rumpf der Nachricht überträgt (vgl.
+\cite[S.~198]{kudrassTaschenbuchDatenbankenImWeb}). Weil HTTP zustandslos ist,
+steht jede Anfrage für sich. Sollen mehrere Anfragen eines Benutzers
+zusammengehören, etwa nach einer Anmeldung, muss die Anwendung eine
+\emph{Session} verwalten, meist über ein Cookie, das der Server vergibt und der
+Browser bei jeder weiteren Anfrage mitschickt (vgl.
+\cite[S.~199\,f.]{kudrassTaschenbuchDatenbankenImWeb}). Wie die
+Produktionsverwaltung mit Anmeldungen umgeht, beschreibt
+Abschnitt~\ref{sec:Berechtigungskonzept}.
 
-Eine Webseite heißt \emph{dynamisch}, wenn sie erst zum Zeitpunkt der Anfrage
-erzeugt wird (vgl. \cite[S.~195]{kudrassTaschenbuchDatenbankenImWeb}). Nur so kann sie
-den aktuellen Stand einer Datenbank zeigen. Rakow unterscheidet zwei Arten der
-Datenbankanbindung. Bei der clientseitigen verbindet sich ein Programm im
-Browser selbst mit der Datenbank. Das setzt einen Datenbankclient auf jedem
-Rechner und einen durch Firewalls hindurch erreichbaren Datenbankserver voraus.
-Bei der serverseitigen greift ein Programm auf dem Webserver auf die Datenbank
-zu und liefert das Ergebnis als Webseite aus (vgl.
-\cite[S.~206\,f., 212]{kudrassTaschenbuchDatenbankenImWeb}). Die Aufgaben verteilen sich
-dabei auf drei Schichten: Präsentation, Anwendungslogik und Datenhaltung.
-Zugriffe erfolgen nur innerhalb einer Schicht oder auf eine darunterliegende
-(vgl. \cite[S.~201]{kudrassTaschenbuchDatenbankenImWeb}). Liegt die Anwendungslogik auf
-einem eigenen Server, wird sie zentral gewartet, und die Clients werden
-entlastet (vgl. \cite[S.~150]{kudrassTaschenbuchDatenbankenAnwendungsPro}).
-In der Produktionsverwaltung übernimmt der Browser die Präsentation, ein
+Um den aktuellen Stand einer Datenbank zu zeigen, muss eine Webseite
+\emph{dynamisch} sein, also erst im Moment der Anfrage entstehen (vgl.
+\cite[S.~195]{kudrassTaschenbuchDatenbankenImWeb}). Wo dabei der Zugriff auf die
+Datenbank stattfindet, ist die eigentliche Entwurfsfrage. Rakow unterscheidet
+eine clientseitige Anbindung, bei der ein Programm im Browser selbst mit der
+Datenbank spricht, von einer serverseitigen, bei der ein Programm auf dem
+Webserver die Abfrage übernimmt und das Ergebnis als Webseite ausliefert. Die
+clientseitige Variante setzt einen Datenbankclient auf jedem Rechner und einen
+durch Firewalls hindurch erreichbaren Datenbankserver voraus (vgl.
+\cite[S.~206\,f., 212]{kudrassTaschenbuchDatenbankenImWeb}), für eine Fertigung
+mit vielen Arbeitsplätzen keine verlockende Aussicht. Bei der serverseitigen
+verteilen sich die Aufgaben dagegen auf drei Schichten, Präsentation,
+Anwendungslogik und Datenhaltung, wobei jede Schicht nur auf sich selbst oder
+auf die darunterliegende zugreift (vgl.
+\cite[S.~201]{kudrassTaschenbuchDatenbankenImWeb}). Weil die Anwendungslogik
+dann auf einem eigenen Server liegt, lässt sie sich zentral warten, und die
+Clients werden entlastet (vgl.
+\cite[S.~150]{kudrassTaschenbuchDatenbankenAnwendungsPro}). Genau so ist die
+Produktionsverwaltung aufgebaut: Der Browser übernimmt die Präsentation, ein
 SvelteKit-Server die Anwendungslogik und PostgreSQL die Datenhaltung
-(Abschnitt~\ref{sec:Systemarchitektur}). Auf den Rechnern in der Fertigung
-genügt deshalb ein Browser.
+(Abschnitt~\ref{sec:Systemarchitektur}). An den Rechnern in der Fertigung
+genügt deshalb ein gewöhnlicher Browser.
 
 Die Trennung hat auch Folgen für die Sicherheit. Prüfungen im Browser ersparen
-dem Benutzer bei Fehleingaben die Wartezeit auf den Server. Sie lassen sich aber
-umgehen, weil der Benutzer die Seite verändern oder Skripte abschalten kann. Der
-Server darf sich deshalb nicht auf sie verlassen, und Prüfungen gegen den
+dem Benutzer bei Fehleingaben zwar die Wartezeit auf den Server, lassen sich
+aber umgehen, weil der Benutzer die Seite verändern oder Skripte abschalten
+kann. Verlassen darf sich der Server auf sie also nicht, und Prüfungen gegen den
 Datenbestand sind ohnehin nur dort möglich (vgl.
 \cite[S.~203]{kudrassTaschenbuchDatenbankenImWeb}). Eine typische Gefahr ist die
-\emph{SQL-Injection}: Eingaben enthalten SQL-Code und verändern so die
-Anweisung, in die sie eingesetzt werden (vgl.
+\emph{SQL-Injection}, bei der Eingaben SQL-Code enthalten und so die Anweisung
+verändern, in die sie eingesetzt werden (vgl.
 \cite[S.~146\,f.]{kudrassTaschenbuchDatenbankenAnwendungsPro};
-\cite[S.~204]{kudrassTaschenbuchDatenbankenImWeb}). Wirksamen Schutz bieten
-\emph{Prepared Statements}. Sie enthalten Platzhalter statt Werten, und die
+\cite[S.~204]{kudrassTaschenbuchDatenbankenImWeb}). Wirksam schützen
+\emph{Prepared Statements}: Sie enthalten Platzhalter statt Werten, und die
 später übergebenen Werte können die Struktur der Anweisung nicht mehr verändern
 (vgl. \cite[S.~147]{kudrassTaschenbuchDatenbankenAnwendungsPro}). Die
 Produktionsverwaltung greift über die Node.js-Bibliothek Postgres.js auf die
-Datenbank zu. Deren Abfragen werden als Template-Literale geschrieben, und
-eingesetzte Werte überträgt die Bibliothek getrennt als Parameter an die
-Datenbank. Laut Dokumentation ist SQL-Injection damit ausgeschlossen (vgl.
-\cite[Abschnitt \enquote{Queries}]{PorsagerPostgresPostgresjs}). Die Bibliothek hält außerdem mehrere Datenbankverbindungen
-in einem Pool bereit, standardmäßig höchstens zehn. Ein solches
-\emph{Connection Pooling} spart das wiederholte Öffnen und Schließen von
-Verbindungen (vgl. \cite[S.~162\,f.]{kudrassTaschenbuchDatenbankenAnwendungsPro}).
-Mit \texttt{sql.begin} stellt Postgres.js die Transaktionen aus
-Abschnitt~\ref{sec:RelationaleDatenbanken} bereit: Schlägt eine Anweisung fehl,
+Datenbank zu, deren Abfragen als Template-Literale geschrieben werden.
+Eingesetzte Werte überträgt die Bibliothek getrennt als Parameter, und laut
+Dokumentation ist SQL-Injection damit ausgeschlossen (vgl.
+\cite[Abschnitt \enquote{Queries}]{PorsagerPostgresPostgresjs}). Außerdem hält
+sie mehrere Datenbankverbindungen in einem Pool bereit, standardmäßig höchstens
+zehn. Ein solches \emph{Connection Pooling} erspart das wiederholte Öffnen und
+Schließen von Verbindungen (vgl.
+\cite[S.~162\,f.]{kudrassTaschenbuchDatenbankenAnwendungsPro}). Die
+Transaktionen aus Abschnitt~\ref{sec:RelationaleDatenbanken} stellt
+Postgres.js mit \texttt{sql.begin} bereit; schlägt darin eine Anweisung fehl,
 wird die gesamte Transaktion zurückgesetzt (vgl.
 \cite[Abschnitt \enquote{Transactions}]{PorsagerPostgresPostgresjs}).
 
-Für die Struktur des Programmcodes beschreibt Goll zwei Architekturmuster. Bei
-\emph{Model~1} ruft der Browser jede Seite direkt auf, und jede Seite liest
-selbst die Anfrage aus, ruft die Geschäftslogik auf und erzeugt ihre Ausgabe.
-Mit wachsender Anwendung werden solche Seiten unübersichtlich und schwer
-wartbar. Bei \emph{Model~2}, auch \emph{Model-View-Controller} (MVC) genannt,
-nimmt eine zentrale Stelle, der Controller, alle Anfragen entgegen, erzeugt das
-Model mit den benötigten Daten und überlässt die Ausgabe der View (vgl.
-\cite[S.~10--13]{gollJavaServerFacesJSF2020}). Einen solchen allgemeinen
+Wie der Programmcode einer solchen Anwendung aufgebaut sein kann, zeigt Goll an
+zwei Architekturmustern. Bei \emph{Model~1} ruft der Browser jede Seite direkt
+auf, und jede Seite liest selbst die Anfrage aus, ruft die Geschäftslogik auf
+und erzeugt ihre Ausgabe, was mit wachsender Anwendung schnell unübersichtlich
+und schwer wartbar wird. Bei \emph{Model~2}, auch \emph{Model-View-Controller}
+(MVC) genannt, nimmt dagegen eine zentrale Stelle, der Controller, alle Anfragen
+entgegen, erzeugt das Model mit den benötigten Daten und überlässt die Ausgabe
+der View (vgl. \cite[S.~10--13]{gollJavaServerFacesJSF2020}). Einen solchen
 Controller müssen Entwickler nicht selbst schreiben, Webframeworks bringen ihn
 mit (vgl. \cite[S.~14]{gollJavaServerFacesJSF2020}).
 
 Ein solches Framework ist \emph{SvelteKit}, mit dem die Produktionsverwaltung
 entwickelt wurde (Version~2, mit Svelte~5). Es baut auf \emph{Svelte} auf, einer
-Sprache für Komponenten der Benutzeroberfläche. Der Svelte-Compiler übersetzt
-diese Komponenten in JavaScript, das den HTML-Code der Seite erzeugt. SvelteKit
-ergänzt unter anderem eine Navigation zwischen Seiten (Router) und das Erzeugen
-von Seiten auf dem Server (vgl. \cite[Abschnitt \enquote{Introduction}]{IntroductionSvelteKitDocsa}). Der Router ist
-dateibasiert: Die Verzeichnisse im Quellcode legen die URL-Pfade der Anwendung
-fest. Jedes Verzeichnis enthält Routendateien, die am vorangestellten
-\enquote{+} erkennbar sind (vgl. \cite[Abschnitt \enquote{Routing}]{IntroductionSvelteKitDocsa}):
+Sprache für Komponenten der Benutzeroberfläche, deren Compiler die Komponenten
+in JavaScript übersetzt, das den HTML-Code der Seite erzeugt. SvelteKit ergänzt
+unter anderem die Navigation zwischen Seiten (Router) und das Erzeugen von
+Seiten auf dem Server (vgl. \cite[Abschnitt
+\enquote{Introduction}]{IntroductionSvelteKitDocsa}). Der Router ist
+dateibasiert: Die Verzeichnisse im Quellcode legen die URL-Pfade fest, und in
+jedem Verzeichnis liegen Routendateien, die am vorangestellten \enquote{+} zu
+erkennen sind. Die Datei \texttt{+page.svelte} ist die Komponente, die eine
+Seite darstellt. Daneben läuft \texttt{+page.server.ts} nur auf dem Server und
+enthält Load-Funktionen zum Laden und Form-Actions zum Schreiben von Daten.
+Eine Datei \texttt{+server.ts} schließlich definiert einen Endpunkt ohne Seite,
+der für jede HTTP-Methode eine eigene Funktion anbietet und die Antwort
+vollständig selbst bestimmt (vgl. \cite[Abschnitt
+\enquote{Routing}]{IntroductionSvelteKitDocsa}). Übertragen auf Model~2
+übernimmt der Router die Rolle des Controllers, die Load-Funktion liefert das
+Model, und \texttt{+page.svelte} ist die View.
 
-\begin{itemize}
-	\item \texttt{+page.svelte} ist die Komponente, die eine Seite darstellt,
-	\item \texttt{+page.server.ts} läuft nur auf dem Server und enthält
-	Load-Funktionen zum Laden sowie Form-Actions zum Schreiben von Daten,
-	\item \texttt{+server.ts} definiert einen Endpunkt ohne Seite, der für jede
-	HTTP-Methode eine eigene Funktion anbietet und die Antwort vollständig selbst
-	bestimmt.
-\end{itemize}
-
-\noindent Übertragen auf Model~2 übernimmt der Router die Rolle des
-Controllers, die Load-Funktion liefert das Model und \texttt{+page.svelte} ist
-die View.
-
-SvelteKit kombiniert zwei Arten, eine Seite zu erzeugen. Beim
+Für das Erzeugen einer Seite kombiniert SvelteKit zwei Verfahren. Beim
 \emph{Server-Side Rendering} (SSR) entsteht der Seiteninhalt auf dem Server,
 beim \emph{Client-Side Rendering} (CSR) im Browser mit JavaScript.
-Standardmäßig liefert SvelteKit die erste Seite per SSR als fertiges HTML aus.
-Anschließend prüft Svelte im Browser, ob die Seite dem erwarteten Zustand
-entspricht, und verbindet sie mit den Ereignisbehandlungen. Dieser Vorgang heißt
-\emph{Hydration}. Weitere Seitenwechsel erledigt SvelteKit per CSR, ohne die
-Seite vollständig neu zu laden (vgl. \cite[Abschnitt \enquote{Glossary}]{IntroductionSvelteKitDocsa}).
+Standardmäßig kommt die erste Seite per SSR als fertiges HTML im Browser an.
+Dort prüft Svelte, ob sie dem erwarteten Zustand entspricht, und verbindet sie
+mit den Ereignisbehandlungen, ein Vorgang, der \emph{Hydration} heißt. Alle
+weiteren Seitenwechsel erledigt SvelteKit per CSR, ohne die Seite vollständig
+neu zu laden (vgl. \cite[Abschnitt \enquote{Glossary}]{IntroductionSvelteKitDocsa}).
 
-\emph{Load-Funktionen} stellen die Daten bereit, die eine Seite vor dem
-Darstellen braucht. Eine Load-Funktion in \texttt{+page.server.ts} läuft immer
-auf dem Server. Sie ist deshalb der vorgesehene Ort für Datenbankzugriffe und
-für vertrauliche Konfigurationswerte wie Zugangsdaten. Ihr Rückgabewert steht
-der Seite als Eigenschaft \texttt{data} zur Verfügung (vgl.
-\cite[Abschnitt \enquote{Loading data}]{IntroductionSvelteKitDocsa}). Die Erfassungsseite der Produktionsverwaltung lädt so
-zum Beispiel die Platinen- und Modultypen für ihre Auswahllisten.
+Die Daten, die eine Seite vor dem Darstellen braucht, stellen
+\emph{Load-Funktionen} bereit. Eine Load-Funktion in \texttt{+page.server.ts}
+läuft immer auf dem Server und ist deshalb der vorgesehene Ort für
+Datenbankzugriffe und für vertrauliche Konfigurationswerte wie Zugangsdaten.
+Ihr Rückgabewert steht der Seite als Eigenschaft \texttt{data} zur Verfügung
+(vgl. \cite[Abschnitt \enquote{Loading data}]{IntroductionSvelteKitDocsa}). Die
+Erfassungsseite lädt auf diesem Weg zum Beispiel die Platinen- und Modultypen
+für ihre Auswahllisten.
 
-\emph{Form-Actions} sind das Gegenstück zum Schreiben. Sie werden in
+Das Gegenstück zum Schreiben sind \emph{Form-Actions}, die ebenfalls in
 \texttt{+page.server.ts} definiert und über ein HTML-Formular per POST
-aufgerufen. GET scheidet aus, weil eine GET-Anfrage keine Nebenwirkungen haben
-soll. Clientseitiges JavaScript ist dafür nicht nötig: Das Formular
+aufgerufen werden; GET scheidet aus, weil eine GET-Anfrage keine Nebenwirkungen haben
+soll. Clientseitiges JavaScript braucht es dafür nicht. Das Formular
 funktioniert auch ohne, und JavaScript kann es schrittweise verbessern
-(\emph{Progressive Enhancement}). Mit der Funktion \texttt{fail} gibt eine
-Action bei ungültigen Eingaben einen HTTP-Statuscode wie 400 und eine
-Fehlermeldung an die Seite zurück. Nach jeder Action laufen die Load-Funktionen
-der Seite erneut, und der Rückgabewert der Action steht der Seite als
-\texttt{form} zur Verfügung. Ergänzt das Formular die Anweisung
-\texttt{use:enhance}, ahmt SvelteKit das Verhalten des Browsers nach, aber ohne
-die Seite vollständig neu zu laden (vgl. \cite[Abschnitt \enquote{Form actions}]{IntroductionSvelteKitDocsa}). Mit
-einer solchen Action speichert die Erfassungsseite neue Produktionsnachweise.
-Fehlen Pflichtangaben wie Arbeitsschritt oder Datum, antwortet sie mit
-\texttt{fail} und dem Status~400.
+(\emph{Progressive Enhancement}). Bei ungültigen Eingaben gibt eine Action mit
+der Funktion \texttt{fail} einen HTTP-Statuscode wie 400 und eine Fehlermeldung
+an die Seite zurück. Nach jeder Action laufen die Load-Funktionen der Seite
+erneut, und der Rückgabewert der Action steht der Seite als \texttt{form} zur
+Verfügung. Mit der Anweisung \texttt{use:enhance} ahmt SvelteKit dieses
+Verhalten des Browsers nach, ohne die Seite vollständig neu zu laden (vgl.
+\cite[Abschnitt \enquote{Form actions}]{IntroductionSvelteKitDocsa}). Auf diese
+Weise speichert die Erfassungsseite neue Produktionsnachweise, und fehlen
+Pflichtangaben wie Arbeitsschritt oder Datum, antwortet sie mit \texttt{fail}
+und dem Status~400. Den gesamten Ablauf zeigt Abbildung~\ref{fig:SvelteKitAblauf}.
 
-Den gesamten Ablauf zeigt Abbildung~\ref{fig:SvelteKitAblauf}. Endpunkte in
-\texttt{+server.ts} dienen dagegen anderen Programmen. Über sie meldet etwa
-der Prüfstand in der Fertigung Prüfergebnisse im Datenformat JSON an die
-Produktionsverwaltung (Abschnitt~\ref{sec:Erfassung}).
+Endpunkte in \texttt{+server.ts} sind dagegen für andere Programme gedacht.
+Über sie meldet etwa der Prüfstand in der Fertigung seine Ergebnisse im
+Datenformat JSON an die Produktionsverwaltung (Abschnitt~\ref{sec:Erfassung}).
 
 \begin{figure}[htb]
 	\centering
@@ -964,23 +953,26 @@ Produktionsverwaltung (Abschnitt~\ref{sec:Erfassung}).
 	\quelle{Eigene Darstellung}
 \end{figure}
 
-Die Oberfläche selbst entsteht aus Svelte-Komponenten. Seit Svelte~5 steuern
-\emph{Runes} deren Verhalten. Das sind Schlüsselwörter mit vorangestelltem
-\texttt{\$}, die wie Funktionen aussehen und den Compiler anweisen (vgl.
-\cite[Abschnitt \enquote{What are runes?}]{OverviewSvelteDocs}). Mit \texttt{\$state} wird ein reaktiver Zustand angelegt:
-Ändert er sich, aktualisiert sich die Oberfläche (vgl. \cite[Abschnitt \enquote{\$state}]{OverviewSvelteDocs}).
-\texttt{\$derived} beschreibt einen Wert, der aus anderem Zustand berechnet
-wird. Der Ausdruck soll frei von Nebenwirkungen sein (vgl. \cite[Abschnitt \enquote{\$derived}]{OverviewSvelteDocs}).
-\texttt{\$effect} führt Code aus, wenn sich Zustand ändert, und zwar nur im
-Browser. Die Dokumentation empfiehlt, Effekte sparsam einzusetzen und vor allem
-nicht, um Zustand abzugleichen (vgl. \cite[Abschnitt \enquote{\$effect}]{OverviewSvelteDocs}). Auf der
-Erfassungsseite ist zum Beispiel der Schalter für den Scan-Modus ein
-\texttt{\$state}, während das angezeigte Speicherergebnis per \texttt{\$derived}
-aus dem Rückgabewert der Form-Action folgt.
+Die Oberfläche selbst besteht aus Svelte-Komponenten, deren Verhalten seit
+Svelte~5 sogenannte \emph{Runes} steuern. Das sind Schlüsselwörter mit
+vorangestelltem \texttt{\$}, die wie Funktionen aussehen, sich aber an den
+Compiler richten (vgl. \cite[Abschnitt \enquote{What are
+runes?}]{OverviewSvelteDocs}). Mit \texttt{\$state} entsteht ein reaktiver
+Zustand, bei dessen Änderung sich die Oberfläche aktualisiert (vgl.
+\cite[Abschnitt \enquote{\$state}]{OverviewSvelteDocs}). \texttt{\$derived}
+beschreibt einen Wert, der aus anderem Zustand berechnet wird und dabei keine
+Nebenwirkungen haben soll (vgl. \cite[Abschnitt
+\enquote{\$derived}]{OverviewSvelteDocs}). \texttt{\$effect} führt dagegen Code
+aus, wenn sich Zustand ändert, und zwar nur im Browser; die Dokumentation rät,
+Effekte sparsam einzusetzen und vor allem nicht, um Zustand abzugleichen (vgl.
+\cite[Abschnitt \enquote{\$effect}]{OverviewSvelteDocs}). Auf der
+Erfassungsseite ist etwa der Schalter für den Scan-Modus ein \texttt{\$state},
+während das angezeigte Speicherergebnis per \texttt{\$derived} aus dem
+Rückgabewert der Form-Action folgt.
 
-Damit ist beschrieben, wie Daten zwischen Browser, Server und Datenbank
-fließen. Offen bleibt, wie die Anwendung eine Platine eindeutig erkennt, die ein
-Mitarbeiter in der Hand hält. Darum geht es im folgenden Abschnitt.
+Wie Daten zwischen Browser, Server und Datenbank fließen, ist damit geklärt.
+Offen ist noch, woher die Anwendung überhaupt weiß, welche Platine ein
+Mitarbeiter gerade in der Hand hält.
 
 \section{Maschinenlesbare Kennzeichnung}
 \label{sec:Kennzeichnung}
@@ -992,9 +984,8 @@ Verschreiber zurück, an denen die bisherige Dokumentation gelitten hat
 (Abschnitt~\ref{sec:Ausgangssituation}). Diese Fehlerquelle verschwindet erst,
 wenn ein Gerät die Kennzeichnung liest. Ten Hompel, Büchter und Franzke sehen in
 der automatischen Identifikation (AutoID) deshalb die Grundlage dafür, Objekte in
-Produktion und Logistik fehlerfrei und in kürzester Zeit zu erkennen. Den
-größten Anteil daran hat nach ihren Angaben mit über 70\,\% der Anwendungen der
-Barcode (vgl. \cite[S.~9]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
+Produktion und Logistik fehlerfrei und in kürzester Zeit zu erkennen (vgl.
+\cite[S.~9]{tenhompelIdentifikationssystemeUndAutomatisierung2008}).
 
 Gelesen wird dabei ein \emph{Identifikator}, also eine künstlich vergebene
 Nummer oder ein Name, der ein Objekt eindeutig bezeichnet, allerdings immer nur
@@ -1076,7 +1067,7 @@ Typnamen selbst Leerzeichen enthalten, ist dann nicht sicher zu erkennen, wo der
 Name endet und die Artikelnummer beginnt. Neuere Aufkleber trennen die Angaben
 deshalb mit einem senkrechten Strich und tragen die vollständige achtstellige
 statt einer fünfstelligen Artikelnummer, etwa
-\texttt{OEA101|10010310|00000001}. So können Programme im Unternehmen eindeutig
+\texttt{TR102|10010312|00000615}. So können Programme im Unternehmen eindeutig
 erkennen, welche Teile zusammengehören. Beide Fassungen sind im Umlauf, die
 Anwendung muss also beide verstehen. Welche Angaben ein Code in welcher
 Reihenfolge trägt, legt die Codeart selbst gar nicht fest. Hompel et al.
@@ -1087,9 +1078,8 @@ hinweg ausgetauscht werden (vgl. \cite[S.~57]{tenhompelIdentifikationssystemeUnd
 Die Aufkleber bei ZOPF folgen genau einer solchen internen Vereinbarung.
 
 Die beiden anderen Codes kennzeichnen keine einzelnen Platinen, sondern Einheiten,
-die aus ihnen entstehen. Nach Moe braucht jede Einheit, die durch das
-Zusammenführen mehrerer rückverfolgbarer Einheiten entsteht, eine eigene
-Identifikation (vgl. \cite[S.~212]{moePerspectivesTraceabilityFood1998}). Für
+die aus ihnen entstehen und nach Moe deshalb eine eigene Identifikation brauchen
+(Abschnitt~\ref{sec:Rueckverfolgbarkeit}). Für
 Kisten und Paletten im Lager druckt die Produktionsverwaltung deshalb ein
 Etikett mit einem \emph{QR-Code}. Dieser quadratische Code wurde 1994 bei
 Nippondenso entwickelt, umfasst 21\,$\times$\,21 bis 177\,$\times$\,177 Felder

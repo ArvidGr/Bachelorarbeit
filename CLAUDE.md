@@ -132,6 +132,11 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   Fakten des Nutzers: Platinen tragen **Data-Matrix**-Aufkleber, fertig vom Lieferanten bezogen und vor dem SMD-Löten aufgeklebt;
   neues Format mit „|“, damit Programme die Teile sicher trennen; Handscanner Inateck BCST-75S (kabellos, 2D).
   Endet mit einem kurzen Fazit zu Kapitel 2 und der Überleitung zu Kapitel 3.
+- 14.11.2026: Kapitel 1 und 2.1–2.4 im Stil von 2.5 überarbeitet (Nutzer fand 2.5 „deutlich besser“). Inhalte, Belege und
+  Abbildungen unverändert; Wiederholungen gestrichen, Aufzählungen bis auf die vier Fragestellungen in Fließtext,
+  formelhafte Ein-/Überleitungen ersetzt. Sicherung des alten Stands: Git (Commit vor dem 14.11.).
+  Kapitel 1 + 2 = 23 Seiten bei 1,5-fachem Zeilenabstand (ca. 19 einzeilig); Kudraß nannte 40–50 Seiten Text,
+  Nutzer fragt bei ihm nach. Ab Kapitel 3 mit Seitenbudget schreiben, Details in den Anhang.
   Übrige Abschnitte: nur `\geplant{...}`.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
