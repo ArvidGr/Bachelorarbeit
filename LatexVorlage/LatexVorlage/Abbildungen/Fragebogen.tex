@@ -1,0 +1,156 @@
+% Fragebogen der Anwenderbefragung (Abschnitt 7.3, Anhang).
+% Eigenständiges Dokument: wird ausgedruckt in der Fertigung verteilt (ein Blatt, beidseitig) und als PDF
+% in den Anhang eingebunden (\includepdf[pages=-]{Abbildungen/Fragebogen.pdf}, Paket pdfpages).
+% Übersetzen (aus diesem Ordner):
+%   latexmk -pdf -outdir=../build/Fragebogen Fragebogen.tex
+%   cp ../build/Fragebogen/Fragebogen.pdf .
+%
+% Teil B ist die System Usability Scale (SUS) nach Brooke 1996 in der gebräuchlichen deutschen Fassung.
+% Wortlaut und Reihenfolge nicht ändern, sonst ist der SUS-Wert nicht mehr vergleichbar.
+% Auswertung je Bogen: ungerade Aussagen (Wert - 1), gerade Aussagen (5 - Wert), Summe mal 2,5 -> 0 bis 100.
+\documentclass[11pt,a4paper]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[a4paper,top=1.4cm,bottom=1.3cm,left=1.7cm,right=1.7cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{array,tabularx}
+\usepackage{amssymb,graphicx}
+\usepackage[babel,german=quotes]{csquotes}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.35em}
+
+\definecolor{zeile}{gray}{0.92}
+% Ankreuzkästchen
+\newcommand{\kasten}{\raisebox{-0.2ex}{\scalebox{1.5}{$\square$}}}
+% Schreiblinie über die ganze Breite
+\newcommand{\linie}{\par\vspace{0.6em}\noindent\rule{\linewidth}{0.4pt}}
+\newcommand{\teil}[1]{\par\vspace{0.5em}{\large\bfseries #1}\par}
+
+% Spalten für die Antwortskala
+\newcolumntype{K}{>{\centering\arraybackslash}m{0.85cm}}
+\newcolumntype{N}{>{\raggedleft\arraybackslash}m{0.75cm}}
+\newcolumntype{A}{>{\raggedright\arraybackslash}X}
+
+% Kopf der Skala (eine Tabellenzeile)
+\newcommand{\eins}{\makebox[0pt]{\shortstack{\bfseries 1\\[-0.1em]\scriptsize gar nicht}}}
+\newcommand{\fuenf}{\makebox[0pt]{\shortstack{\bfseries 5\\[-0.1em]\scriptsize voll}}}
+\newcommand{\zeile}[2]{\bfseries #1 & #2 & \kasten & \kasten & \kasten & \kasten & \kasten \\}
+\newcommand{\zeileX}[2]{\bfseries #1 & #2 & \kasten & \kasten & \kasten & \kasten & \kasten & \kasten \\}
+
+\begin{document}
+
+{\LARGE\bfseries Befragung zur Produktionsverwaltung}
+
+\vspace{0.3em}
+Liebe Kolleginnen und Kollegen,
+
+im Rahmen meiner Bachelorarbeit an der HTWK Leipzig untersuche ich, wie gut sich die
+Produktionsverwaltung im Arbeitsalltag bewährt. Ihre Erfahrungen helfen, die Anwendung zu
+bewerten und weiter zu verbessern.
+
+Die Teilnahme ist \textbf{freiwillig und anonym}. Bitte schreiben Sie Ihren Namen nicht auf den
+Bogen. Die Antworten werden nur zusammengefasst ausgewertet, Rückschlüsse auf einzelne Personen
+sind nicht möglich. Das Ausfüllen dauert etwa \textbf{zehn Minuten}.
+
+Bitte geben Sie den ausgefüllten Bogen bis \textbf{Freitag, 04.12.2026} ab bei:
+\rule{5.2cm}{0.4pt}
+
+Vielen Dank für Ihre Unterstützung!\\
+Arvid Graatz
+
+%--------------------------------------------------------------------------
+\teil{Teil A: Ihre Tätigkeit}
+
+\textbf{A1}\enspace In welchen Bereichen arbeiten Sie mit der Produktionsverwaltung?
+(Mehrfachnennung möglich)
+
+\begin{tabular}{@{\hspace{1.8em}}l@{\hspace{2em}}l@{\hspace{2em}}l}
+	\kasten\ Bestückung (SMD/THT) & \kasten\ Prüfung / optische Kontrolle & \kasten\ Endkontrolle \\[0.35em]
+	\kasten\ Lager und Versand    & \kasten\ Modulmontage                 & \kasten\ Planung / Leitung \\[0.35em]
+	\multicolumn{3}{@{\hspace{1.8em}}l}{\kasten\ Sonstiges: \rule{6cm}{0.4pt}}
+\end{tabular}
+
+\textbf{A2}\enspace Wie oft nutzen Sie die Produktionsverwaltung?
+
+\begin{tabular}{@{\hspace{1.8em}}l@{\hspace{2em}}l@{\hspace{2em}}l@{\hspace{2em}}l}
+	\kasten\ täglich & \kasten\ mehrmals pro Woche & \kasten\ etwa einmal pro Woche & \kasten\ seltener
+\end{tabular}
+
+\textbf{A3}\enspace Haben Sie vor der Produktionsverwaltung mit Papier-Laufkarten oder Excel-Listen gearbeitet?
+
+\begin{tabular}{@{\hspace{1.8em}}l@{\hspace{2em}}l}
+	\kasten\ ja & \kasten\ nein
+\end{tabular}
+
+%--------------------------------------------------------------------------
+\teil{Teil B: Bedienung allgemein}
+
+Bitte kreuzen Sie bei jeder Aussage spontan an, wie sehr Sie zustimmen (1 = stimme gar nicht zu,
+5 = stimme voll zu). Mit \enquote{System} ist die Produktionsverwaltung gemeint. Bitte beantworten
+Sie \textbf{alle} Aussagen. Wenn Sie unsicher sind, kreuzen Sie die Mitte (3) an.
+
+{\renewcommand{\arraystretch}{1.55}
+\rowcolors{2}{zeile}{white}
+\begin{tabularx}{\linewidth}{@{}N@{\hspace{0.6em}}AKKKKK@{}}
+	& & \eins & \bfseries 2 & \bfseries 3 & \bfseries 4 & \fuenf \\
+	\zeile{B1}{Ich denke, dass ich das System gerne häufig benutzen würde.}
+	\zeile{B2}{Ich fand das System unnötig komplex.}
+	\zeile{B3}{Ich fand das System einfach zu benutzen.}
+	\zeile{B4}{Ich glaube, ich würde die Hilfe einer technisch versierten Person benötigen, um das System benutzen zu können.}
+	\zeile{B5}{Ich fand, die verschiedenen Funktionen in diesem System waren gut integriert.}
+	\zeile{B6}{Ich denke, das System enthielt zu viele Inkonsistenzen.}
+	\zeile{B7}{Ich kann mir vorstellen, dass die meisten Menschen den Umgang mit diesem System sehr schnell lernen.}
+	\zeile{B8}{Ich fand das System sehr umständlich zu nutzen.}
+	\zeile{B9}{Ich fühlte mich bei der Benutzung des Systems sehr sicher.}
+	\zeile{B10}{Ich musste eine Menge lernen, bevor ich anfangen konnte, mit dem System zu arbeiten.}
+\end{tabularx}}
+
+\newpage
+%--------------------------------------------------------------------------
+\teil{Teil C: Einzelne Funktionen und Vergleich mit früher}
+
+Kreuzen Sie \enquote{kann ich nicht beurteilen} an, wenn Sie eine Funktion nicht nutzen oder
+(bei C11 bis C13) früher nicht mit Papier-Laufkarten oder Excel gearbeitet haben.
+
+{\renewcommand{\arraystretch}{1.3}
+\rowcolors{2}{zeile}{white}
+\begin{tabularx}{\linewidth}{@{}N@{\hspace{0.6em}}AKKKKK>{\centering\arraybackslash}m{1.9cm}@{}}
+	& & \eins & \bfseries 2 & \bfseries 3 & \bfseries 4 & \fuenf & \shortstack{\scriptsize kann ich nicht\\[-0.1em]\scriptsize beurteilen} \\
+	\zeileX{C1}{Die Erfassung von Produktionsschritten mit dem Scanner geht schnell.}
+	\zeileX{C2}{Die Erfassung über einen Seriennummernbereich ist einfach.}
+	\zeileX{C3}{Wenn eine Erfassung abgelehnt wird (z.\,B. weil ein Schritt fehlt), verstehe ich den Grund.}
+	\zeileX{C4}{Ich finde schnell heraus, in welchem Schritt sich eine Platine gerade befindet.}
+	\zeileX{C5}{Ich kann gut nachvollziehen, was mit einer bestimmten Platine passiert ist.}
+	\zeileX{C6}{Wenn ich mich vertan habe, kann ich den Fehler über eine Korrekturanfrage gut melden.}
+	\zeileX{C7}{Die Seiten laden schnell genug für meine Arbeit.}
+	\zeileX{C8}{Platinen in Kisten oder auf Paletten packen, versenden und annehmen ist verständlich.}
+	\zeileX{C9}{Platinen per Scan in Module einbauen ist einfach.}
+	\zeileX{C10}{Die Benachrichtigungen (z.\,B. zu Lieferterminen) sind nützlich.}
+	\zeileX{C11}{Im Vergleich zu Papier-Laufkarten und Excel spare ich bei der Erfassung Zeit.}
+	\zeileX{C12}{Im Vergleich zu früher passieren bei der Erfassung weniger Fehler.}
+	\zeileX{C13}{Informationen zu einer Platine finde ich schneller als früher.}
+\end{tabularx}}
+
+%--------------------------------------------------------------------------
+\teil{Teil D: Ihre Meinung}
+
+\textbf{D1}\enspace Was gefällt Ihnen an der Produktionsverwaltung am besten?
+\linie\linie\linie
+
+\textbf{D2}\enspace Was stört Sie, oder was fehlt Ihnen?
+\linie\linie\linie
+
+\textbf{D3}\enspace Mussten Sie schon einmal auf Papier oder Excel ausweichen? Wenn ja, in welcher Situation?
+\linie\linie
+
+\vfill
+\begin{center}
+	\bfseries Vielen Dank für Ihre Zeit!
+\end{center}
+
+\end{document}

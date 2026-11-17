@@ -21,6 +21,7 @@ diesem Branch lesen. Was danach auf `main` landet, ist nicht Gegenstand der Arbe
 | `Produktionsnachweis/` | Eigenes Git-Repo (GitHub `ArvidGr/Produktionsnachweis`) der Software. Wird im Root-Repo per `.gitignore` ignoriert. |
 | `Gliederung.md` | Vorgeschlagene Gliederung der Arbeit (mit Begründung). |
 | `TODO` | Offene Aufgaben des Nutzers. |
+| `Zeitplan.md` | Wochenplan bis zur Abgabe am 05.01.2027 (Gesamtfassung an die Betreuer am 14.12.2026). |
 
 ## Das Projekt Produktionsnachweis (Kurzfassung)
 
@@ -138,6 +139,10 @@ Datenbank mit lückenloser Rückverfolgbarkeit je Platine (Seriennummer).
   Kapitel 1 + 2 = 23 Seiten bei 1,5-fachem Zeilenabstand (ca. 19 einzeilig); Kudraß nannte 40–50 Seiten Text,
   Nutzer fragt bei ihm nach. Ab Kapitel 3 mit Seitenbudget schreiben, Details in den Anhang.
   Übrige Abschnitte: nur `\geplant{...}`.
+- 17.11.2026: Fragebogen für 7.3 als `Abbildungen/Fragebogen.tex` (eigenständig, 2 Seiten, PDF daneben). Teil A Tätigkeit
+  (bewusst ohne Standort, wegen Anonymität), Teil B SUS (10 Aussagen, Wortlaut nicht ändern), Teil C 13 eigene Aussagen
+  zu Funktionen und Vergleich mit Papier/Excel (für 7.4), Teil D Freitext. Rückgabe bis Fr 04.12.2026.
+  Quelle der deutschen SUS-Fassung noch nicht geprüft.
 
 ## Formvorgaben Kudraß (aus WissenschArbeiten.pdf, Folien 3–6, 8–11, 16–19)
 

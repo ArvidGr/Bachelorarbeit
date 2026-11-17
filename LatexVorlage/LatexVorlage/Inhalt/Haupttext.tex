@@ -8,65 +8,61 @@
 
 \section{Ausgangssituation in der Platinenfertigung}
 \label{sec:Ausgangssituation}
-Die ZOPF Energieanlagen GmbH (im Folgenden ZOPF) entwickelt, fertigt und wartet
+Die ZOPF Energieanlagen GmbH (im Folgenden ZOPF) entwickelt und baut
 Leistungselektronik für die Industrie, mit Schwerpunkt auf erneuerbaren
-Energien und Windkraft. Neben Phasenmodulen, Power Stacks und laminierten
-Stromschienen plant, baut und betreut das Unternehmen auch Windkraftanlagen.
-Ein Teil der Elektronik entsteht im eigenen Haus, nämlich
-Leiterplattenbaugruppen, also mit elektronischen Bauelementen bestückte
-Leiterplatten, die im Folgenden kurz \emph{Platinen} heißen. Gefertigt und
-geprüft werden sie am Hauptstandort Leipzig, gelagert in Leipzig und am
-Zweitstandort Wickede, und ein Teil von ihnen wird zu größeren Baugruppen
-weiterverbaut, den \emph{Modulen}. Lackiert werden die Platinen meist bei einem
-externen Dienstleister, zum Teil auch bei ZOPF selbst.
+Energien mit Hilfe von Windkraftanlagen. Neben der Produktion von interner Elektronik einer Anlage
+baut und betreut das Unternehmen auch selbst Windparks.
+Ein großer Teil der Elektronik entsteht im eigenen Haus, wie zum Beispiel die
+Leiterplattenbaugruppen, also mit elektronischen Bauteilen bestückte
+Leiterplatten (im Folgenden \emph{Platinen}). Gefertigt und
+geprüft werden sie am Hauptstandort Leipzig, wo sie auch gelagert werden oder am
+Zweitstandort in Wickede. Danach werden sie später zu größeren Baugruppen an beiden Standorten
+weiter verbaut, den \emph{Modulen}. Lackiert werden die Platinen sowohl bei einem externen Dienstleister
+als auch bei ZOPF selbst.
 
-Auf ihrem Weg durchläuft jede Platine dieselbe Folge von Arbeitsschritten.
+Auf ihrem Weg durchläuft jede Platine die gleiche Folge von Arbeitsschritten:
 Zuerst werden oberflächenmontierte Bauelemente bestückt (Surface-Mounted Device,
-kurz SMD), dann bedrahtete (Through-Hole Technology, kurz THT); es folgen die
-Prüfung mit optischer Kontrolle, die Lackierung und die Endkontrolle, bevor die
-Platine ins Lager geht. Abschnitt~\ref{sec:Fertigungsprozess} beschreibt diese
-Schritte genauer. Damit sich die Platinen auseinanderhalten lassen, trägt jede
+kurz SMD), dann bedrahtete (Through-Hole Technology, kurz THT). Darauf folgt die
+Prüfung einer Platine mit zugehöriger optischen Kontrolle, die Lackierung und die Endkontrolle, bevor die
+Platine eingelagert wird. Abschnitt~\ref{sec:Fertigungsprozess} beschreibt diese
+Schritte genauer. Damit sich die Platinen identifizierbar bleiben, besitzt jede
 einen Aufkleber mit dem ZOPF-internen Namen des Platinentyps, der
-Artikelnummer und einer \emph{Seriennummer}, die innerhalb des Platinentyps
-eindeutig ist. Ein Data-Matrix-Code auf dem Aufkleber enthält dieselben Angaben
-in maschinenlesbarer Form.
+Artikelnummer und einer für den Typen eindeutige \emph{Seriennummer}. 
+Ein Data-Matrix-Code auf dem Aufkleber enthält dieselben Angaben in maschinenlesbarer Form.
 
 Gesteuert wird die Fertigung über \emph{Laufkarten}. Eine Laufkarte steht für
-einen Fertigungsauftrag über eine bestimmte Stückzahl eines Platinentyps und
-legt den Bereich der Seriennummern fest, der dafür vergeben wird. Bisher waren
-das Papierkarten, die die Platinen durch die Fertigung begleiteten. War ein
-Arbeitsschritt erledigt, notierten die Mitarbeiter von Hand, für welchen
-Seriennummernbereich das galt, und gaben die Angaben an die Produktionsleitung
-weiter. Dort wanderten sie in Excel-Listen, je Platinentyp eine Arbeitsmappe
-mit einem Tabellenblatt pro Arbeitsschritt, die anschließend per E-Mail
-verteilt wurden; auch den Fortschritt einer Laufkarte schrieb man auf Papier
-fort. Bei den Modulen sah es kaum anders aus. Zu jedem Modul wurde ein
+einen Fertigungsauftrag und bestimmt welcher Platinentyp in welcher Stückzahl gefertigt werden soll und damit auch, welche Seriennummer diese belegen. 
+Vor dieser Arbeit handelte es sich dabei um Papierkarten oder Exceltabellen.
+War ein Arbeitsschritt erledigt, notierten die Mitarbeiter von Hand, für welchen
+Seriennummernbereich das galt, und haben die Angaben an die Produktionsleitung
+weiter gegeben. Auch der Fortschritt einer Laufkarte wurde in Papierform
+festgehalten. Bei den Modulen sah es genauso aus. Zu jedem Modul wurde ein
 Montageprotokoll ausgedruckt, in das die Seriennummern der eingebauten Platinen
-von Hand eingetragen wurden, und digital erfasst war diese Zuordnung nirgends.
+von Hand eingetragen wurden. Eine digitale Fassung dieses Protokolls existierte nicht.
 
 Die Schwächen dieses Vorgehens liegen auf der Hand. Jede Angabe wurde
-mindestens einmal von Hand geschrieben und einmal abgetippt, und bei jedem
+mindestens einmal von Hand geschrieben und/oder einmal abgetippt, und bei jedem
 dieser Schritte schlichen sich Verschreiber, Zahlendreher oder unleserliche
-Ziffern ein. Andere Meldungen fehlten ganz, weil ein Zettel vergessen wurde
+Ziffern ein. Oder Meldungen fehlten ganz, weil ein Zettel vergessen wurde
 oder verloren ging. Hinzu kam, dass sich die Excel-Listen jederzeit ändern
 ließen, ohne dass der alte Stand oder die Änderung selbst irgendwo festgehalten
 wurde. Eine \emph{revisionssichere} Dokumentation, bei der jede Änderung
-nachvollziehbar bleibt und frühere Stände erhalten sind, war so nicht möglich.
-Wie uneinheitlich die Altdaten tatsächlich waren, zeigte sich spätestens bei
+nachvollziehbar bleibt und frühere Stände erhalten waren, war dadurch nicht möglich.
+Wie uneinheitlich die Altdaten waren, zeigte sich spätestens bei
 ihrer Übernahme in das neue System (Abschnitt~\ref{sec:Migration}).
 
-Am deutlichsten spürbar war das bei zwei Fragen, die im Alltag ständig
-auftauchen. Wie viele Platinen einer Laufkarte haben welchen Arbeitsschritt
+Am deutlichsten spürbar war das bei zwei Fragen, die im Arbeitsalltag
+auftauchten: Wie viele Platinen einer Laufkarte haben welchen Arbeitsschritt
 schon hinter sich? Das ließ sich nur beantworten, indem man mehrere Listen und
 Zettel zusammentrug. Und was ist mit einer bestimmten Platine geschehen, wann
 hat sie welchen Schritt durchlaufen, wer hat sie bearbeitet, wo liegt sie
 gerade und in welches Modul wurde sie eingebaut? Darauf gab es oft keine
 verlässliche Antwort. Gerade diese \emph{Rückverfolgbarkeit} braucht die
-Qualitätssicherung, denn tritt ein Fehler auf, müssen die betroffenen Platinen
-und Module eingegrenzt werden können (Abschnitt~\ref{sec:Rueckverfolgbarkeit}).
+Qualitätssicherung aber, denn tritt ein Fehler auf, müssen die betroffenen Platinen
+und Module eingegrenzt werden können (Abschnitt~\ref{sec:Rueckverfolgbarkeit}), um sie auch eventuell wieder zurückzurufen.
 Dass die Platinen zwischen zwei Standorten und dem externen Dienstleister
 wechseln und die Angaben darüber an verschiedenen Stellen lagen, machte die
-Sache nicht einfacher.
+Sache weiter komplizierter.
 
 Aus dieser Lage heraus entstand im Rahmen einer Werkstudententätigkeit bei
 ZOPF die Aufgabe, Papier und Tabellen durch eine datenbankgestützte Anwendung
@@ -74,27 +70,25 @@ abzulösen.
 
 \section{Zielsetzung und Fragestellungen}
 \label{sec:Zielsetzung}
-Ziel dieser Arbeit ist eine datenbankgestützte Webanwendung, die
+Ziel dieser Arbeit ist eine datenbankgestützte Webanwendung, die das bestehende System aus
 Papier-Laufkarten, handschriftliche Meldungen und Excel-Listen in der
-Platinenfertigung von ZOPF ersetzt. Sie heißt \emph{Produktionsverwaltung},
-weil sie die gesamte Platinenproduktion verwalten soll, und ihr Ziel hat, wie
-schon der Titel der Arbeit andeutet, drei Teile.
+Platinenfertigung der ZOPF Energieanlagen GmbH ersetzen soll. Sie heißt \emph{Produktionsverwaltung} und ihr Ziel beinhaltet drei Teile.
 
 Der erste ist die \emph{Erfassung}. Die Mitarbeiter melden abgeschlossene
-Arbeitsschritte direkt in der Fertigung, entweder für einen ganzen
-Seriennummernbereich auf einmal oder Platine für Platine, indem sie die
-Aufkleber scannen. Was die Prüfstände ermitteln, gelangt über Schnittstellen
-ohne Zutun in die Anwendung. Damit Fehler gar nicht erst in die Datenbank
-gelangen, prüft die Anwendung schon bei der Eingabe, ob etwa der vorherige
+Arbeitsschritte direkt während oder unmittelbar nach der Fertigung, entweder für einen ganzen
+Seriennummernbereich auf einmal oder einzeln für Platinen durch das Scannen des Aufklebers. 
+Das Ergebnis der Prüfstände gelangt über Schnittstellen
+sofort in die Anwendung. Damit Fehler nicht erst in die Datenbank
+gelangen, prüft die Anwendung schon bei der Eingabe, ob etwa der
 Arbeitsschritt abgeschlossen ist. Der zweite Teil ist die \emph{Auswertung der
 Progressionsinformationen}: Aus den einzelnen Erfassungen ermittelt die
-Anwendung jederzeit den aktuellen Fortschritt je Laufkarte, je
-Seriennummernbereich und je Platine und weist auf nahende Liefertermine hin.
+Anwendung jederzeit den aktuellen Fortschritt einer Laufkarte, eines
+Seriennummernbereiches und jeder Platine und weist auf nahende Liefertermine hin.
 Der dritte Teil, die \emph{Rückverfolgbarkeit}, verlangt, dass sich für jede
 Platine lückenlos nachvollziehen lässt, wann, durch wen und an welchem Standort
 sie welchen Schritt durchlaufen hat, in welcher Kiste sie lag und in welches
 Modul sie eingebaut oder aus welchem sie wieder ausgebaut wurde. Die
-zugehörigen Prüfprotokolle sind direkt abrufbar, und Korrekturen überschreiben
+zugehörigen Prüfprotokolle einer Platine sind direkt abrufbar und Korrekturen von Erfassung überschreiben
 keine Daten, sondern werden revisionssicher protokolliert.
 
 Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
@@ -107,9 +101,7 @@ Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
 	\item Wie kann das Datenmodell sicherstellen, dass die Historie jeder
 	Platine vollständig und revisionssicher bleibt, auch bei Korrekturen,
 	Reparaturen, Standortwechseln, dem Einbau in Module und einem späteren
-	Austausch? Dabei ist zu klären,
-	welche Regeln die Datenbank selbst durchsetzt und welche der Anwendung
-	überlassen bleiben.
+	Austausch?
 	\item Inwieweit erfüllt die Anwendung im praktischen Einsatz die
 	Anforderungen der Fertigung und ihrer Mitarbeiter?
 \end{enumerate}
@@ -120,30 +112,29 @@ Mitarbeiter flossen fortlaufend in die Weiterentwicklung ein. Antworten auf die
 erste und zweite Frage geben die Kapitel~\ref{sec:Konzeption}
 und~\ref{sec:Implementierung}, auf die dritte außerdem das Datenmodell in
 Abschnitt~\ref{sec:Datenmodell} und die Geschäftsregeln in
-Abschnitt~\ref{sec:Geschaeftsregeln}. Ob sich die Anwendung im Alltag bewährt,
-also die vierte Frage, klärt die Evaluation in Kapitel~\ref{sec:Evaluation},
-unter anderem mit einer Befragung der Anwender.
+Abschnitt~\ref{sec:Geschaeftsregeln}. Ob sich die Anwendung im Alltag verwendet wird, klärt die Evaluation 
+in Kapitel~\ref{sec:Evaluation}, unter anderem mit einer Befragung der Anwender.
 
 \section{Abgrenzung}
 \label{sec:Abgrenzung}
 Die Produktionsverwaltung dokumentiert Platinenfertigung und Modulmontage,
-planen und steuern soll sie beides nicht. Ein vollständiges
+sie soll dabei beides weder planen noch steuern. Ein vollständiges
 Produktionsleitsystem (Manufacturing Execution System, kurz MES), das
 Fertigungsaufträge einplant, Maschinen ansteuert und Kapazitäten verwaltet, ist
-sie deshalb nicht. Ebenso wenig übernimmt sie Aufgaben des bei ZOPF
+es deshalb nicht. Ebenso übernimmt sie nicht die Aufgaben des bei ZOPF
 vorhandenen ERP-Systems (Enterprise Resource Planning) wie die
 Auftragsabwicklung oder die Materialwirtschaft. Eine Anbindung an dieses System
-ist nicht Gegenstand der Arbeit; Laufkarten werden in der Produktionsverwaltung
-selbst angelegt.
+ist nicht Gegenstand der Arbeit. Laufkarten werden in der Produktionsverwaltung
+manuell angelegt.
 
-Auch Fertigungsmaschinen wie Bestückungsautomaten sind nicht angeschlossen,
-die Arbeitsschritte erfassen die Mitarbeiter selbst. Automatisch kommen nur die
+Auch Fertigungsmaschinen wie Bestückungsautomaten sind nicht angeschlossen.
+Die Arbeitsschritte erfassen die Mitarbeiter selbst. Automatisch kommen nur die
 Ergebnisse der Prüfstände herein: Der Prüfstand für Platinen meldet jede
 Prüfung, der für Module meldet getestete Module samt ihrer Platinen, und die
 Prüfprotokolle beider liest die Anwendung aus der jeweiligen Ablage.
 Festgehalten wird dabei, dass und wann ein Schritt abgeschlossen wurde, nicht
 aber seine Prozess- oder Messwerte. Ähnlich endet die Rückverfolgbarkeit bei der
-einzelnen Platine und beim Modul; welche Bauteile oder Bauteilchargen auf einer
+einzelnen Platine und beim Modul. Welche Bauteile oder Bauteilchargen auf einer
 Platine sitzen, erfasst die Anwendung nicht. Der Verkauf der Module und das
 Entfernen verkaufter Module aus der Datenbank gehören ebenfalls nicht zur
 Arbeit.
@@ -154,11 +145,11 @@ Arbeit beschreibt den Entwicklungsstand vom 30. Oktober 2026; spätere
 
 Gegenstand der Arbeit ist die vom Verfasser entwickelte Webanwendung samt
 Datenbank. Die Software des Platinen-Prüfstands entstand gemeinsam mit
-Mitarbeitern von ZOPF, weshalb hier nur ihre Schnittstelle zur
-Produktionsverwaltung behandelt wird. Das Programm des Modul-Prüfstands stammt
-zwar vom Verfasser selbst, ist aber eine eigenständige Anwendung und wird
+Mitarbeitern von ZOPF, wird hier aber nur in Form ihrer Schnittstelle zur
+Produktionsverwaltung behandelt. Das Programm des Modul-Prüfstands stammt
+zwar vom Verfasser, ist aber eine eigenständige Anwendung und wird
 ebenfalls nur über seine Anbindung betrachtet. Erste Entwürfe der
-Benutzeroberfläche und des Datenbankschemas kamen aus dem Unternehmen; sie sind
+grafischen Benutzeroberfläche und des Datenbankschemas kamen aus dem Unternehmen und sind
 an den betreffenden Stellen (Abschnitte~\ref{sec:Datenmodell}
 und~\ref{sec:Oberflaeche}) als solche gekennzeichnet.
 
@@ -176,27 +167,24 @@ die Akteure sowie die funktionalen und nichtfunktionalen Anforderungen ab.
 Den Entwurf der Lösung mit Systemarchitektur, Datenmodell, Zustandsmodell einer
 Platine, Benutzeroberfläche und Berechtigungskonzept enthält
 Kapitel~\ref{sec:Konzeption}. Kapitel~\ref{sec:Implementierung} zeigt die
-Umsetzung entlang der drei Teilziele Erfassung, Auswertung und
-Rückverfolgbarkeit, ergänzt um die Geschäftsregeln in der Datenbank und die
+Umsetzung entlang der drei oben benannten Teilziele und die
 Erweiterungen um Lagerverwaltung und Module. Wie die Excel-Altdaten übernommen
-wurden und die Anwendung im Unternehmensnetz in Betrieb ging, beschreibt
-Kapitel~\ref{sec:Inbetriebnahme}.
+wurden und die Anwendung in Betrieb ging, beschreibt Kapitel~\ref{sec:Inbetriebnahme}.
 
-Ob das Ergebnis trägt, prüft Kapitel~\ref{sec:Evaluation} mit Tests, der
+Ob dieses Projekt diese Ziele erreicht hat, prüft Kapitel~\ref{sec:Evaluation} mit Tests, der
 Leistungsoptimierung, einer Befragung der Anwender und einem Abgleich mit den
-Anforderungen; außerdem zeigt es, welche Anpassungen der Praxiseinsatz nach
+Anforderungen. Außerdem zeigt es, welche Anpassungen der Praxiseinsatz nach
 sich zog. Kapitel~\ref{sec:Schluss} fasst die Ergebnisse zusammen, beantwortet
 die Fragestellungen aus Abschnitt~\ref{sec:Zielsetzung}, bewertet die Lösung
-kritisch und blickt auf mögliche Weiterentwicklungen.
+kritisch und blickt auf mögliche zukünftige Weiterentwicklungen.
 
 
 \chapter{Grundlagen}
 \label{sec:Grundlagen}
-Bevor es um Anforderungen und Entwurf gehen kann, braucht die Arbeit zwei Arten
-von Grundlagen. Die fachlichen klären, was Rückverfolgbarkeit bedeutet und wie
-eine Platine gefertigt wird. Die technischen zeigen, womit sich das abbilden
-lässt: mit einer relationalen Datenbank, einer Webanwendung auf Basis von
-SvelteKit und maschinenlesbaren Codes auf den Platinen.
+Bevor die Anforderungen und der Entwurf beschrieben werden können, muss diese Arbeit zwei Arten
+von Grundlagen aufzeigen. Die fachlichen klären, zum Beispiel was Rückverfolgbarkeit bedeutet und wie
+eine Platine gefertigt wird und die technischen Grundlagen zeigen, was eine relationalen Datenbank, eine Webanwendung auf Basis von
+SvelteKit und maschinenlesbaren Codes auf den Platinen sind oder wofür diese verwendet werden.
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
@@ -237,18 +225,17 @@ Abschnitt~8.5.2 \enquote{Kennzeichnung und Rückverfolgbarkeit} verlangt von ein
 Organisation, die Ergebnisse ihrer Prozesse zu kennzeichnen, wo das für die
 Konformität der Produkte nötig ist, und deren Status in Bezug auf die
 Überwachungs- und Messanforderungen während der gesamten Produktion zu
-kennzeichnen. Ist Rückverfolgbarkeit gefordert, muss sie außerdem die eindeutige
-Kennzeichnung steuern und die dafür nötige dokumentierte Information als
+kennzeichnen. Ist Rückverfolgbarkeit gefordert, muss sie außerdem eindeutige
+Kennzeichnungen vergeben und die dafür benötigten dokumentierten Informationen als
 Nachweis verfügbar halten (vgl. \cite[S.~34]{DINENISO9001_2026}). Wie eng beides
 zusammenhängt, erläutert der informative Anhang der Norm: \enquote{Kennzeichnung
 und Rückverfolgbarkeit sind eng miteinander verbunden, denn die
 Rückverfolgbarkeit erfordert eine eindeutige Kennzeichnung der Outputs, wenn es
 notwendig ist, frühere Verarbeitungsstufen oder den Status nach der Auslieferung
 zu bestimmen} \cite[S.~50]{DINENISO9001_2026}. Gefordert sein kann
-Rückverfolgbarkeit von der Organisation selbst, von Kunden oder durch
-gesetzliche und behördliche Vorgaben (vgl. \cite[S.~50]{DINENISO9001_2026});
-besonders wichtig ist sie etwa bei Medizinprodukten, Lebensmitteln und in der
-Automobilindustrie (vgl. \cite[S.~100]{koubekDINISO90012018}).
+Rückverfolgbarkeit von dem Unternehmen selbst, von Kunden oder durch
+gesetzliche und behördliche Vorgaben (vgl. \cite[S.~50]{DINENISO9001_2026}). 
+Im Falle dieser Arbeit ist sie eine Anforderung der Qualitätssicherung und damit des Unternehmens selbst.
 
 Wie ein Rückverfolgungssystem aufgebaut ist, beschreibt Moe genauer.
 Grundlage ist, Produkte eindeutig identifizieren zu können, sei es durch eine
@@ -276,11 +263,11 @@ Stück reicht und nicht beim Fertigungsauftrag stehen bleibt. Die Aktivitäten
 sind die Arbeitsschritte der Fertigung, und die Aufzeichnung über einen
 abgeschlossenen Schritt an einer Platine heißt in dieser Arbeit
 \emph{Produktionsnachweis}. Sie hält fest, wann, durch wen und an welchem
-Standort der Schritt erledigt wurde. Werden mehrere Platinen in ein Modul
+Standort der Arbeitsschritt erledigt wurde. Werden mehrere Platinen in ein Modul
 eingebaut, entsteht im Sinne Moes eine neue Einheit mit eigener Seriennummer,
-über die die eingebauten Platinen weiterhin auffindbar bleiben müssen. Regulär
-kommen dabei nur Platinen aus dem Lager zum Einsatz, die die Fertigung also
-abgeschlossen haben; die Ausnahmen beschreibt Abschnitt~\ref{sec:Module}.
+über die die eingebauten Platinen weiterhin auffindbar bleiben müssen. Dafür
+kommen nur Platinen aus dem Lager zum Einsatz, die die Fertigung also
+abgeschlossen haben (siehe Abschnitt~\ref{sec:Module}).
 
 \begin{figure}[htbp]
 	\centering
@@ -356,13 +343,13 @@ Warum das so wichtig ist, macht ein Gedanke von Moe deutlich. Rückverfolgbarkei
 arbeitet rückwärts: Die Aufzeichnungen werden erst im Nachhinein abgefragt,
 typischerweise wenn ein Fehler aufgetreten ist, und müssen deshalb von vornherein
 für diese Abfrage ausgelegt sein. Unverzichtbar ist dafür ein stabiles und
-zugängliches System zur Aufzeichnung (vgl.
-\cite[S.~212]{moePerspectivesTraceabilityFood1998}). Zwar funktionieren
-Rückverfolgungssysteme auch auf Papier, mit Rechnerunterstützung lassen sich
-aber deutlich mehr Daten verarbeiten und die Geschichte eines Produkts und
-seiner Verarbeitung sehr detailliert festhalten. Als Nutzen einer internen
+zugängliches System (vgl. \cite[S.~212]{moePerspectivesTraceabilityFood1998}). 
+Zwar funktionieren Rückverfolgungssysteme in der Theorie auch auf Papier, 
+allerdings lassen sich mit Hilfe von Rechnerunterstützung deutlich mehr Daten verarbeiten 
+und die Geschichte eines Produkts und
+seiner Verarbeitung detaillierter und sicherer festhalten. Als Nutzen einer internen
 Rückverfolgbarkeit nennt Moe unter anderem eine bessere Prozesssteuerung,
-Hinweise auf die Ursache, wenn ein Produkt nicht den Vorgaben entspricht, und
+Hinweise auf die Ursache, falls ein Produkt nicht den Vorgaben entsprechen sollte und
 eine einfachere Informationsbeschaffung bei Audits des Qualitätsmanagements
 (vgl. \cite[S.~213]{moePerspectivesTraceabilityFood1998}).
 
@@ -378,7 +365,7 @@ Welche Arbeitsschritte aufzuzeichnen sind, zeigt der Blick auf die Fertigung.
 Eine Leiterplattenbaugruppe entsteht, indem elektronische Bauteile auf einer
 Leiterplatte bestückt und gelötet werden (vgl.
 \cite[S.~156]{zickertLeiterplatten2023}). Zickert unterscheidet dabei zwei
-Montagearten, die Abbildung~\ref{fig:Montagearten} gegenüberstellt. Bei der
+Montagearten, welche Abbildung~\ref{fig:Montagearten} gegenüberstellt. Bei der
 \emph{Durchsteckmontage} (THT) werden die Anschlüsse bedrahteter Bauelemente
 durch Bohrungen in der Leiterplatte gesteckt und auf der Gegenseite verlötet,
 während \emph{oberflächenmontierte} Bauelemente (SMD) auf derselben Seite
@@ -390,9 +377,9 @@ Leiterplatte kombinieren (vgl. \cite[S.~92]{zickertLeiterplatten2023}). Die
 Oberflächenmontage verdrängt die Durchsteckmontage zwar zunehmend (vgl.
 \cite[S.~66]{zickertLeiterplatten2023}), doch bedrahtete Bauformen,
 Steckverbinder und viele Bauteile der Leistungselektronik eignen sich nicht für
-das Reflowlöten (vgl. \cite[S.~167]{zickertLeiterplatten2023}). Weil ZOPF genau
-Leistungselektronik herstellt, verbinden seine Platinen beide Montagearten, und
-die Fertigung umfasst zwei Bestückungsschritte.
+das Reflowlöten (vgl. \cite[S.~167]{zickertLeiterplatten2023}). 
+Beide Montagearten sind deshalb in der Fertigung von ZOPF im Einsatz und müssen somit 
+als zwei separate Arbeitsschritte erfasst werden.
 
 \begin{figure}[htbp]
 	\centering
@@ -449,7 +436,7 @@ die Fertigung umfasst zwei Bestückungsschritte.
 Verbunden werden die Bauteile in beiden Fällen durch Löten, die häufigste und
 wichtigste Methode, in der Elektronik eine elektrische Verbindung herzustellen.
 Geschmolzenes Lot benetzt dabei die Verbindungspartner, die selbst nicht
-anschmelzen, weil das Lot einen niedrigeren Schmelzpunkt hat; zuvor baut ein
+anschmelzen, weil das Lot einen niedrigeren Schmelzpunkt hat. Zuvor baut ein
 Flussmittel die Oxidschicht auf der Kupferoberfläche ab (vgl.
 \cite[S.~159\,f.]{zickertLeiterplatten2023}).
 
@@ -496,10 +483,10 @@ geprüft, und diesmal wird auch der Lack begutachtet. Als Fehlerbilder einer
 Schutzbeschichtung nennt die Richtlinie IPC-A-610 unter anderem den Verlust der
 Haftung, Bläschen und eingeschlossene Fremdkörper (vgl.
 \cite[S.~45]{suppaAnforderungenSchutzlackierung2013}). Bei ZOPF dient die
-Endkontrolle als Vier-Augen-Prinzip, das ausschließen soll, dass in den
-Schritten davor etwas übersehen wurde. Auch die ISO~9001 setzt für die Freigabe
+Endkontrolle als Vier-Augen-Prinzip, welches ausschließen soll, dass in den
+Schritten zuvor etwas übersehen wurde. Auch die ISO~9001 setzt für die Freigabe
 von Produkten eine solche Verifizierung voraus und verlangt, Aufzeichnungen
-darüber aufzubewahren, ob die Annahmekriterien erfüllt sind und wer
+darüber aufzubewahren, ob die Annahmekriterien erfüllt sind und wer sie
 freigegeben hat (vgl. \cite[S.~103]{koubekDINISO90012018}). Erst danach wird
 die Platine eingelagert.
 
@@ -513,7 +500,7 @@ Hauptkette die Sonderschritte Reparatur und Gesperrt. Nach einer Reparatur kann
 eine Platine Arbeitsschritte erneut durchlaufen, sodass derselbe Schritt an ihr
 mehrfach vorkommt (Abschnitt~\ref{sec:Zustandsmodell}). Für die Datenhaltung
 ist das eine harte Bedingung: Eine Wiederholung darf den früheren Nachweis nicht
-überschreiben, sonst ginge genau die Geschichte verloren, um die es bei der
+überschreiben, sonst ginge die exakte Historie einer Platine wieder verloren, um die es bei der
 Rückverfolgbarkeit geht.
 
 \section{Relationale Datenbanken und Integritätssicherung}
