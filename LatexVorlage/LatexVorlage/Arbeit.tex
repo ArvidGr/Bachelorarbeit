@@ -10,13 +10,14 @@
 
 \frontmatter												% Seitenzählerstart vor dem Text
 
-\include{Inhalt/Abstrakt}						% Abstrakt
+% Reihenfolge nach Kudraß: Titelblatt, Inhaltsverzeichnis, (Vorwort), Abstract, Text
+\tableofcontents										% Inhaltsverzeichnis
 
 %% Empfehlung: Auf Danksagungen + Vorwort in wissenschaftlichen Arbeiten eher verzichten -- ggf. die entsprechenden Dateien im Ordner Inhalt anlegen und hier auskommentieren (PKW)
 %% \include{Inhalt/Danksagung}					% Danksagung
 %% \include{Inhalt/Vorwort}						% Vorwort
 
-\tableofcontents										% Inhaltsverzeichnis
+\include{Inhalt/Abstrakt}						% Abstract (ohne Seitenzahl, nicht im Inhaltsverzeichnis)
 
 \mainmatter													% Seitenzählerstart Haupttext
 
@@ -25,7 +26,14 @@
 % Nach Kudraß: arabische Seitenzahlen bis zur letzten Seite, daher kein Wechsel auf römisch
 \appendix
 \include{Inhalt/Anhang}							% Anhang (nach Kudraß vor dem Literaturverzeichnis)
-							
+
+% Nach Kudraß stehen Darstellungs- und Abkürzungsverzeichnis entweder vorn oder
+% zwischen Anhang und Literaturverzeichnis, nicht dahinter
+\listoffigures											% Abbildungsverzeichnis
+% Tabellenverzeichnis erst einbinden, wenn die Arbeit Tabellen enthält
+% (Kudraß: Trennung in Abbildungs- und Tabellenverzeichnis nur bei längeren Arbeiten)
+%\listoftables												% Tabellenverzeichnis
+
 %\nocite{*} 														% Alle Einträge in der Literaturdatenbank werden im Literaturverzeichnis angezeigt, auch wenn sie nicht zitiert wurden
 \bibliography{Literatur/Literatur} 	% Literaturverzeichnis
 
@@ -37,10 +45,7 @@
 %% \printglossary[title=Glossar] 			% Glossar Einträge in Header/Glossar.tex vornehmen
 %%\printglossary[type=\acronymtype,title=Abk\"urzungsverzeichnis]	% Abkürzungsverzeichnis Einträge in Header/Abkuerzungen vornehmen
 
-\listoffigures											% Abbildungsverzeichnis
-\listoftables												% Tabellenverzeichnis
-
-
+\clearpage													% sonst verliert schon die letzte Seite des Literaturverzeichnisses ihre Seitenzahl
 \pagestyle{empty}
 \include{Inhalt/Selbstaendigkeitserklaerung}
 

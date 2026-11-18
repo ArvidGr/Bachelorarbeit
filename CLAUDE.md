@@ -21,6 +21,7 @@ diesem Branch lesen. Was danach auf `main` landet, ist nicht Gegenstand der Arbe
 | `Produktionsnachweis/` | Eigenes Git-Repo (GitHub `ArvidGr/Produktionsnachweis`) der Software. Wird im Root-Repo per `.gitignore` ignoriert. |
 | `Gliederung.md` | Vorgeschlagene Gliederung der Arbeit (mit Begründung). |
 | `TODO` | Offene Aufgaben des Nutzers. |
+| `Checkliste_Kudrass.md` | Abhakbare Liste: Abgleich der Arbeit mit den Formvorgaben Kudraß (17.11.2026), erledigt / offen / kommt später. |
 | `Zeitplan.md` | Wochenplan bis zur Abgabe am 05.01.2027 (Gesamtfassung an die Betreuer am 14.12.2026). |
 
 ## Das Projekt Produktionsnachweis (Kurzfassung)
@@ -216,6 +217,8 @@ Integritätsregeln/Trigger und Revisionssicherheit verdienen in der Arbeit Gewic
 
 ## Offene Punkte
 
-- Studiengang, Matrikelnummer, Erst-/Zweitprüfer (Platzhalter in `Metadaten.tex`), Abgabetermin.
-- Formvorgaben Kudraß noch nicht in der Vorlage umgesetzt: Seitenzahlen oben, Zeilenabstand einzeilig
-  (Vorlage: 1,5-fach), Schrift 11 pt Arial / 12 pt Times.
+- Matrikelnummer (Platzhalter in `Metadaten.tex`; Studiengang Informatik, Prüfer Kudraß/Diecke und Abgabedatum 05.01.2027 stehen drin).
+- Formvorgaben am 17.11.2026 umgesetzt: Seitenzahlen oben rechts (`scrlayer-scrpage`, Kapitelanfangsseiten ohne Zahl),
+  12 pt Times (`newtxtext`, deshalb `xcolor` statt `color`), Inhaltsverzeichnis vor Abstract, Abbildungsverzeichnis vor dem
+  Literaturverzeichnis, kein Tabellenverzeichnis, `\abgabedatum` in `Metadaten.tex`. **Zeilenabstand bewusst 1,5-fach**
+  (Nutzer findet es schöner, fragt Kudraß); nicht ohne Rückfrage auf einzeilig umstellen. Rest siehe `Checkliste_Kudrass.md`.

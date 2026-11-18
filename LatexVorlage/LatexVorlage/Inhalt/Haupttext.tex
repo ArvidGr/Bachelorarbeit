@@ -15,27 +15,27 @@ baut und betreut das Unternehmen auch selbst Windparks.
 Ein großer Teil der Elektronik entsteht im eigenen Haus, wie zum Beispiel die
 Leiterplattenbaugruppen, also mit elektronischen Bauteilen bestückte
 Leiterplatten (im Folgenden \emph{Platinen}). Gefertigt und
-geprüft werden sie am Hauptstandort Leipzig, wo sie auch gelagert werden oder am
-Zweitstandort in Wickede. Danach werden sie später zu größeren Baugruppen an beiden Standorten
+geprüft werden sie am Hauptstandort Leipzig, wo sie auch gelagert werden, oder am
+Zweitstandort in Wickede. Später werden sie an beiden Standorten zu größeren Baugruppen
 weiter verbaut, den \emph{Modulen}. Lackiert werden die Platinen sowohl bei einem externen Dienstleister
 als auch bei ZOPF selbst.
 
 Auf ihrem Weg durchläuft jede Platine die gleiche Folge von Arbeitsschritten:
 Zuerst werden oberflächenmontierte Bauelemente bestückt (Surface-Mounted Device,
 kurz SMD), dann bedrahtete (Through-Hole Technology, kurz THT). Darauf folgt die
-Prüfung einer Platine mit zugehöriger optischen Kontrolle, die Lackierung und die Endkontrolle, bevor die
+Prüfung einer Platine mit zugehöriger optischer Kontrolle, die Lackierung und die Endkontrolle, bevor die
 Platine eingelagert wird. Abschnitt~\ref{sec:Fertigungsprozess} beschreibt diese
-Schritte genauer. Damit sich die Platinen identifizierbar bleiben, besitzt jede
+Schritte genauer. Damit die Platinen identifizierbar bleiben, besitzt jede
 einen Aufkleber mit dem ZOPF-internen Namen des Platinentyps, der
-Artikelnummer und einer für den Typen eindeutige \emph{Seriennummer}. 
+Artikelnummer und einer für den Typ eindeutigen \emph{Seriennummer}.
 Ein Data-Matrix-Code auf dem Aufkleber enthält dieselben Angaben in maschinenlesbarer Form.
 
 Gesteuert wird die Fertigung über \emph{Laufkarten}. Eine Laufkarte steht für
-einen Fertigungsauftrag und bestimmt welcher Platinentyp in welcher Stückzahl gefertigt werden soll und damit auch, welche Seriennummer diese belegen. 
+einen Fertigungsauftrag und bestimmt, welcher Platinentyp in welcher Stückzahl gefertigt werden soll und damit auch, welche Seriennummern diese belegen.
 Vor dieser Arbeit handelte es sich dabei um Papierkarten oder Exceltabellen.
 War ein Arbeitsschritt erledigt, notierten die Mitarbeiter von Hand, für welchen
-Seriennummernbereich das galt, und haben die Angaben an die Produktionsleitung
-weiter gegeben. Auch der Fortschritt einer Laufkarte wurde in Papierform
+Seriennummernbereich das galt, und gaben die Angaben an die Produktionsleitung
+weiter. Auch der Fortschritt einer Laufkarte wurde in Papierform
 festgehalten. Bei den Modulen sah es genauso aus. Zu jedem Modul wurde ein
 Montageprotokoll ausgedruckt, in das die Seriennummern der eingebauten Platinen
 von Hand eingetragen wurden. Eine digitale Fassung dieses Protokolls existierte nicht.
@@ -47,7 +47,7 @@ Ziffern ein. Oder Meldungen fehlten ganz, weil ein Zettel vergessen wurde
 oder verloren ging. Hinzu kam, dass sich die Excel-Listen jederzeit ändern
 ließen, ohne dass der alte Stand oder die Änderung selbst irgendwo festgehalten
 wurde. Eine \emph{revisionssichere} Dokumentation, bei der jede Änderung
-nachvollziehbar bleibt und frühere Stände erhalten waren, war dadurch nicht möglich.
+nachvollziehbar und jeder frühere Stand erhalten bleibt, war dadurch nicht möglich.
 Wie uneinheitlich die Altdaten waren, zeigte sich spätestens bei
 ihrer Übernahme in das neue System (Abschnitt~\ref{sec:Migration}).
 
@@ -71,7 +71,7 @@ abzulösen.
 \section{Zielsetzung und Fragestellungen}
 \label{sec:Zielsetzung}
 Ziel dieser Arbeit ist eine datenbankgestützte Webanwendung, die das bestehende System aus
-Papier-Laufkarten, handschriftliche Meldungen und Excel-Listen in der
+Papier-Laufkarten, handschriftlichen Meldungen und Excel-Listen in der
 Platinenfertigung der ZOPF Energieanlagen GmbH ersetzen soll. Sie heißt \emph{Produktionsverwaltung} und ihr Ziel beinhaltet drei Teile.
 
 Der erste ist die \emph{Erfassung}. Die Mitarbeiter melden abgeschlossene
@@ -88,7 +88,7 @@ Der dritte Teil, die \emph{Rückverfolgbarkeit}, verlangt, dass sich für jede
 Platine lückenlos nachvollziehen lässt, wann, durch wen und an welchem Standort
 sie welchen Schritt durchlaufen hat, in welcher Kiste sie lag und in welches
 Modul sie eingebaut oder aus welchem sie wieder ausgebaut wurde. Die
-zugehörigen Prüfprotokolle einer Platine sind direkt abrufbar und Korrekturen von Erfassung überschreiben
+zugehörigen Prüfprotokolle einer Platine sind direkt abrufbar, und Korrekturen von Erfassungen überschreiben
 keine Daten, sondern werden revisionssicher protokolliert.
 
 Daraus ergeben sich vier Fragestellungen, die diese Arbeit beantwortet:
@@ -112,7 +112,7 @@ Mitarbeiter flossen fortlaufend in die Weiterentwicklung ein. Antworten auf die
 erste und zweite Frage geben die Kapitel~\ref{sec:Konzeption}
 und~\ref{sec:Implementierung}, auf die dritte außerdem das Datenmodell in
 Abschnitt~\ref{sec:Datenmodell} und die Geschäftsregeln in
-Abschnitt~\ref{sec:Geschaeftsregeln}. Ob sich die Anwendung im Alltag verwendet wird, klärt die Evaluation 
+Abschnitt~\ref{sec:Geschaeftsregeln}. Ob sich die Anwendung im Alltag bewährt, klärt die Evaluation
 in Kapitel~\ref{sec:Evaluation}, unter anderem mit einer Befragung der Anwender.
 
 \section{Abgrenzung}
@@ -182,9 +182,9 @@ kritisch und blickt auf mögliche zukünftige Weiterentwicklungen.
 \chapter{Grundlagen}
 \label{sec:Grundlagen}
 Bevor die Anforderungen und der Entwurf beschrieben werden können, muss diese Arbeit zwei Arten
-von Grundlagen aufzeigen. Die fachlichen klären, zum Beispiel was Rückverfolgbarkeit bedeutet und wie
-eine Platine gefertigt wird und die technischen Grundlagen zeigen, was eine relationalen Datenbank, eine Webanwendung auf Basis von
-SvelteKit und maschinenlesbaren Codes auf den Platinen sind oder wofür diese verwendet werden.
+von Grundlagen aufzeigen. Die fachlichen klären zum Beispiel, was Rückverfolgbarkeit bedeutet und wie
+eine Platine gefertigt wird, und die technischen Grundlagen zeigen, was eine relationale Datenbank, eine Webanwendung auf Basis von
+SvelteKit und maschinenlesbare Codes auf den Platinen sind oder wofür diese verwendet werden.
 
 \section{Rückverfolgbarkeit in der Elektronikfertigung}
 \label{sec:Rueckverfolgbarkeit}
@@ -349,7 +349,7 @@ allerdings lassen sich mit Hilfe von Rechnerunterstützung deutlich mehr Daten v
 und die Geschichte eines Produkts und
 seiner Verarbeitung detaillierter und sicherer festhalten. Als Nutzen einer internen
 Rückverfolgbarkeit nennt Moe unter anderem eine bessere Prozesssteuerung,
-Hinweise auf die Ursache, falls ein Produkt nicht den Vorgaben entsprechen sollte und
+Hinweise auf die Ursache, falls ein Produkt nicht den Vorgaben entsprechen sollte, und
 eine einfachere Informationsbeschaffung bei Audits des Qualitätsmanagements
 (vgl. \cite[S.~213]{moePerspectivesTraceabilityFood1998}).
 
@@ -983,7 +983,7 @@ anderen Unternehmen aber genauso vorkommen können (vgl.
 Aktionsraum der Platinentyp, denn eine Seriennummer ist nur innerhalb eines
 Typs eindeutig. Ein Aufkleber mit der bloßen Seriennummer wäre deshalb wenig
 wert; erst zusammen mit der Artikelnummer bezeichnet er genau eine Platine.
-Mindestens so wichtig wie das Format ist nach Hompel et al. die Verwaltung der
+Mindestens so wichtig wie das Format ist nach ten Hompel et al. die Verwaltung der
 Nummern: Es dürfen keine doppelten Etiketten im Umlauf sein, und jedes falsch
 aufgeklebte und weggeworfene Etikett hinterlässt eine Lücke im Nummernkreis
 (vgl. \cite[S.~24]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Solche Lücken entstehen
@@ -1040,7 +1040,7 @@ Elektroindustrie verbreitet, etwa zur Kennzeichnung von Leiterplatten (vgl.
 \cite[S.~84]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Für ZOPF ist er damit eine
 naheliegende Wahl, weil er auf kleiner Fläche Platz findet und einen Kratzer
 verzeiht. Die Aufkleber kauft ZOPF fertig bedruckt bei einem Lieferanten ein,
-eine Möglichkeit, die Hompel et al. neben dem eigenen Druck ausdrücklich vorsehen (vgl.
+eine Möglichkeit, die ten Hompel et al. neben dem eigenen Druck ausdrücklich vorsehen (vgl.
 \cite[S.~24, 98]{tenhompelIdentifikationssystemeUndAutomatisierung2008}). Aufgeklebt werden sie vor
 dem SMD-Löten, sodass jede Platine schon vom ersten Arbeitsschritt an eine
 Identität hat. Fachlich handelt es sich um eine indirekte Kennzeichnung: Zuerst
@@ -1057,7 +1057,7 @@ statt einer fünfstelligen Artikelnummer, etwa
 \texttt{TR102|10010312|00000615}. So können Programme im Unternehmen eindeutig
 erkennen, welche Teile zusammengehören. Beide Fassungen sind im Umlauf, die
 Anwendung muss also beide verstehen. Welche Angaben ein Code in welcher
-Reihenfolge trägt, legt die Codeart selbst gar nicht fest. Hompel et al.
+Reihenfolge trägt, legt die Codeart selbst gar nicht fest. Ten Hompel et al.
 beschreiben den Code~128 deshalb als rein technische Grundlage, für die innerhalb
 eines Unternehmens eine interne Vereinbarung genügt; eine gemeinsame Sprache wie
 der EAN-128-Standard wird erst nötig, wenn Daten über die Unternehmensgrenze
@@ -1106,7 +1106,7 @@ stammt, muss die Anwendung selbst herausfinden. Dieselbe Zeichenkette schickt
 auch der Prüfstand, der den Aufkleber einer Platine ebenfalls einliest.
 Wie die Anwendung sie zerlegt, beschreibt Abschnitt~\ref{sec:Erfassung}.
 
-Schwieriger wird es mit Aufklebern, die nicht von ZOPF stammen. Hompel et al.
+Schwieriger wird es mit Aufklebern, die nicht von ZOPF stammen. Ten Hompel et al.
 warnen, dass Objekte, die bereits anderswo gekennzeichnet wurden, mit den eigenen
 Identifikatoren in Konflikt geraten können. Gehören die fremden Codes einer
 anderen Codefamilie an, lässt sich das Lesegerät so einstellen, dass es sie
@@ -1117,7 +1117,7 @@ den eigenen Nummern desselben Platinentyps überschneiden, und sehen für den
 Scanner nicht anders aus. Wie die Anwendung solche Platinen trotzdem
 auseinanderhält, zeigt Abschnitt~\ref{sec:Erfassung}; die Grenzen dieser Lösung
 bewertet Abschnitt~\ref{sec:KritischeBewertung}. Funketiketten (RFID), denen
-Hompel et al. einen großen Teil ihres Kapitels widmen, setzt ZOPF nicht ein.
+ten Hompel et al. einen großen Teil ihres Kapitels widmen, setzt ZOPF nicht ein.
 
 Zusammengenommen ergibt dieses Kapitel ein recht klares Bild davon, was die
 Produktionsverwaltung leisten muss. Sie begleitet Platinen, die über ihren

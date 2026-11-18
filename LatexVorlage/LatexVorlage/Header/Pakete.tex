@@ -10,8 +10,21 @@
 \usepackage[babel,german=quotes]{csquotes}						% Anführungszeichen
 \RequirePackage[ngerman=ngerman-x-latest]{hyphsubst} 	% erweiterte Silbentrennung
 
+% Seitenzahlen nach Kudraß: oben am Rand, nur die Zahl, keine Zahl auf der
+% ersten Seite eines Kapitels bzw. Verzeichnisses und auf dem Abstract
+\usepackage{scrlayer-scrpage}
+\clearpairofpagestyles
+\ohead{\pagemark}
+\pagestyle{scrheadings}
+\renewcommand*{\chapterpagestyle}{empty}
+
 % Befehle aus AMSTeX für mathematische Symbole z.B. \boldsymbol \mathbb
 \usepackage{amsmath,amsfonts}
+
+% Schrift Times (Kudraß: 12 pt Times oder 11 pt Arial); newtxmath nach amsmath.
+% newtxtext lädt xcolor, deshalb die Farbnamen vorher als Option übergeben
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{newtxtext,newtxmath}
 
 % Zeilenabstände und Seitenränder 
 \usepackage{setspace}
@@ -27,10 +40,10 @@
 
 % Verwendung von vordefinierten Farbnamen zur Colorierung
 % Palette und Verwendung unter http://kitt.cl.uzh.ch/kitt/CLinZ.CH/src/Kurse/archiv/LaTeX-Kurs-Farben.pdf
-\usepackage[usenames,dvipsnames]{color}
+% (xcolor statt color, weil newtxtext und TikZ ohnehin xcolor laden)
+\usepackage[dvipsnames]{xcolor}
 
-% eigene Diagramme direkt in LaTeX (pstricks funktioniert mit pdfLaTeX nicht);
-% muss nach color stehen, sonst Optionskonflikt
+% eigene Diagramme direkt in LaTeX (pstricks funktioniert mit pdfLaTeX nicht)
 \usepackage{tikz}
 \usetikzlibrary{positioning,arrows.meta,shapes,fit,calc,shadows}
 
